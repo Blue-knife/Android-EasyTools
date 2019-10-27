@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 
-import com.petterp.toos.ContextToos;
-
 /**
  * Created by Petterp
  * on 2019-10-26
@@ -17,13 +15,17 @@ import com.petterp.toos.ContextToos;
  */
 public class DownloadUtils {
 
-    //测试url
+    /**
+     * 测试url
+     */
     private String url = "http://qn.yingyonghui.com/apk/653732" +
             "5/c1d876442e38f2555" +
             "d85c55a1d8e95b7?sign=a36530f5c08ffbb5d9e" +
             "53c2d50346eb7&t=5db45f8d&attname=c1d876442e" +
             "38f2555d85c55a1d8e95b7.apk";
-    //加.好处是默认隐藏路径
+    /**
+     * 加.好处是默认隐藏路径
+     */
     private final String FILE_URI = "/.测试路径/";
     private IDownloadlister lister = null;
     private String fileName = "test";
@@ -78,10 +80,10 @@ public class DownloadUtils {
             @Override
             public void onReceive(Context context, Intent intent) {
                 //获取下载id
-                long myDwonloadID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                if (myDwonloadID == id) {
+                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                if (downloadId == id) {
                     //获取下载uri
-                    Uri uri = downloadManager.getUriForDownloadedFile(myDwonloadID);
+                    Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
                     lister.success(uri);
                 }
             }

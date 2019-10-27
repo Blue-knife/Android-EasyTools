@@ -9,17 +9,17 @@ import android.content.Context;
  * on 2019-10-26
  * Function:
  */
-public class ContextToos extends Application {
+public class ContextTools extends Application {
     private static class Client {
         @SuppressLint("StaticFieldLeak")
-        private static ContextToos contexToos = new ContextToos();
+        private static ContextTools contexToos = new ContextTools();
     }
 
-    public static ContextToos Builder() {
+    public static ContextTools builder() {
         return Client.contexToos;
     }
 
-    private ContextToos() {
+    private ContextTools() {
     }
 
     public Context getContext() {
