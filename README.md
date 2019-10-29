@@ -13,3 +13,4 @@ Android-EasyToos正是解决我们日常开发难题，快乐编程，不断汇�
 目前的解决方案有：
 
 - 利用 Android DownloadManager 进行文件下载。
+- 使用Glide、rebound实现3D层叠式卡片图片展示

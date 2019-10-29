@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <com.petterp.toos.ImageCard.AutoScaleRelativeLayout
+        android:id="@+id/card_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card:widthHeightRate="0.6588">
+<!--        widthHeightRate:就是设置宽高的百分比-->
+        <ImageView
+            android:id="@+id/card_image_view"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+<!--                这是我们展示的图片-->
+        <View
+            android:id="@+id/maskView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true" />
+<!--        这个是为了让我们图片上有波纹-->
+    </com.petterp.toos.ImageCard.AutoScaleRelativeLayout>
+
+
+</LinearLayout>
