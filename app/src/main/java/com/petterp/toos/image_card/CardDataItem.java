@@ -1,4 +1,4 @@
-package com.petterp.toos.ImageCard;
+package com.petterp.toos.image_card;
 /**
  * author : pixiu
  * qq     : 1326227115

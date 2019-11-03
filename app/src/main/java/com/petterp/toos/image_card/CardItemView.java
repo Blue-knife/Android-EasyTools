@@ -1,4 +1,4 @@
-package com.petterp.toos.ImageCard;
+package com.petterp.toos.image_card;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,15 +13,16 @@ import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.petterp.toos.R;
+
 /**
  * author : pixiu
  * qq     : 1326227115
  * date   : 2019/10/29
  * 卡片View项
  */
-@SuppressLint("NewApi")
-public class CardItemView extends FrameLayout {
-    private Spring springX, springY;
+//@SuppressLint("NewApi")
+//public class CardItemView extends FrameLayout {
+  /*  private String springX, springY;
     public ImageView imageView;
     public View maskView;
 
@@ -70,24 +71,26 @@ public class CardItemView extends FrameLayout {
             }
         });
     }
+
     //装载数据
     public void fillData(CardDataItem itemData) {
         Glide.with(getContext()).load(itemData.imagePath).into(imageView);
 
 
     }
-    /**
+
+    *//**
      * 动画移动到某个位置
-     */
+     *//*
     public void animTo(int xPos, int yPos) {
         setCurrentSpringPos(getLeft(), getTop());
         springX.setEndValue(xPos);
         springY.setEndValue(yPos);
     }
 
-    /**
+    *//**
      * 设置当前spring位置
-     */
+     *//*
     private void setCurrentSpringPos(int xPos, int yPos) {
         springX.setCurrentValue(xPos);
         springY.setCurrentValue(yPos);
@@ -110,23 +113,23 @@ public class CardItemView extends FrameLayout {
         springY.setAtRest();
     }
 
-    /**
+    *//**
      * 判断(x, y)是否在可滑动的矩形区域内
      * 这个函数也被CardSlidePanel调用
      *
      * @param x 按下时的x坐标
      * @param y 按下时的y坐标
      * @return 是否在可滑动的矩形区域
-     */
+     *//*
     public boolean shouldCapture(int x, int y) {
         int captureLeft = getLeft() + topLayout.getPaddingLeft();
         int captureTop = getTop() + topLayout.getTop() + topLayout.getPaddingTop();
-        int captureRight = getRight() ;
-        int captureBottom = getBottom() - getPaddingBottom() ;
+        int captureRight = getRight();
+        int captureBottom = getBottom() - getPaddingBottom();
 
         if (x > captureLeft && x < captureRight && y > captureTop && y < captureBottom) {
             return true;
         }
         return false;
-    }
-}
+    }*/
+//}

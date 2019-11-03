@@ -1,4 +1,4 @@
-package com.petterp.toos.ImageCard;
+package com.petterp.toos.image_card;
 
 import android.content.Context;
 import android.content.res.TypedArray;

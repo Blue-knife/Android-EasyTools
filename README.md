@@ -1,4 +1,4 @@
-# Android-EasyToos
+# Android-EasyTools
 
 > 一个通用的业务代码解决方案，快速解决日常开发中遇到的问题，避免重复查询，做到工具代码，复用起来简单傻瓜。
 
@@ -14,3 +14,4 @@ Android-EasyToos正是解决我们日常开发难题，快乐编程，不断汇�
 
 - 利用 Android DownloadManager 进行文件下载。
 - 使用Glide、rebound实现3D层叠式卡片图片展示
+- 封装高效 dialog ，可直接使用，可继承使用，具体使用方式见 DialogActivity。源码请查看 dialog 包
