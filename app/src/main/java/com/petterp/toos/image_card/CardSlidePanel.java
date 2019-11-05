@@ -1,4 +1,4 @@
-/*
+
 package com.petterp.toos.image_card;
 
 import android.annotation.SuppressLint;
@@ -21,21 +21,21 @@ import java.util.List;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
-*/
+
 /**
  * author : pixiu
  * qq     : 1326227115
  * date   : 2019/10/29
  * 卡片滑动面板，主要逻辑实现类
- *//*
+ */
 
 @SuppressLint({"HandlerLeak", "NewApi", "ClickableViewAccessibility"})
 public class CardSlidePanel extends ViewGroup {
     private List<CardItemView> viewList = new ArrayList<CardItemView>(); // 存放的是每一层的view，从顶到底
     private List<View> releasedViewList = new ArrayList<View>(); // 手指松开后存放的view列表
 
-    */
-/* 拖拽工具类 *//*
+
+/* 拖拽工具类 */
 
     private final ViewDragHelper mDragHelper; // 这个跟原生的ViewDragHelper差不多，修改了Interpolator
     private int initCenterViewX = 0, initCenterViewY = 0; // 最初时，中间View的x位置,y位置
@@ -162,10 +162,10 @@ public class CardSlidePanel extends ViewGroup {
     }
 
 
-    */
+
 /**
      * 这是viewdraghelper拖拽效果的主要逻辑
-     *//*
+     */
 
     private class DragHelperCallback extends ViewDragHelper.Callback {
         @Override
@@ -232,10 +232,10 @@ public class CardSlidePanel extends ViewGroup {
         processLinkageView(changedView);
     }
 
-    */
+
 /**
      * 对View重新排序
-     *//*
+     */
 
     private void orderViewStack() {
         if (releasedViewList.size() == 0) {
@@ -288,12 +288,12 @@ public class CardSlidePanel extends ViewGroup {
         }
     }
 
-    */
+
 /**
      * 顶层卡片View位置改变，底层的位置需要调整
      *
      * @param changedView 顶层的卡片view
-     *//*
+     */
 
     private void processLinkageView(View changedView) {
         int changeViewLeft = changedView.getLeft();
@@ -341,10 +341,10 @@ public class CardSlidePanel extends ViewGroup {
         ajustView.setScaleY(scale);
     }
 
-    */
+
 /**
      * 松手时处理滑动到边缘的动画
-     *//*
+     */
 
     private void animToSide(CardItemView changedView, int xvel, int yvel) {
         int finalX = initCenterViewX;
@@ -401,10 +401,10 @@ public class CardSlidePanel extends ViewGroup {
         }
     }
 
-    */
+
 /**
      * 点击按钮消失动画
-     *//*
+     */
 
     private void vanishOnBtnClick(int type) {
         View animateView = viewList.get(0);
@@ -457,8 +457,8 @@ public class CardSlidePanel extends ViewGroup {
         return super.dispatchTouchEvent(ev);
     }
 
-    */
-/* touch事件的拦截与处理都交给mDraghelper来处理 *//*
+
+/* touch事件的拦截与处理都交给mDraghelper来处理 */
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -541,10 +541,10 @@ public class CardSlidePanel extends ViewGroup {
         childWith = viewList.get(0).getMeasuredWidth();
     }
 
-    */
+
 /**
      * 本数据添加
-     *//*
+     */
 
     public void fillData(List<CardDataItem> dataList) {
         this.dataList = dataList;
@@ -561,48 +561,48 @@ public class CardSlidePanel extends ViewGroup {
         }
     }
 
-    */
+
 /**
      * 设置卡片操作回调
-     *//*
+     */
 
     public void setCardSwitchListener(CardSwitchListener cardSwitchListener) {
         this.cardSwitchListener = cardSwitchListener;
     }
 
-    */
+
 /**
      * 卡片回调接口
-     *//*
+     */
 
     public interface CardSwitchListener {
-        */
+
 /**
          * 新卡片显示回调
          *
          * @param index 最顶层显示的卡片的index
-         *//*
+         */
 
         public void onShow(int index);
 
-        */
+
 /**
          * 卡片飞向两侧回调
          *
          * @param index 飞向两侧的卡片数据index
          * @param type  飞向哪一侧{@link #VANISH_TYPE_LEFT}或{@link #VANISH_TYPE_RIGHT}
-         *//*
+         */
 
         public void onCardVanish(int index, int type);
 
-        */
+
 /**
          * 卡片点击事件
          *
          * @param cardImageView 卡片上的图片view
          * @param index         点击到的index
-         *//*
+         */
 
         public void onItemClick(View cardImageView, int index);
     }
-}*/
+}

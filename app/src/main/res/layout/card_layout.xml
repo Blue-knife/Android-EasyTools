@@ -12,9 +12,9 @@
         android:id="@+id/image_slide_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card:bottomMarginTop="38dp"
-        card:itemMarginTop="10dp"
-        card:yOffsetStep="26dp">
+        card:bottomMarginTop="20dp"
+        card:itemMarginTop="150dp"
+        card:yOffsetStep="-100dp">
 
         <LinearLayout
             android:id="@+id/card_bottom_layout"

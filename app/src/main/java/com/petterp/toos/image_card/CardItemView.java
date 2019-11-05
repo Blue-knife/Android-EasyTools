@@ -8,10 +8,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.rebound.SimpleSpringListener;
-import com.facebook.rebound.Spring;
-import com.facebook.rebound.SpringConfig;
-import com.facebook.rebound.SpringSystem;
+import com.petterp.toos.image_card.core.SimpleSpringListener;
+import com.petterp.toos.image_card.core.Spring;
+import com.petterp.toos.image_card.core.SpringConfig;
+import com.petterp.toos.image_card.core.SpringSystem;
 import com.petterp.toos.R;
 
 /**
@@ -20,9 +20,9 @@ import com.petterp.toos.R;
  * date   : 2019/10/29
  * 卡片View项
  */
-//@SuppressLint("NewApi")
-//public class CardItemView extends FrameLayout {
-  /*  private String springX, springY;
+@SuppressLint("NewApi")
+public class CardItemView extends FrameLayout {
+   private Spring springX, springY;
     public ImageView imageView;
     public View maskView;
 
@@ -79,18 +79,18 @@ import com.petterp.toos.R;
 
     }
 
-    *//**
+    /**
      * 动画移动到某个位置
-     *//*
+     */
     public void animTo(int xPos, int yPos) {
         setCurrentSpringPos(getLeft(), getTop());
         springX.setEndValue(xPos);
         springY.setEndValue(yPos);
     }
 
-    *//**
+    /**
      * 设置当前spring位置
-     *//*
+     */
     private void setCurrentSpringPos(int xPos, int yPos) {
         springX.setCurrentValue(xPos);
         springY.setCurrentValue(yPos);
@@ -113,14 +113,14 @@ import com.petterp.toos.R;
         springY.setAtRest();
     }
 
-    *//**
+   /**
      * 判断(x, y)是否在可滑动的矩形区域内
      * 这个函数也被CardSlidePanel调用
      *
      * @param x 按下时的x坐标
      * @param y 按下时的y坐标
      * @return 是否在可滑动的矩形区域
-     *//*
+     */
     public boolean shouldCapture(int x, int y) {
         int captureLeft = getLeft() + topLayout.getPaddingLeft();
         int captureTop = getTop() + topLayout.getTop() + topLayout.getPaddingTop();
@@ -131,5 +131,5 @@ import com.petterp.toos.R;
             return true;
         }
         return false;
-    }*/
-//}
+    }
+    }

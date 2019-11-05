@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.petterp.toos.R;
+import com.petterp.toos.TestCardFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//        getSupportFragmentManager().beginTransaction().replace(R.id.main,new TestCardFragment()).commit();
 
         init();
     }

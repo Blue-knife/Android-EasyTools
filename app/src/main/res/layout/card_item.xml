@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:layout_marginTop="50dp"
+    android:paddingRight="5dp"
+    card:cardCornerRadius="20dp"
+    card:cardElevation="10dp"
+    card:cardPreventCornerOverlap="true"
+    card:cardUseCompatPadding="true"
+    >
 
     <com.petterp.toos.image_card.AutoScaleRelativeLayout
         android:id="@+id/card_top_layout"
@@ -29,4 +34,4 @@
     </com.petterp.toos.image_card.AutoScaleRelativeLayout>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
