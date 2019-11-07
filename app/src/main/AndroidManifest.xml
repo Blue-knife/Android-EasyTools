@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.petterp.toos">
+    package="com.business.toos">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,8 +17,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".activity.DialogActivity"></activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".basedialog.test.DialogActivity"></activity>
+        <activity android:name=".basedialog.test.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -12,7 +12,8 @@ Android-EasyToos正是解决我们日常开发难题，快乐编程，不断汇�
 
 目前的解决方案有：
 
-- 利用 Android DownloadManager 进行文件下载。
-- 使用Glide、rebound实现3D层叠式卡片图片展示
-- 封装高效 dialog ，可直接使用，可继承使用，具体使用方式见 https://blog.csdn.net/baidu_40389775/article/details/102470687
-  源码请查看 dialog 包
+- [利用 Android DownloadManager 进行文件下载;](https://blog.csdn.net/petterp/article/details/102762261)
+- [使用Glide、rebound实现3D层叠式卡片图片展示;](https://blog.csdn.net/duihuapixiu/article/details/102795767)
+- [封装高效 dialog ，可直接使用，可继承使用，具体使用方式见 源码请查看 dialog 包;](https://blog.csdn.net/baidu_40389775/article/details/102470687)
+- 一个符合阿里编码规范的全局线程池。
+

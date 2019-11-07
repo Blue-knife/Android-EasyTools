@@ -8,7 +8,7 @@
 
 
 
-    <com.petterp.toos.image_card.CardSlidePanel
+    <com.business.toos.image_card.CardSlidePanel
         android:id="@+id/image_slide_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,22 +42,22 @@
              />
         </LinearLayout>
 
-        <com.petterp.toos.image_card.CardItemView
+        <com.business.toos.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.petterp.toos.image_card.CardItemView
+        <com.business.toos.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.petterp.toos.image_card.CardItemView
+        <com.business.toos.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.petterp.toos.image_card.CardItemView
+        <com.business.toos.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </com.petterp.toos.image_card.CardSlidePanel>
+    </com.business.toos.image_card.CardSlidePanel>
 
 </LinearLayout>
