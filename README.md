@@ -1,6 +1,6 @@
 # Android-EasyTools
 
-<img src="https://tva1.sinaimg.cn/large/006tNbRwly1g9pjxidxvij30b40bbdg8.jpg" width="30%" align='left'>
+![Jietu20191208-193301](https://tva1.sinaimg.cn/large/006tNbRwly1g9pjv5c1byj30b40bbdg8.jpg)
 
 > 一个通用的业务代码解决方案，快速解决日常开发中遇到的问题，避免重复查询，做到工具代码，复用起来简单傻瓜。
 
