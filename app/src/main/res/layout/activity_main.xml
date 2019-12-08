@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".basedialog.test.MainActivity">
+    tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/main_dialog_tv"
+    <LinearLayout
+        android:id="@+id/ll_main"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="dialog 实例"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
-<!--<FrameLayout-->
-<!--    android:id="@+id/main"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"/>-->
-</androidx.appcompat.widget.LinearLayoutCompat>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文件下载(未提供demo)" />
+
+        <Button
+            android:id="@+id/btn_thread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="线程池工具(未提供demo)" />
+
+        <Button
+            android:id="@+id/btn_img_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3d图片展示" />
+
+        <Button
+            android:id="@+id/btn_base_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通用Dialog" />
+
+
+        <Button
+            android:id="@+id/btn_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="流式布局FlowLayout" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

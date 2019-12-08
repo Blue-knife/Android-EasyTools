@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ContextTools"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,14 +18,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".basedialog.test.DialogActivity"></activity>
-        <activity android:name=".basedialog.test.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".basedialog.test.DialogActivity" />
+        <activity android:name=".image_card.test.CardaActivity"/>
+        <activity android:name=".flowlayout.test.FlowLayoutActivity"/>
     </application>
 
 </manifest>

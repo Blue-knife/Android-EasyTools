@@ -10,23 +10,8 @@ import android.content.Context;
  * Function:
  */
 public class ContextTools extends Application {
-    private static class Client {
-        @SuppressLint("StaticFieldLeak")
-        private static ContextTools contexToos = new ContextTools();
-    }
 
-    public static ContextTools builder() {
-        return Client.contexToos;
-    }
-
-    private ContextTools() {
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    private Context context;
+    public static Context context;
 
     @Override
     public void onCreate() {
