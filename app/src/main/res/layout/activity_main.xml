@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context="com.business.tools.MainActivity">
 
     <LinearLayout
         android:id="@+id/ll_main"
@@ -75,6 +75,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="状态栏工具类"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拍照、打开相机，裁剪"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>
