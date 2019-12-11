@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -11,60 +11,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
 
-           <ImageView
-               android:layout_width="200dp"
-               android:layout_height="200dp"
-               android:layout_marginLeft="10dp"
-               android:scaleType="fitCenter"
-               android:src="@mipmap/icon" />
-           <TextView
-               android:textSize="17dp"
-               android:text="为了更快的开发效率"
-               android:textColor="#3C4F55"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:gravity="center"/>
-       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/icon"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="为了更快的开发效率"
+                android:textColor="#3C4F55"
+                android:textSize="17sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="文件下载(未提供demo)" />
+            android:text="文件下载(未提供demo)"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btn_thread"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="线程池工具(未提供demo)" />
+            android:text="线程池工具(未提供demo)"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btn_img_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3d图片展示" />
+            android:text="3d图片展示"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btn_base_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="通用Dialog" />
+            android:text="通用Dialog"
+            tools:ignore="HardcodedText" />
 
 
         <Button
             android:id="@+id/btn_flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="流式布局FlowLayout" />
+            android:text="流式布局FlowLayout"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btn_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="状态栏工具类" />
+            android:text="状态栏工具类"
+            tools:ignore="HardcodedText" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
