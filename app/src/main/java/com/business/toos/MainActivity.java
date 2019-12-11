@@ -1,17 +1,10 @@
 package com.business.toos;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-
-import com.business.toos.R;
 import com.business.toos.basedialog.test.DialogActivity;
 import com.business.toos.flowlayout.test.FlowLayoutActivity;
 import com.business.toos.image_card.test.CardaActivity;
