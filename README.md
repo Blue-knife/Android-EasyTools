@@ -19,6 +19,7 @@ Android-EasyToos正是解决我们日常开发难题，快乐编程，不断汇�
 - [封装高效 dialog ，可直接使用，可继承使用，具体使用方式见 源码请查看 dialog 包;](https://blog.csdn.net/baidu_40389775/article/details/102470687)
 - 一个符合阿里编码规范的全局线程池。
 - Android流式布局 FlowLayout。
+- Android状态栏配置，系统OS获取工具。
 
 
 

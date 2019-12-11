@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_base_dialog:startIntent(DialogActivity.class);break;
             case R.id.btn_flow:startIntent(FlowLayoutActivity.class);break;
             case R.id.btn_img_card:startIntent(CardaActivity.class);break;
+            case R.id.btn_bar:ToastUtils.showText("todo");break;
             default:
                 break;
         }
