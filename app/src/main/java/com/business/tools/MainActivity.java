@@ -12,6 +12,9 @@ import com.business.tools.flowlayout.test.FlowLayoutActivity;
 import com.business.tools.image_card.test.CardaActivity;
 import com.business.toos.R;
 
+/**
+ * Main
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
