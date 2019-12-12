@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/flow_Layout"
         android:text="点击添加textView" />
-    <com.business.toos.flowlayout.FlowLayout
+
+    <com.business.tools.flowlayout.FlowLayout
         android:id="@+id/flow_Layout"
         android:padding="10dp"
         android:layout_width="match_parent"
