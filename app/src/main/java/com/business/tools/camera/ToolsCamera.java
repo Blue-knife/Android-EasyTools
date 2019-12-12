@@ -3,7 +3,7 @@ package com.business.tools.camera;
 import android.app.Activity;
 import android.net.Uri;
 
-import com.business.tools.file_utils.FileUtils;
+import com.business.tools.utils.FileUtils;
 
 /**
  * @author 345 QQ:1831712732

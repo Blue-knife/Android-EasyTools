@@ -7,9 +7,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import androidx.core.content.FileProvider;
 
-import com.business.tools.file_utils.FileUtils;
+import com.business.tools.utils.FileUtils;
 
 import java.io.File;
 

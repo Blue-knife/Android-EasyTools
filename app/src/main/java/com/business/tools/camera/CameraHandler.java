@@ -15,7 +15,7 @@ import android.view.WindowManager;
 
 import androidx.core.content.FileProvider;
 
-import com.business.tools.file_utils.FileUtils;
+import com.business.tools.utils.FileUtils;
 import com.business.toos.R;
 
 import java.io.File;
@@ -64,6 +64,9 @@ public class CameraHandler implements View.OnClickListener {
         return FileUtils.getFileNameByTime("IMG", "jpg");
     }
 
+    /**
+     * 打开相机
+     */
     private void takePhoto() {
         //获取一个 名字,
         final String currentPhotoName = getPhotoName();
@@ -73,7 +76,7 @@ public class CameraHandler implements View.OnClickListener {
         final File tempFile = new File(FileUtils.CAMERA_PHOTO_DIR, currentPhotoName);
 
         Uri imageUri;
-        // 注意7.0及以上与之前获取的uri不一样了，返回的是provider路径
+        // 注意7.0及以上与之前获取的uri不一样了，返回的是provider路径，需在清单中注册
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             imageUri = FileProvider.getUriForFile(activity,
                     "com.business.tools.fileProvider", tempFile);

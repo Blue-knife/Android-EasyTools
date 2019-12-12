@@ -23,7 +23,7 @@ import com.business.toos.R;
  * @name Android Business Toos
  * @class name：com.business.toos.camera
  * @time 2019/12/11 23:02
- * @description
+ * @description 一键式调用相机，相册，系统裁剪库
  */
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,6 +66,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 调用
+     */
     public void start() {
         ToolsCamera.start(this);
     }
