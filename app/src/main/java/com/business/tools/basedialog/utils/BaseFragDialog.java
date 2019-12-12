@@ -144,6 +144,12 @@ public class BaseFragDialog extends DialogFragment {
      * 对事件进行监听，
      */
     public interface OnListener {
+        /**
+         * 事件监听
+         *
+         * @param dialog dialog
+         * @param view   view
+         */
         void onClick(BaseFragDialog dialog, View view);
     }
 
