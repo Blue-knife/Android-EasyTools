@@ -16,9 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.app.ActivityCompat;
-
-import com.business.tools.ToastUtils;
 import com.business.toos.R;
 
 /**
@@ -45,8 +42,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         checkPermission(new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE});
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,});
     }
 
     public void checkPermission(String[] permission) {
@@ -76,28 +72,32 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode) {
-            //相机回调
-            case RequestCode.TAKE_PHOTO:
-                final Uri resultUri = CameraImageBean.getInstance().getPath();
-                CropPhoto.cropPhoto(this, true, resultUri);
-                break;
-            case RequestCode.PICK_PHOTO:
-                if (data != null) {
-                    final Uri pickPath = data.getData();
-                    CropPhoto.cropPhoto(this, false, pickPath);
-                }
-                break;
-            case RequestCode.CROP_PHOTO:
-                Bitmap bitmap = BitmapFactory.decodeFile(CameraImageBean.getInstance().getPath().getPath());
-                if (bitmap != null) {
-                    mImage.setImageBitmap(bitmap);
-                } else {
-                    Toast.makeText(this, "图片加载失败", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                break;
+        if (resultCode == 1) {
+            switch (requestCode) {
+                //相机回调
+                case RequestCode.TAKE_PHOTO:
+                    final Uri resultUri = CameraImageBean.getInstance().getPath();
+                    if (resultUri != null) {
+                        CropPhoto.cropPhoto(this, true, resultUri);
+                    }
+                    break;
+                case RequestCode.PICK_PHOTO:
+                    if (data != null) {
+                        final Uri pickPath = data.getData();
+                        CropPhoto.cropPhoto(this, false, pickPath);
+                    }
+                    break;
+                case RequestCode.CROP_PHOTO:
+                    Bitmap bitmap = BitmapFactory.decodeFile(CameraImageBean.getInstance().getPath().getPath());
+                    if (bitmap != null) {
+                        mImage.setImageBitmap(bitmap);
+                    } else {
+                        Toast.makeText(this, "图片加载失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
