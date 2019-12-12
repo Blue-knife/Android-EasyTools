@@ -27,7 +27,7 @@
             android:layout_marginBottom="6dp"
             android:src="@drawable/ic_dialog_warning" />
 
-        <com.business.toos.basedialog.utils.ProgressView
+        <com.business.tools.basedialog.utils.ProgressView
             android:id="@+id/pw_progress"
             android:layout_width="60dp"
             android:layout_height="60dp"

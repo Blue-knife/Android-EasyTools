@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".basedialog.test.DialogActivity">
+    tools:context="com.business.tools.basedialog.test.DialogActivity">
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/white"
-
         android:gravity="center"
         android:padding="10dp"
         android:text="自定义日期 dialog"
