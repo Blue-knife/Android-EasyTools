@@ -16,14 +16,15 @@ import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
 import com.business.toos.R;
 
 
 /**
- *    author : Todd-Davies
- *    github : https://github.com/Todd-Davies/ProgressWheel
- *    time   : 2019/07/13
- *    desc   : 进度条控件
+ * author : Todd-Davies
+ * github : https://github.com/Todd-Davies/ProgressWheel
+ * time   : 2019/07/13
+ * desc   : 进度条控件
  */
 public final class ProgressView extends View {
 
@@ -31,7 +32,9 @@ public final class ProgressView extends View {
     private final static int BAR_MAX_LENGTH = 270;
     private final static long PAUSE_GROWING_TIME = 200;
 
-    /** Sizes (with defaults in DP) */
+    /**
+     * Sizes (with defaults in DP)
+     */
     private int mCircleRadius = 28;
     private int mBarWidth = 4;
     private int mRimWidth = 4;
@@ -41,21 +44,31 @@ public final class ProgressView extends View {
     private float mBarExtraLength = 0;
     private boolean mBarGrowingFromFront = true;
     private long mPausedTimeWithoutGrowing = 0;
-    /** Colors (with defaults) */
+    /**
+     * Colors (with defaults)
+     */
     private int mBarColor = 0xAA000000;
     private int mRimColor = 0x00FFFFFF;
 
-    /** Paints */
+    /**
+     * Paints
+     */
     private final Paint mBarPaint = new Paint();
     private final Paint mRimPaint = new Paint();
 
-    /** Rectangles */
+    /**
+     * Rectangles
+     */
     private RectF mCircleBounds = new RectF();
 
-    /** Animation The amount of degrees per second */
+    /**
+     * Animation The amount of degrees per second
+     */
     private float mSpinSpeed = 230.0f;
     /** private float mSpinSpeed = 120.0f; */
-    /** The last time the spinner was animated */
+    /**
+     * The last time the spinner was animated
+     */
     private long mLastTimeAnimated = 0;
 
     private boolean mLinearProgress;
@@ -79,7 +92,7 @@ public final class ProgressView extends View {
     public ProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ProgressView );
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ProgressView);
         mBarWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBarWidth, getResources().getDisplayMetrics());
         mRimWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mRimWidth, getResources().getDisplayMetrics());
         mCircleRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mCircleRadius, getResources().getDisplayMetrics());
@@ -201,7 +214,7 @@ public final class ProgressView extends View {
             int yOffset = (layoutHeight - paddingTop - paddingBottom - circleDiameter) / 2 + paddingTop;
 
             mCircleBounds = new RectF(xOffset + mBarWidth, yOffset + mBarWidth, xOffset + circleDiameter - mBarWidth,
-                            yOffset + circleDiameter - mBarWidth);
+                    yOffset + circleDiameter - mBarWidth);
         } else {
             mCircleBounds = new RectF(paddingLeft + mBarWidth, paddingTop + mBarWidth,
                     layoutWidth - paddingRight - mBarWidth, layoutHeight - paddingBottom - mBarWidth);
