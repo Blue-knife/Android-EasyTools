@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import com.business.toos.R;
 
 /**
@@ -75,7 +76,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == 1) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 //相机回调
                 case RequestCode.TAKE_PHOTO:
@@ -88,6 +90,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                     if (data != null) {
                         final Uri pickPath = data.getData();
                         CropPhoto.cropPhoto(this, false, pickPath);
+                        Toast.makeText(this, "裁剪", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case RequestCode.CROP_PHOTO:
