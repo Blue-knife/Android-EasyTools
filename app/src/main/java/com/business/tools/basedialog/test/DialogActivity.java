@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.business.tools.basedialog.utils.CustomSpinDialog;
 import com.business.toos.R;
 import com.business.tools.basedialog.utils.BaseFragDialog;
 import com.business.tools.basedialog.utils.DateDialog;
@@ -31,6 +32,7 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.dialog_test_one).setOnClickListener(this);
         findViewById(R.id.dialog_test_two).setOnClickListener(this);
         findViewById(R.id.dialog_test_three).setOnClickListener(this);
+        findViewById(R.id.dialog_test_spin).setOnClickListener(this);
     }
 
     @Override
@@ -86,8 +88,19 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
                         .setType(ToastDialog.Type.LOADING)
                         .show(getSupportFragmentManager(), "345");
                 break;
+            case R.id.dialog_test_spin:
+                CustomSpinDialog.CustomSpinBuilder()
+                        .setAlpha(1)
+                        .setContentView(R.layout.dialog_custom_spin)
+                        .build()
+                        .setHeight(200)
+                        .setWidth(200)
+                        .setResouce(R.drawable.ic_dialog_spin)
+                        .show(getSupportFragmentManager(), "spin");
+
             default:
                 break;
         }
     }
+
 }

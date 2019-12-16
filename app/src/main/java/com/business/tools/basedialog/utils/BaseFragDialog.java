@@ -183,9 +183,13 @@ public class BaseFragDialog extends DialogFragment {
         attributes.alpha = mAlpha;
         attributes.gravity = mGravity;
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        setWindow(window);
         window.setAttributes(attributes);
     }
 
+    protected void setWindow(Window window) {
+
+    }
     /**
      * 延时发送，在指定的时间执行
      */
