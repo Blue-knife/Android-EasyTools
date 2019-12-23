@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.business.tools.basedialog.utils.CustomSpinDialog;
+import com.business.tools.basedialog.utils.OnListener;
 import com.business.toos.R;
 import com.business.tools.basedialog.utils.BaseFragDialog;
 import com.business.tools.basedialog.utils.DateDialog;
@@ -43,11 +44,12 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
                         .setAlpha(1)
                         .setAnimation(R.style.BottomAnimStyle)
                         .setGravity(Gravity.CENTER)
-                        .setContentView(R.layout.dialog)
+                        .setContentView(R.layout.dialog_hint)
                         .build()
+                        .setWidth(this, 0.6f)
                         .setText(R.id.tv_dialog_title, "我是名字")
                         .setText(R.id.tv_dialog_message, "我是内容")
-                        .setListener(R.id.tv_dialog_confirm, new BaseFragDialog.OnListener() {
+                        .setListener(R.id.tv_dialog_confirm, new OnListener() {
                             @Override
                             public void onClick(BaseFragDialog dialog, View view) {
                                 Toast.makeText(DialogActivity.this, "成功", Toast.LENGTH_SHORT).show();
@@ -58,17 +60,17 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.dialog_test_two:
                 DateDialog.DateBuilder()
-                        .setContentView(R.layout.dialog)
+                        .setContentView(R.layout.dialog_hint)
                         .setCancelable(false)
                         .build()
-                        .setListener(R.id.tv_dialog_cancel, new BaseFragDialog.OnListener() {
+                        .setListener(R.id.tv_dialog_cancel, new OnListener() {
                             @Override
                             public void onClick(BaseFragDialog dialog, View view) {
                                 Toast.makeText(DialogActivity.this, "关闭", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         })
-                        .setListener(R.id.tv_dialog_confirm, new BaseFragDialog.OnListener() {
+                        .setListener(R.id.tv_dialog_confirm, new OnListener() {
                             @Override
                             public void onClick(BaseFragDialog dialog, View view) {
                                 Toast.makeText(DialogActivity.this, "确定", Toast.LENGTH_SHORT).show();
@@ -97,7 +99,7 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
                         .setWidth(200)
                         .setResouce(R.drawable.ic_dialog_spin)
                         .show(getSupportFragmentManager(), "spin");
-
+                break;
             default:
                 break;
         }

@@ -1,5 +1,6 @@
 package com.business.tools.basedialog.utils;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.business.tools.utils.ToolsUtils;
 
 /**
  * @author 345
@@ -31,16 +34,40 @@ public class BaseFragDialog extends DialogFragment {
 
     public static final Handler HANDLER = new Handler();
     private Object mView;
-    private View mRootView;
-    private float mAlpha;
-    private boolean mAutoDismiss;
-    private boolean mCancelable;
     private Window window;
+    private Activity mActivity = null;
+    /**
+     * 根布局
+     */
+    private View mRootView;
+    /**
+     * 透明度
+     */
+    private float mAlpha;
+    /**
+     * 是否开启关闭事件
+     */
+    private boolean mAutoDismiss;
+    /**
+     * 点击对话框外是否关闭对话框
+     */
+    private boolean mCancelable;
+    /**
+     * 动画
+     */
     private int mAnimation;
+    /**
+     * 位置
+     */
     private int mGravity;
+    /**
+     * 宽度比
+     */
+    private float mWidthPercent = -1;
     private SparseArray<OnListener> mClickArray;
     private SparseArray<String> mSetText;
     private SparseArray<String> mSetImage;
+
 
     BaseFragDialog(Object view, float alpha, boolean autoDismiss, boolean cancelable, int animation, int gravity) {
         this.mView = view;
@@ -82,6 +109,10 @@ public class BaseFragDialog extends DialogFragment {
         return new DialogBuilder();
     }
 
+    protected void setWindow(Window window) {
+
+    }
+
     /**
      * 设置背景遮盖层开关
      */
@@ -104,54 +135,6 @@ public class BaseFragDialog extends DialogFragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mSetText != null) {
-            mSetText.clear();
-            mSetText = null;
-        }
-        if (mClickArray != null) {
-            mClickArray.clear();
-            mClickArray = null;
-        }
-        if (mRootView != null) {
-            mRootView = null;
-        }
-    }
-
-    /**
-     * 对点击事件进行处理
-     */
-    private final class ViewOnClick implements View.OnClickListener {
-        private final BaseFragDialog dialog;
-        private final OnListener listener;
-
-        ViewOnClick(BaseFragDialog dialog, OnListener listener) {
-            this.dialog = dialog;
-            this.listener = listener;
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (!mAutoDismiss) {
-                listener.onClick(dialog, view);
-            }
-        }
-    }
-
-    /**
-     * 对事件进行监听，
-     */
-    public interface OnListener {
-        /**
-         * 事件监听
-         *
-         * @param dialog dialog
-         * @param view   view
-         */
-        void onClick(BaseFragDialog dialog, View view);
-    }
 
     /**
      * 设置 文本
@@ -183,19 +166,31 @@ public class BaseFragDialog extends DialogFragment {
         return this;
     }
 
+    /**
+     * 设置dialog 宽度，如果在布局中指定了宽度，这里可不用设置。
+     * 注意：这里是相对于屏幕的百分比，而不是直接设置宽度
+     *
+     * @param activity     activity
+     * @param widthPercent 百分比宽度：0.1 - 1
+     * @return this
+     */
+    public BaseFragDialog setWidth(Activity activity, float widthPercent) {
+        this.mWidthPercent = widthPercent;
+        this.mActivity = activity;
+        return this;
+    }
 
     private void setLocation() {
         WindowManager.LayoutParams attributes = window.getAttributes();
+        if (mActivity != null && mWidthPercent >= 0) {
+            attributes.width = (int) (ToolsUtils.getScreenWidth(mActivity) * mWidthPercent);
+        }
         attributes.alpha = mAlpha;
         attributes.gravity = mGravity;
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        setWindow(window);
         window.setAttributes(attributes);
     }
 
-    protected void setWindow(Window window) {
-
-    }
     /**
      * 延时发送，在指定的时间执行
      */
@@ -203,8 +198,18 @@ public class BaseFragDialog extends DialogFragment {
         HANDLER.postDelayed(run, uptimeMillis);
     }
 
+    /**
+     * 空实现，如果dialog的逻辑过于复杂，则可以继承此类，实现此方法。
+     * 这个方法可用于绑定 view 进行一些初始化等操作
+     */
+    public void initView(View view) {
+
+    }
+
+
     private void create() {
         setLocation();
+        setWindow(window);
         initView(mRootView);
         setCancelable(mCancelable);
         window.setWindowAnimations(mAnimation);
@@ -217,9 +222,11 @@ public class BaseFragDialog extends DialogFragment {
             }
         }
 
-        for (int i = 0; i < mClickArray.size(); i++) {
-            mRootView.findViewById(mClickArray.keyAt(i))
-                    .setOnClickListener(new ViewOnClick(this, mClickArray.valueAt(i)));
+        if (!mAutoDismiss) {
+            for (int i = 0; i < mClickArray.size(); i++) {
+                mRootView.findViewById(mClickArray.keyAt(i))
+                        .setOnClickListener(new ViewOnClick(this, mClickArray.valueAt(i)));
+            }
         }
         for (int i = 0; i < mSetImage.size(); i++) {
             ImageView image = mRootView.findViewById(mSetImage.keyAt(i));
@@ -230,11 +237,23 @@ public class BaseFragDialog extends DialogFragment {
         }
     }
 
-    /**
-     * 空实现，如果dialog的逻辑过于复杂，则可以继承此类，实现此方法。
-     * 这个方法可用于绑定 view 进行一些初始化等操作
-     */
-    public void initView(View view) {
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mSetText != null) {
+            mSetText.clear();
+            mSetText = null;
+        }
+        if (mClickArray != null) {
+            mClickArray.clear();
+            mClickArray = null;
+        }
+        if (mRootView != null) {
+            mRootView = null;
+        }
+        if (mActivity != null) {
+            mActivity = null;
+        }
+        HANDLER.removeCallbacksAndMessages(null);
     }
 }

@@ -6,7 +6,8 @@ import androidx.annotation.StyleRes;
 import java.lang.reflect.Constructor;
 
 /**
- * Created by Administrator on 2019/10/7.
+ * @author 345
+ * @date 2019/10/7
  */
 
 @SuppressWarnings("WeakerAccess")
@@ -86,13 +87,13 @@ public class DialogBuilder<T> {
         if (tClass != null) {
             try {
                 Constructor<T> constructor = tClass.getConstructor(
-                        Object.class, float.class, boolean.class, boolean.class, int.class,int.class);
-                return constructor.newInstance(view, mAlpha, mAutoDismiss, mCancelable,mAnimation,mGravity);
+                        Object.class, float.class, boolean.class, boolean.class, int.class, int.class);
+                return constructor.newInstance(view, mAlpha, mAutoDismiss, mCancelable, mAnimation, mGravity);
             } catch (Exception e) {
-                throw new RuntimeException("创建 "+tClass.getName()+" 失败，原因可能是构造参数有问题："+e.getMessage());
+                throw new RuntimeException("创建 " + tClass.getName() + " 失败，原因可能是构造参数有问题：" + e.getMessage());
             }
         } else {
-            return (T) BaseFragDialog.newInstance(view, mAlpha, mAutoDismiss, mCancelable,mAnimation,mGravity);
+            return (T) BaseFragDialog.newInstance(view, mAlpha, mAutoDismiss, mCancelable, mAnimation, mGravity);
         }
     }
 }
