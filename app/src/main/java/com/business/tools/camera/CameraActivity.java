@@ -1,7 +1,6 @@
 package com.business.tools.camera;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -83,14 +82,16 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 case RequestCode.TAKE_PHOTO:
                     final Uri resultUri = CameraImageBean.getInstance().getPath();
                     if (resultUri != null) {
+                        //裁剪
                         CropPhoto.cropPhoto(this, true, resultUri);
                     }
                     break;
+                //打开相册
                 case RequestCode.PICK_PHOTO:
                     if (data != null) {
+                        //裁剪
                         final Uri pickPath = data.getData();
                         CropPhoto.cropPhoto(this, false, pickPath);
-                        Toast.makeText(this, "裁剪", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case RequestCode.CROP_PHOTO:

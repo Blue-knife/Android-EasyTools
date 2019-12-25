@@ -43,6 +43,7 @@
         <activity android:name="com.business.tools.image_card.test.CardaActivity" />
         <activity android:name="com.business.tools.flowlayout.test.FlowLayoutActivity" />
         <activity android:name="com.business.tools.camera.CameraActivity" />
+        <activity android:name="com.business.tools.views.ViewsActivity" />
     </application>
 
 </manifest>

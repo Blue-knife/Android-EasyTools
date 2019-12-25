@@ -84,6 +84,13 @@
             android:text="拍照、打开相机，裁剪"
             tools:ignore="HardcodedText" />
 
+        <Button
+            android:id="@+id/btn_custom_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义 View"
+            tools:ignore="HardcodedText" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
