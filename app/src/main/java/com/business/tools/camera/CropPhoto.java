@@ -64,15 +64,15 @@ public class CropPhoto {
             }
             imageUrl = Uri.fromFile(tempFile);
         }
-        Log.e(TAG, "cropPhoto: " + imageUrl);
-        //保存图片路径
-        CameraImageBean.getInstance().setPath(imageUrl);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
-        // 以广播方式刷新系统相册，以便能够在相册中找到刚刚所拍摄和裁剪的照片
-        Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        intentBc.setData(uri);
-        activity.sendBroadcast(intentBc);
-        activity.startActivityForResult(intent, RequestCode.CROP_PHOTO);
+//        Log.e(TAG, "cropPhoto: " + imageUrl);
+//        //保存图片路径
+//        CameraImageBean.getInstance().setPath(imageUrl);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
+//        // 以广播方式刷新系统相册，以便能够在相册中找到刚刚所拍摄和裁剪的照片
+//        Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//        intentBc.setData(uri);
+//        activity.sendBroadcast(intentBc);
+//        activity.startActivityForResult(intent, RequestCode.CROP_PHOTO);
     }
 
     private static String getPhotoName() {

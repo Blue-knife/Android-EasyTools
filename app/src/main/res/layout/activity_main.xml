@@ -88,7 +88,7 @@
             android:id="@+id/btn_custom_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="自定义 View"
+            android:text="自定义TextView显示颜色"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

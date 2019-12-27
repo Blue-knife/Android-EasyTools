@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
+import com.business.tools.utils.FileQUtils;
 import com.business.tools.utils.FileUtils;
 import com.business.toos.R;
 
@@ -95,6 +97,26 @@ public class CameraHandler implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private void takePhotoQ() {
+        //获取一个 名字,
+        final String currentPhotoName = getPhotoName();
+        //拍照意图
+        final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        Uri uri = FileQUtils.saveImageWithAndroidQ(activity, currentPhotoName,"123");
+
+        CameraImageBean.getInstance().setPath(uri);
+        CameraImageBean.getInstance().setFile(FileQUtils.getFileByUri(uri, activity));
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        activity.startActivityForResult(intent, TAKE_PHOTO);
+
+        if (DIALOG != null) {
+            DIALOG.cancel();
+        }
+    }
+
     /**
      * 打开 选择图片
      */
@@ -108,11 +130,13 @@ public class CameraHandler implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.photodialog_btn_take) {
             takePhoto();
+//            takePhotoQ();
         } else if (id == R.id.photodialog_btn_native) {
             pickPhoto();
         } else if (id == R.id.photodialog_btn_cancel) {
