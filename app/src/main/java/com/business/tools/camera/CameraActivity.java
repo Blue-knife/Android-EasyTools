@@ -14,8 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.business.tools.camera.zxing.android.CaptureActivity;
+import com.business.tools.utils.ImageUtils;
 import com.business.toos.R;
 
 /**
@@ -27,20 +30,29 @@ import com.business.toos.R;
  */
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String DECODED_CONTENT_KEY = "codedContent";
+    private static final String DECODED_BITMAP_KEY = "codedBitmap";
     public static final int REQUEST_CODE = 0x01;
 
     public AppCompatImageView mImage;
+    public View clickView;
+    private AppCompatEditText mQRContent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
         mImage = findViewById(R.id.activity_camera_image);
+        mQRContent = findViewById(R.id.activity_camera_edit);
         findViewById(R.id.activity_camera_start).setOnClickListener(this);
+        findViewById(R.id.activity_camera_scan).setOnClickListener(this);
+        findViewById(R.id.activity_camera_qr_code).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        this.clickView = v;
         checkPermission(new String[]{Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,});
     }
@@ -70,7 +82,32 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
      * 调用
      */
     public void start() {
-        ToolsCamera.start(this);
+        if (clickView != null) {
+            switch (clickView.getId()) {
+                case R.id.activity_camera_start:
+                    ToolsCamera.start(this);
+                    break;
+                case R.id.activity_camera_scan:
+                    Intent intent = new Intent(this, CaptureActivity.class);
+                    startActivityForResult(intent, RequestCode.SCAN);
+                    break;
+                case R.id.activity_camera_qr_code:
+                    if (mQRContent.getText() != null) {
+                        String s = mQRContent.getText().toString();
+                        if (!s.isEmpty()) {
+                            Bitmap qrCodeBitmap = ImageUtils.createQRCodeBitmap(mQRContent.getText().toString());
+                            if (qrCodeBitmap != null) {
+                                mImage.setImageBitmap(qrCodeBitmap);
+                            } else {
+                                Toast.makeText(this, "生成错误", Toast.LENGTH_SHORT).show();
+                            }
+                            return;
+                        }
+                    }
+                    Toast.makeText(this, "字符串不允许为空", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
     }
 
     @Override
@@ -100,6 +137,18 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         mImage.setImageBitmap(bitmap);
                     } else {
                         Toast.makeText(this, "图片加载失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case RequestCode.SCAN:
+                    //返回的文本内容
+                    if (data != null) {
+                        String content = data.getStringExtra(DECODED_CONTENT_KEY);
+                        //返回的BitMap图像
+                        Bitmap scan = data.getParcelableExtra(DECODED_BITMAP_KEY);
+                        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
+                        if (scan != null) {
+                            mImage.setImageBitmap(scan);
+                        }
                     }
                     break;
                 default:
