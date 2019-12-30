@@ -1,0 +1,170 @@
+ext {
+    android = [
+            applicationId    : "com.business.tools",
+            buildToolsVersion: '29.0.2',
+            compileSdkVersion: 29,
+            minSdkVersion    : 19,
+            targetSdkVersion : 29,
+            multiDexEnabled  : true,
+            maxSdkVersion    : 29,
+            versionCode      : 1,
+            versionName      : '1.0'
+    ]
+
+    key = [
+            keyAlias     : 'petech',
+            keyPassword  : 'qwerqaz1',
+            storeFile    : file('petech.jks'),
+            storePassword: 'qwerqaz1'
+    ]
+
+
+    depsVersion = [
+            //webview
+            agentweb                     : '4.1.2',
+            filechooser                  : '4.1.2',
+            Downloader                   : '4.1.2',
+
+            //JetPack
+            lifecycle_common_java8       : '2.0.0',
+            lifecycle_extensions         : '2.1.0',
+
+            //Rv
+            recyclerview                 : '1.1.0',
+            BaseRecyclerViewAdapterHelper: '2.9.45',
+            recycler_view_divider        : '3.0.0',
+
+            //bugly+umeng+walle+dex
+            bugly                        : '1.4.2',
+            bugly_tinkerpatch            : '1.2.14',
+            multidex                     : '1.0.3',
+            walle                        : '1.1.6',
+            umeng_analytics              : '1.1.6',
+            umeng_common                 : '1.1.6',
+
+            //push
+            huawei_push                  : '3.0.0.303',
+            getui                        : '2.13.3.0',
+
+            //IM
+            call_lib                     : '2.10.2',
+            call_kit                     : '2.10.2',
+
+            //ui
+            google_material              : '1.0.0',
+            iconify_ionicons             : '2.2.2',
+            iconify_meteocons            : '2.2.2',
+            iconify_fontawesome          : '2.2.2',
+            circleimageview              : '3.0.0',
+            ImageSelector                : '2.1.1',
+            zxing                        : '3.3.2',
+
+            //frame
+            appcompat                    : '1.1.0',
+            constraintlayout             : '1.1.3',
+            butterknife                  : '10.1.0',
+            butterknife_compiler         : '10.1.0',
+            litepal                      : '3.0.0',
+            fragmentationx               : '1.0.1',
+            eventbus                     : '3.1.1',
+            fastjson                     : '1.2.57',
+            gson                         : '2.8.5',
+
+            auto_value_annotations       : '1.6.2',
+            auto_value                   : '1.6.2',
+            immersionbar                 : '3.0.0',
+            immersionbar_components      : '3.0.0',
+
+            //utils
+            logger                       : '2.2.0',
+            ImagePicker                  : '1.4.4',
+            pinyin4j                     : '2.5.0',
+            CombineBitmap                : '1.0.5',
+            Glide                        : '4.10.0',
+
+            //net
+            retrofit                     : '2.6.0',
+            retrofit_adapter_rxjava2     : '2.6.0',
+            retrofit_converter_scalars   : '2.5.0',
+
+            //rx
+            rxjava                       : '2.2.10',
+            rxandroid                    : '2.1.0',
+    ]
+
+    //系统
+    system = [
+            appcompat       : "androidx.appcompat:appcompat:${depsVersion.appcompat}",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:${depsVersion.constraintlayout}"
+    ]
+
+    //架构
+    frame = [
+            butterknife                : "com.jakewharton:butterknife:${depsVersion.butterknife_compiler}",
+            butterknife_compilder      : "com.jakewharton:butterknife-compiler:${depsVersion.butterknife_compiler}",
+            fastjson                   : "com.alibaba:fastjson:${depsVersion.fastjson}",
+            glide                      : "com.github.bumptech.glide:glide:${depsVersion.Glide}",
+            gson                       : "com.google.code.gson:gson:${depsVersion.gson}",
+            eventbus                   : "org.greenrobot:eventbus:${depsVersion.eventbus}",
+            multidex                   : "com.android.support:multidex:${depsVersion.multidex}",
+            recyclerview               : "androidx.recyclerview:recyclerview:${depsVersion.recyclerview}",
+            recyclerview_Adapter_Helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${depsVersion.BaseRecyclerViewAdapterHelper}",
+            google_material            : "com.google.android.material:material:${depsVersion.google_material}",
+            fragmentationx             : "me.yokeyword:fragmentationx:${depsVersion.fragmentationx}",
+
+            retrofit                   : "com.squareup.retrofit2:retrofit:${depsVersion.retrofit}",
+            retrofit_adapter_rxjava2   : "com.squareup.retrofit2:adapter-rxjava2:${depsVersion.retrofit_adapter_rxjava2}",
+            retrofit_converter_scalars : "com.squareup.retrofit2:converter-scalars:${depsVersion.retrofit_converter_scalars}",
+
+            rxjava                     : "io.reactivex.rxjava2:rxjava:${depsVersion.rxjava}",
+            rxandroid                  : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid}",
+
+    ]
+
+    //利剑
+    jetpack = [
+            lifecycle_extensions  : "androidx.lifecycle:lifecycle-extensions:${depsVersion.lifecycle_extensions}",
+            lifecycle_common_java8: "androidx.lifecycle:lifecycle-common-java8:${depsVersion.lifecycle_common_java8}",
+    ]
+
+    //三方库-工具
+    app = [
+
+            //webview
+            agentweb               : "com.just.agentweb:agentweb:${depsVersion.agentweb}",
+            agentweb_filechooser   : "com.just.agentweb:filechooser:${depsVersion.filechooser}",
+            //非必选
+            agentweb_downloader    : "com.download.library:Downloader:${depsVersion.Downloader}",
+
+            //RonIM
+            call_lib               : "cn.rongcloud.sdk:call_lib:${depsVersion.call_lib}",
+            call_kit               : "cn.rongcloud.sdk:call_kit:${depsVersion.call_kit}",
+
+
+            bugly                  : "com.tencent.bugly:crashreport_upgrade:${depsVersion.bugly}",
+            bugly_tinkerpatch      : "com.tinkerpatch.sdk:tinkerpatch-android-sdk:${depsVersion.bugly_tinkerpatch}",
+            walle                  : "com.meituan.android.walle:library:${depsVersion.walle}",
+            umeng_analytics        : "com.umeng.umsdk:analytics:${depsVersion.umeng_analytics}",
+            umeng_common           : "com.umeng.umsdk:common:${depsVersion.umeng_common}",
+
+            pinyin4j               : "com.belerweb:pinyin4j:${depsVersion.pinyin4j}",
+
+            //push
+            getui_push             : "com.getui:sdk:${depsVersion.getui}",
+            huawei_push            : "com.huawei.hms:push:${depsVersion.huawei_push}",
+
+            litepal                : "org.litepal.android:java:${depsVersion.litepal}",
+            logger                 : "com.orhanobut:logger:${depsVersion.logger}",
+
+            //ui
+            //适配了Android10的仿微信图片选择
+            //仿微信头像生成
+            combineBitmap          : "com.github.Othershe:CombineBitmap:${depsVersion.CombineBitmap}",
+            imageSelector          : "com.github.donkingliang:ImageSelector:${depsVersion.ImageSelector}",
+            immersionbar           : "com.gyf.immersionbar:immersionbar:${depsVersion.immersionbar}",
+            immersionbar_components: "com.gyf.immersionbar:immersionbar-components:${depsVersion.immersionbar_components}",
+            circleimageview        : "de.hdodenhof:circleimageview:${depsVersion.circleimageview}",
+            recycler_view_divider  : "com.github.fondesa:recycler-view-divider:${depsVersion.recycler_view_divider}",
+            zxing                  : "com.google.zxing:core:${depsVersion.zxing}"
+    ]
+}
