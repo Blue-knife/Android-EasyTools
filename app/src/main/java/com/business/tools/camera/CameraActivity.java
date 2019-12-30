@@ -129,7 +129,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         CropPhoto.cropPhoto(this, true, resultUri);
                     }
                     break;
-                //打开相册
+                //相册回调
                 case RequestCode.PICK_PHOTO:
                     if (data != null) {
                         //裁剪
@@ -137,6 +137,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         CropPhoto.cropPhoto(this, false, pickPath);
                     }
                     break;
+                //裁剪回调
                 case RequestCode.CROP_PHOTO:
                     Bitmap bitmap = BitmapFactory.decodeFile(CameraImageBean.getInstance().getPath().getPath());
                     if (bitmap != null) {
@@ -145,9 +146,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "图片加载失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
+                //二维码回调
                 case RequestCode.SCAN:
-                    //返回的文本内容
                     if (data != null) {
+                        //返回的文本内容
                         String content = data.getStringExtra(DECODED_CONTENT_KEY);
                         //返回的BitMap图像
                         Bitmap scan = data.getParcelableExtra(DECODED_BITMAP_KEY);

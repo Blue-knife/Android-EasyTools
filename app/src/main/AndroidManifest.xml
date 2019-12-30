@@ -4,6 +4,7 @@
     package="com.business.toos">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -41,12 +42,20 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <service
+            android:name="com.business.tools.service.TestJobService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <activity android:name="com.business.tools.basedialog.test.DialogActivity" />
         <activity android:name="com.business.tools.image_card.test.CardaActivity" />
         <activity android:name="com.business.tools.flowlayout.test.FlowLayoutActivity" />
         <activity android:name="com.business.tools.camera.CameraActivity" />
         <activity android:name="com.business.tools.views.ViewsActivity" />
         <activity android:name="com.business.tools.camera.zxing.android.CaptureActivity" />
+
+
     </application>
 
 </manifest>

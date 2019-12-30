@@ -22,6 +22,6 @@ Android-EasyToos正是解决我们日常开发难题，快乐编程，不断汇�
 - Android状态栏配置，系统OS获取工具。
 - [一键式打开相机，相册，调用系统裁剪库，扫描二维码，生成二维码](https://github.com/Blue-knife/Android-EasyTools/blob/master/app/src/main/java/com/business/tools/camera/CameraActivity.java)
 - [自定义TextView。指定一个或多个字的颜色，可批量设置](https://blog.csdn.net/baidu_40389775/article/details/102622214)
-
+- JobService 的使用 Demo
 
 我们非常欢迎你的PR，一切为了更快的效率。

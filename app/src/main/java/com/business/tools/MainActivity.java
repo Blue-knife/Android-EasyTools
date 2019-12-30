@@ -1,6 +1,7 @@
 package com.business.tools;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,6 +11,8 @@ import com.business.tools.basedialog.test.DialogActivity;
 import com.business.tools.camera.CameraActivity;
 import com.business.tools.flowlayout.test.FlowLayoutActivity;
 import com.business.tools.image_card.test.CardaActivity;
+import com.business.tools.service.TestJobService;
+import com.business.tools.utils.ToastUtils;
 import com.business.tools.views.ViewsActivity;
 import com.business.toos.R;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_img_card).setOnClickListener(this);
         findViewById(R.id.btn_camera).setOnClickListener(this);
         findViewById(R.id.btn_custom_views).setOnClickListener(this);
+        findViewById(R.id.btn_job_service).setOnClickListener(this);
     }
 
 
@@ -56,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_custom_views:
                 startIntent(ViewsActivity.class);
+                break;
+            case R.id.btn_job_service:
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                    TestJobService.start(MainActivity.this);
+                }
                 break;
             default:
                 break;
