@@ -28,7 +28,7 @@ public class ToastUtils {
 
     public static void showText(String res) {
         cancelToast();
-        mToast = Toast.makeText(ContextTools.context, res, Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(ContextTools.Companion.getContext(), res, Toast.LENGTH_SHORT);
         mToast.show();
     }
 
@@ -40,13 +40,13 @@ public class ToastUtils {
 
     public static void showLongText(String res) {
         cancelToast();
-        mToast = Toast.makeText(ContextTools.context, res, Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(ContextTools.Companion.getContext(), res, Toast.LENGTH_SHORT);
         mToast.show();
     }
 
     public static void showCenterText(String res) {
         cancelToast();
-        mToast = Toast.makeText(ContextTools.context, res, Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(ContextTools.Companion.getContext(), res, Toast.LENGTH_SHORT);
         mToast.setGravity(Gravity.CENTER, 0, 0);
         mToast.show();
     }

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.business.tools.views.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fillViewport="true"
     tools:context="com.business.tools.MainActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="10dp"
@@ -24,7 +25,7 @@
                 android:src="@mipmap/icon"
                 tools:ignore="RtlHardcoded" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -32,73 +33,14 @@
                 android:textColor="#3C4F55"
                 android:textSize="17sp"
                 tools:ignore="HardcodedText" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <Button
-            android:id="@+id/btn_download"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_main_recycle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="文件下载(未提供demo)"
-            tools:ignore="HardcodedText" />
+            android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/btn_thread"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="线程池工具(未提供demo)"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_img_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="3d图片展示"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_base_dialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="通用Dialog"
-            tools:ignore="HardcodedText" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        <Button
-            android:id="@+id/btn_flow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="流式布局FlowLayout"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="状态栏工具类"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_camera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="拍照、打开相机，裁剪"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_custom_views"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="自定义TextView显示颜色"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btn_job_service"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="开启 JobService"
-            tools:ignore="HardcodedText" />
-
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</com.business.tools.views.CustomNestedScrollView>

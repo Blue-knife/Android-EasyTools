@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+//编译kotlin代码
+apply plugin:'kotlin-android'
+//可选 代码支持通过view id获取对象，不再需要findViewById
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
@@ -34,6 +38,8 @@ dependencies {
     implementation rootProject.frame.google_material
     implementation rootProject.frame.glide
     implementation rootProject.app.zxing
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 }
 repositories {

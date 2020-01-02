@@ -45,18 +45,18 @@ public class CardaActivity extends AppCompatActivity {
 
             @Override
             public void onShow(int index) {
-                Toast.makeText(ContextTools.context, "TestCardFragment"+"正在显示=" +index, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContextTools.Companion.getContext(), "TestCardFragment"+"正在显示=" +index, Toast.LENGTH_SHORT).show();
 
             }
             //type 0=右边 ，-1=左边
             @Override
             public void onCardVanish(int index, int type) {
-                Toast.makeText(ContextTools.context, "TestCardFragment"+ "正在消失=" + index + " 消失type=" + type, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContextTools.Companion.getContext(), "TestCardFragment"+ "正在消失=" + index + " 消失type=" + type, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemClick(View cardView, int index) {
-                Toast.makeText(ContextTools.context, "TestCardFragment"+"卡片点击=" + index, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContextTools.Companion.getContext(), "TestCardFragment"+"卡片点击=" + index, Toast.LENGTH_SHORT).show();
             }
         };
         slidePanel.setCardSwitchListener(cardSwitchListener);
