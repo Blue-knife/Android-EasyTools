@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -183,7 +182,7 @@ public class BaseFragDialog extends DialogFragment {
     private void setLocation() {
         WindowManager.LayoutParams attributes = window.getAttributes();
         if (mActivity != null && mWidthPercent >= 0) {
-            attributes.width = (int) (ToolsUtils.getScreenWidth(mActivity) * mWidthPercent);
+            attributes.width = (int) (ToolsUtils.INSTANCE.getScreenWidth(mActivity) * mWidthPercent);
         }
         attributes.alpha = mAlpha;
         attributes.gravity = mGravity;
