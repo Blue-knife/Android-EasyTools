@@ -3,6 +3,7 @@ package com.business.tools
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.business.audio.mediaplayer.core.MusicPlayerActivity
 import com.business.tools.basedialog.test.DialogActivity
 import com.business.tools.camera.CameraActivity
 import com.business.tools.flowlayout.test.FlowLayoutActivity
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
                 Pair("状态栏工具", null),
                 Pair("拍照，裁剪，扫描生成二维码等", CameraActivity::class.java),
                 Pair("自定义Tv颜色", ViewsActivity::class.java),
-                Pair("开启 JobService", null)
+                Pair("开启 JobService", null),
+                Pair("播放 Music", MusicPlayerActivity::class.java)
         )
     }
 
