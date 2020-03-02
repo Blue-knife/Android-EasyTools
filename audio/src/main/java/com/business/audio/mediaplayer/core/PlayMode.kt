@@ -1,4 +1,4 @@
-package com.business.audio.mediaplayer.core;
+package com.business.audio.mediaplayer.core
 
 /**
  * @author 345 QQ:1831712732
@@ -7,7 +7,7 @@ package com.business.audio.mediaplayer.core;
  * @time 2019/12/18 20:44
  * @description 播放模式
  */
-public enum PlayMode {
+enum class PlayMode {
     /**
      * 列表循环
      */
@@ -19,5 +19,5 @@ public enum PlayMode {
     /**
      * 单曲循环
      */
-    REPEAT,
+    REPEAT
 }

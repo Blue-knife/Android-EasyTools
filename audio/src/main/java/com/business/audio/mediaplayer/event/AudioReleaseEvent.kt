@@ -1,4 +1,4 @@
-package com.business.audio.mediaplayer.event;
+package com.business.audio.mediaplayer.event
 
 /**
  * @author 345 QQ:1831712732
@@ -7,5 +7,4 @@ package com.business.audio.mediaplayer.event;
  * @time 2019/12/17 22:43
  * @description 销毁事件
  */
-public class AudioReleaseEvent {
-}
+class AudioReleaseEvent

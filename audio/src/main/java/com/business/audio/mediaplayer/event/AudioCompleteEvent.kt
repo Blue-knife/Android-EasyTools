@@ -1,4 +1,4 @@
-package com.business.audio.mediaplayer.event;
+package com.business.audio.mediaplayer.event
 
 /**
  * @author 345 QQ:1831712732
@@ -7,5 +7,4 @@ package com.business.audio.mediaplayer.event;
  * @time 2019/12/17 22:45
  * @description
  */
-public class AudioCompleteEvent {
-}
+class AudioCompleteEvent

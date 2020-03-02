@@ -1,4 +1,4 @@
-package com.business.audio.mediaplayer.core;
+package com.business.audio.mediaplayer.core
 
 /**
  * @author 345 QQ:1831712732
@@ -7,7 +7,7 @@ package com.business.audio.mediaplayer.core;
  * @time 2019/12/16 23:26
  * @description MediaPlay Status
  */
-public enum Status {
+enum class Status {
     /**
      * 初始状态
      */
