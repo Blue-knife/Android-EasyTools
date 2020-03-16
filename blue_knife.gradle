@@ -3,7 +3,7 @@ ext {
             applicationId    : "com.business.tools",
             buildToolsVersion: '29.0.2',
             compileSdkVersion: 29,
-            minSdkVersion    : 19,
+            minSdkVersion    : 21,
             targetSdkVersion : 29,
             multiDexEnabled  : true,
             maxSdkVersion    : 29,
@@ -17,7 +17,6 @@ ext {
             storeFile    : file('petech.jks'),
             storePassword: 'qwerqaz1'
     ]
-
 
     depsVersion = [
             //webview
@@ -86,11 +85,14 @@ ext {
             retrofit                     : '2.6.0',
             retrofit_adapter_rxjava2     : '2.6.0',
             retrofit_converter_scalars   : '2.5.0',
+            okhttp                       : "4.2.0",
 
             //rx
             rxjava                       : '2.2.10',
             rxandroid                    : '2.1.0',
+
     ]
+
 
     //系统
     system = [
@@ -115,6 +117,7 @@ ext {
             retrofit                   : "com.squareup.retrofit2:retrofit:${depsVersion.retrofit}",
             retrofit_adapter_rxjava2   : "com.squareup.retrofit2:adapter-rxjava2:${depsVersion.retrofit_adapter_rxjava2}",
             retrofit_converter_scalars : "com.squareup.retrofit2:converter-scalars:${depsVersion.retrofit_converter_scalars}",
+            okhttp                     : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
 
             rxjava                     : "io.reactivex.rxjava2:rxjava:${depsVersion.rxjava}",
             rxandroid                  : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid}",

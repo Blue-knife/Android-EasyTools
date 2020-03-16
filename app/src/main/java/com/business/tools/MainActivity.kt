@@ -8,6 +8,7 @@ import com.business.tools.basedialog.test.DialogActivity
 import com.business.tools.camera.CameraActivity
 import com.business.tools.flowlayout.test.FlowLayoutActivity
 import com.business.tools.image_card.test.CardaActivity
+import com.business.tools.utils.download.DownLoadActivity
 import com.business.tools.views.ViewsActivity
 import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,7 +37,11 @@ class MainActivity : AppCompatActivity() {
                 Pair("拍照，裁剪，扫描生成二维码等", CameraActivity::class.java),
                 Pair("自定义Tv颜色", ViewsActivity::class.java),
                 Pair("开启 JobService", null),
-                Pair("播放 Music", MusicPlayerActivity::class.java)
+                Pair("播放 Music", MusicPlayerActivity::class.java),
+                Pair("一键式文件下载", DownLoadActivity::class.java)
+
+              
+
         )
     }
 
