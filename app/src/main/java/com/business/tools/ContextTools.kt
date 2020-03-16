@@ -3,6 +3,7 @@ package com.business.tools
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.business.audio.app.AudioHelper
 
 /**
  * Created by Petterp
@@ -13,6 +14,8 @@ class ContextTools : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        //音频SDK初始化
+        AudioHelper.init(this);
         context = this
     }
 

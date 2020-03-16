@@ -5,14 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
-
 
 import com.business.tools.utils.FileUtils;
 
 import java.io.File;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /**
  * @author 345 QQ:1831712732
@@ -64,15 +60,15 @@ public class CropPhoto {
             }
             imageUrl = Uri.fromFile(tempFile);
         }
-//        Log.e(TAG, "cropPhoto: " + imageUrl);
+
 //        //保存图片路径
-//        CameraImageBean.getInstance().setPath(imageUrl);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
+        CameraImageBean.getInstance().setPath(imageUrl);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
 //        // 以广播方式刷新系统相册，以便能够在相册中找到刚刚所拍摄和裁剪的照片
-//        Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-//        intentBc.setData(uri);
-//        activity.sendBroadcast(intentBc);
-//        activity.startActivityForResult(intent, RequestCode.CROP_PHOTO);
+        Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        intentBc.setData(uri);
+        activity.sendBroadcast(intentBc);
+        activity.startActivityForResult(intent, RequestCode.CROP_PHOTO);
     }
 
     private static String getPhotoName() {
