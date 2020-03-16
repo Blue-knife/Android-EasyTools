@@ -46,7 +46,7 @@ import java.util.Objects;
  * <p>
  * 公共目录下文件操作
  * 通过MediaStore
- *
+ * <p>
  * 官网链接 https://developer.android.google.cn/training/data-storage/files/media
  */
 public class FileQUtils {
@@ -356,10 +356,12 @@ public class FileQUtils {
      * @param path            路径
      * @param environmentType 沙盒类型
      * @param fileName        文件名
-     * @return
+     * @return bitmap
      */
     public static Bitmap querySignImageBox(Context context, String path, String environmentType, String fileName) {
-        if (TextUtils.isEmpty(fileName)) return null;
+        if (TextUtils.isEmpty(fileName)) {
+            return null;
+        }
         Bitmap bitmap = null;
         //指定沙盒文件夹
         String builder = environmentType.replaceAll("/", "") + "/" +

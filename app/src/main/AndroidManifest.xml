@@ -23,6 +23,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="n">
+        <activity android:name="com.business.tools.utils.download.DownLoadActivity"></activity>
         <activity android:name="com.business.tools.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -54,8 +54,6 @@
         <activity android:name="com.business.tools.camera.CameraActivity" />
         <activity android:name="com.business.tools.views.ViewsActivity" />
         <activity android:name="com.business.tools.camera.zxing.android.CaptureActivity" />
-
-
     </application>
 
 </manifest>

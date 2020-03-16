@@ -34,8 +34,8 @@ import java.util.Objects;
 
 /**
  * @author 345 QQ:1831712732
- * @name Android Business Toos
- * @class name：com.business.toos.file_utils
+ * @name Android Business Tools
+ * @class name：com.business.tools.file_utils
  * @time 2019/12/11 23:04
  * @description 文件工具类
  */
