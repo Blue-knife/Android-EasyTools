@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 Pair("流式布局FlowLayout", FlowLayoutActivity::class.java),
                 Pair("状态栏工具", null),
                 Pair("拍照，裁剪，扫描生成二维码等", CameraActivity::class.java),
-                Pair("自定义Tv颜色", ViewsActivity::class.java),
+                Pair("自定义View", ViewsActivity::class.java),
                 Pair("开启 JobService", null),
                 Pair("播放 Music", MusicPlayerActivity::class.java),
                 Pair("一键式文件下载", DownLoadActivity::class.java)
