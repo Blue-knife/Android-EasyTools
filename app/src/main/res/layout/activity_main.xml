@@ -1,46 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.business.tools.views.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fillViewport="true"
-    tools:context="com.business.tools.MainActivity">
+    android:orientation="vertical"
+    tools:context="com.business.tools.main.MainActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_main"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:text="@string/easyTools"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_share"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitXY"
+            android:padding="10dp"
+            android:src="@drawable/icon_share" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e3e3e3" />
+
+    <com.business.tools.views.CustomNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginLeft="10dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon"
-                tools:ignore="RtlHardcoded" />
-
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="为了更快的开发效率"
-                android:textColor="#3C4F55"
-                android:textSize="17sp"
-                tools:ignore="HardcodedText" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/icon"
+                    tools:ignore="RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="为了更快的开发效率"
+                    android:textColor="#3C4F55"
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activity_main_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_main_recycle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.business.tools.views.CustomNestedScrollView>
 
 
-</com.business.tools.views.CustomNestedScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -10,7 +10,7 @@
         android:id="@+id/item_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eeeeee"
-        tools:text="Android-EASYTOOLS" />
+        android:background="@color/white"
+        tools:text="Android-EasyTools" />
 
 </RelativeLayout>
