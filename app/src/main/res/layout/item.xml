@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:gravity="center"
-    android:scaleType="fitXY"
     android:orientation="vertical"
+    android:scaleType="fitXY"
     tools:ignore="HardcodedText">
 
 </androidx.appcompat.widget.AppCompatImageView>
