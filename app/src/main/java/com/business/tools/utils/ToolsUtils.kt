@@ -7,7 +7,9 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -221,5 +223,32 @@ object ToolsUtils {
         val size = if (isNavBarToRightEdge) mLastRightInset else if (mLastBottomInset == 0 && mLastLeftInset > 0) mLastLeftInset else mLastBottomInset
         result[1] = result[1] && size > 0
         return result
+    }
+
+    /**
+     * 获取手机内的分享入口
+     */
+    @JvmStatic
+    fun queryShareItems(): MutableList<ResolveInfo> {
+        val shareList = arrayListOf<ResolveInfo>()
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        //分享内容为文本类型
+        intent.type = "text/plain"
+        //查询可以使用文本分享的所有入口
+        val resolve = context.packageManager.queryIntentActivities(intent, 0)
+        resolve.forEach {
+            shareList.add(it)
+            //只保留 qq 和 微信的入口
+            /* when (it.activityInfo.packageName) {
+                 "com.tencent.mm" -> {
+                     shareList.add(it)
+                 }
+                 "com.tencent.mobileqq" -> {
+                     shareList.add(it)
+                 }
+             }*/
+        }
+        return shareList
     }
 }

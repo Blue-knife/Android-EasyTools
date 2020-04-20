@@ -1,6 +1,7 @@
-package com.business.tools
+package com.business.tools.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.business.audio.mediaplayer.core.MusicPlayerActivity
@@ -8,6 +9,7 @@ import com.business.tools.basedialog.test.DialogActivity
 import com.business.tools.camera.CameraActivity
 import com.business.tools.flowlayout.test.FlowLayoutActivity
 import com.business.tools.image_card.test.CardaActivity
+import com.business.tools.utils.ToastUtils
 import com.business.tools.utils.download.DownLoadActivity
 import com.business.tools.views.ViewsActivity
 import com.business.toos.R
@@ -18,7 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        actionBar?.hide()
         initRv()
+        main_share.setOnClickListener(listener)
     }
 
     private fun initRv() {
@@ -40,9 +44,13 @@ class MainActivity : AppCompatActivity() {
                 Pair("播放 Music", MusicPlayerActivity::class.java),
                 Pair("一键式文件下载", DownLoadActivity::class.java)
 
-              
-
         )
+    }
+
+    private val listener = View.OnClickListener {
+        val shareDialog = ShareDialog(this)
+        shareDialog.setShareContent("https://github.com/Blue-knife/Android-EasyTools")
+        shareDialog.show()
     }
 
 }
