@@ -16,8 +16,8 @@ import android.view.WindowManager;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
-import com.business.tools.utils.FileQUtils;
-import com.business.tools.utils.FileUtils;
+import com.business.tools.utils.file.FileQUtils;
+import com.business.tools.utils.file.FileUtils;
 import com.business.toos.R;
 
 import java.io.File;

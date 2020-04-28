@@ -1,8 +1,7 @@
-package com.business.tools.utils;
+package com.business.tools.utils.file;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -15,22 +14,17 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
-import androidx.annotation.RequiresApi;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @author 345 QQ:1831712732

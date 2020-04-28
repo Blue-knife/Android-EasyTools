@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.business.tools.utils.FileUtils;
+import com.business.tools.utils.file.FileUtils;
 
 import java.io.File;
 

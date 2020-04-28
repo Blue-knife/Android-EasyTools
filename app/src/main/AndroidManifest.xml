@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.business.tools.utils.noticefication.NoticeActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.business.tools.fileProvider"
