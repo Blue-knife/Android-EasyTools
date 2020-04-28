@@ -59,7 +59,6 @@ fun addNotificationChannel(channelId: String, channelName: String, importance: I
 /**
  * 检查渠道是否可用,不可用时执行相应逻辑
  * [chatId] 传入的渠道ID
- * [context] 可能业务有不同操作，这里留了Context是否填入，如果未传入context，则默认使用Application进行跳转
  * [obj] 函数式，你可以进行一些自己的操作，返回的Boolean决定是否使用默认的跳转，默认会进入设置页
  *
  * 需要注意的是 在Android N-Android O,无需添加 flag 即可使用Application跳转，这是一个有趣的Bug
