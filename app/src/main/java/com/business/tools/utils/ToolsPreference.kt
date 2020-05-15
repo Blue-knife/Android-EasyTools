@@ -1,7 +1,7 @@
 package com.business.tools.utils
 
 import android.content.SharedPreferences
-import com.business.tools.ContextTools
+import com.example.core.ContextTools
 
 object ToolsPreference {
 
@@ -10,11 +10,11 @@ object ToolsPreference {
 
 
     private fun getAppPreferenceEdit(str: String = DEFAULT): SharedPreferences.Editor {
-        return ContextTools.context.getSharedPreferences(str, 0).edit()
+        return com.example.core.ContextTools.context.getSharedPreferences(str, 0).edit()
     }
 
     private fun getAppPreference(str: String = DEFAULT): SharedPreferences {
-        return ContextTools.context.getSharedPreferences(str, 0)
+        return com.example.core.ContextTools.context.getSharedPreferences(str, 0)
     }
 
     /**

@@ -44,32 +44,12 @@ dependencies {
     implementation rootProject.system.appcompat
     implementation rootProject.system.constraintlayout
     implementation rootProject.frame.google_material
-    implementation rootProject.frame.glide
-    implementation rootProject.app.zxing
-    implementation rootProject.frame.okhttp
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "androidx.core:core-ktx:1.2.0"
-    //协程基础库
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
-    //协程 Android 库，提供 UI 调度器
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1"
-
-    //liveData + ViewModel + lifecycle
-    implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0-alpha01"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.3.0-alpha01"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha01"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
-
-
-    //noinspection LifecycleAnnotationProcessorWithJava8
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    //noinspection LifecycleAnnotationProcessorWithJava8
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation project(path: ':audio')
+    compileOnly project(path: ':bullet_ktx')
+    compileOnly project(path: ':bullet_ui')
+    implementation project(path: ':bulletmodels:audio')
+    implementation project(path: ':bulletmodels:camera')
+    implementation project(path: ':bullet_core')
+//    implementation project(path: ':audio')
 }
 repositories {
     mavenCentral()

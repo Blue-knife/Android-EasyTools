@@ -4,7 +4,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="PLATFORM" />
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
@@ -13,7 +12,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/audio" />
+            <option value="$PROJECT_DIR$/bullet_core" />
+            <option value="$PROJECT_DIR$/bullet_ktx" />
+            <option value="$PROJECT_DIR$/bullet_ui" />
+            <option value="$PROJECT_DIR$/bulletmodels" />
+            <option value="$PROJECT_DIR$/bulletmodels/audio" />
+            <option value="$PROJECT_DIR$/bulletmodels/camera" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

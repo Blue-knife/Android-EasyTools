@@ -19,10 +19,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.business.tools.utils.ToastUtils
-import com.business.tools.utils.ToolsUtils
 import com.business.tools.views.RoundFrameLayout
-import com.business.tools.views.RoundViewHelper
+import com.example.ui.customView.RoundViewHelper
 import com.business.toos.R
 import java.io.File
 import java.io.FileOutputStream
@@ -76,7 +74,7 @@ class ShareDialog(context: Context) : AlertDialog(context) {
                     ShareAdapter(shareItems, context.packageManager, shareContent!!)
             gridView.adapter = shareAdapter
         } else {
-            ToastUtils.showText("分享内容为空")
+            com.example.core.ToastUtils.showText("分享内容为空")
         }
 
     }

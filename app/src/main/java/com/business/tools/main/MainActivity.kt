@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.business.audio.mediaplayer.core.MusicPlayerActivity
+import com.business.tools.test.MusicPlayerActivity
 import com.business.tools.basedialog.test.DialogActivity
 import com.business.tools.camera.CameraActivity
 import com.business.tools.flowlayout.test.FlowLayoutActivity
 import com.business.tools.image_card.test.CardaActivity
-import com.business.tools.utils.ToastUtils
-import com.business.tools.utils.download.DownLoadActivity
+import com.business.tools.test.DownLoadActivity
 import com.business.tools.utils.noticefication.NoticeActivity
-import com.business.tools.views.ViewsActivity
+import com.business.tools.test.ViewsActivity
 import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_main.*
 
