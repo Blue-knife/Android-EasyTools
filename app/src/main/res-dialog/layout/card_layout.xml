@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <com.example.ui.image_card.CardSlidePanel
+        android:id="@+id/image_slide_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card:bottomMarginTop="20dp"
+        card:itemMarginTop="150dp"
+        card:yOffsetStep="-100dp">
+
+        <LinearLayout
+            android:id="@+id/card_bottom_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/card_left_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#03A9F4"
+                android:text="右侧移除" />
+
+
+            <Button
+                android:id="@+id/card_right_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#03A9F4"
+                android:text="右侧移除" />
+        </LinearLayout>
+
+        <com.example.ui.image_card.CardItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.ui.image_card.CardItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.ui.image_card.CardItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.ui.image_card.CardItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.example.ui.image_card.CardSlidePanel>
+
+</LinearLayout>

@@ -50,7 +50,7 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <activity android:name="com.business.tools.basedialog.test.DialogActivity" />
+        <activity android:name="com.business.tools.test.DialogActivity" />
         <activity android:name="com.business.tools.test.CardaActivity" />
         <activity android:name="com.business.tools.test.FlowLayoutActivity" />
         <activity android:name="com.business.tools.test.CameraActivity" />

@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.business.tools.flowlayout.FlowLayout;
 import com.business.toos.R;
+import com.example.ui.customView.FlowLayout;
 
 public class FlowLayoutActivity extends AppCompatActivity {
 

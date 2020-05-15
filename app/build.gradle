@@ -44,8 +44,8 @@ dependencies {
     implementation rootProject.system.appcompat
     implementation rootProject.system.constraintlayout
     implementation rootProject.frame.google_material
-    compileOnly project(path: ':bullet_ktx')
-    compileOnly project(path: ':bullet_ui')
+    implementation project(path: ':bullet_ktx')
+    implementation project(path: ':bullet_ui')
     implementation project(path: ':bulletmodels:audio')
     implementation project(path: ':bulletmodels:camera')
     implementation project(path: ':bullet_core')

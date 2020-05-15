@@ -22,7 +22,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.business.tools.utils.ToolsUtils;
+
 
 /**
  * @author 345
@@ -182,7 +182,7 @@ public class BaseFragDialog extends DialogFragment {
     private void setLocation() {
         WindowManager.LayoutParams attributes = window.getAttributes();
         if (mActivity != null && mWidthPercent >= 0) {
-            attributes.width = (int) (ToolsUtils.INSTANCE.getScreenWidth(mActivity) * mWidthPercent);
+            attributes.width = (int) (ScreenCaptureKt.getScreenWidth(mActivity) * mWidthPercent);
         }
         attributes.alpha = mAlpha;
         attributes.gravity = mGravity;

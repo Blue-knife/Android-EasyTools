@@ -10,7 +10,7 @@
         android:layout_below="@id/flow_Layout"
         android:text="点击添加textView" />
 
-    <com.business.tools.flowlayout.FlowLayout
+    <com.example.ui.customView.FlowLayout
         android:id="@+id/flow_Layout"
         android:padding="10dp"
         android:layout_width="match_parent"

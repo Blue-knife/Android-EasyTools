@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.business.tools.utils.ImageUtils;
+import com.example.ktx.ImageUtils;
 import com.business.toos.R;
 import com.example.camera.camera.CameraImageBean;
 import com.example.camera.camera.CropPhoto;

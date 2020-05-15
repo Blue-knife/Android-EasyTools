@@ -40,10 +40,10 @@
         android:layout_height="1dp"
         android:background="#e3e3e3" />
 
-    <com.business.tools.views.CustomNestedScrollView
+    <com.example.ui.customView.CustomNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/ll_main"
@@ -80,7 +80,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </com.business.tools.views.CustomNestedScrollView>
+    </com.example.ui.customView.CustomNestedScrollView>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

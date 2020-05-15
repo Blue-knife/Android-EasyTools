@@ -1,4 +1,4 @@
-package com.business.tools.utils;
+package com.example.ktx;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -12,6 +12,10 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.Hashtable;
 
+/**
+ * 二维码生成工具
+ * 需要导入zxing
+ */
 public class ImageUtils {
 
 

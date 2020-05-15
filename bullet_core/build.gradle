@@ -28,6 +28,7 @@ android {
 dependencies {
     api rootProject.frame.glide
     api rootProject.frame.okhttp
+    api rootProject.app.zxing
     //基础组件依赖，大多都是kt相关
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

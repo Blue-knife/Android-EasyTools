@@ -1,4 +1,4 @@
-package com.business.tools.basedialog.test
+package com.business.tools.test
 
 import android.os.Bundle
 import android.view.Gravity
@@ -71,14 +71,14 @@ class DialogActivity : AppCompatActivity(), View.OnClickListener {
                     //多种 type ，加载，加载完成，警告，失败等
                     .setType(ToastDialog.Type.LOADING)
                     .show(supportFragmentManager, "345")
-            R.id.dialog_test_spin -> CustomSpinDialog.CustomSpinBuilder()
-                    .setAlpha(1f)
-                    .setContentView(R.layout.dialog_custom_spin)
-                    .build()
-                    .setHeight(200)
-                    .setWidth(200)
-                    .setResouce(R.drawable.ic_dialog_spin)
-                    .show(supportFragmentManager, "spin")
+//            R.id.dialog_test_spin -> CustomSpinDialog.CustomSpinBuilder()
+//                    .setAlpha(1f)
+//                    .setContentView(R.layout.dialog_custom_spin)
+//                    .build()
+//                    .setHeight(200)
+//                    .setWidth(200)
+//                    .setResouce(R.drawable.ic_dialog_spin)
+//                    .show(supportFragmentManager, "spin")
             else -> {
             }
         }
