@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3">
+    <dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated"
+        generated="true"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\main\res" />
+        <source path="F:\Android\Project\Android-EasyTools\audio\build\generated\res\rs\debug" />
+        <source
+            path="F:\Android\Project\Android-EasyTools\audio\build\generated\res\resValues\debug" />
+    </dataSet>
+    <dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main"
+        generated-set="main$Generated"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\main\res">
+            <file name="bg_seekbar"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\drawable\bg_seekbar.xml"
+                qualifiers="" type="drawable" />
+            <file name="bg_thumb"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\drawable\bg_thumb.xml"
+                qualifiers="" type="drawable" />
+            <file name="shape_seekbar_btn"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\drawable\shape_seekbar_btn.xml"
+                qualifiers="" type="drawable" />
+            <file name="activity_music_service_layout"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\layout\activity_music_service_layout.xml"
+                qualifiers="" type="layout" />
+            <file name="notification_big_layout"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\layout\notification_big_layout.xml"
+                qualifiers="" type="layout" />
+            <file name="notification_small_layout"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\layout\notification_small_layout.xml"
+                qualifiers="" type="layout" />
+            <file name="a0a"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\a0a.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="a0f"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\a0f.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="aj9"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\aj9.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aef"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aef.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aeh"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aeh.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_af9"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_af9.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aj6"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aj6.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aj7"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aj7.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aj8"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aj8.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_aja"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_aja.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_ajb"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_ajb.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_ajc"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_ajc.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_akg"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_akg.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_ano"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_ano.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_anu"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_anu.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_anw"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_anw.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_anx"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_anx.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_apa"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_apa.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_b2i"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_b2i.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_b3b"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_b3b.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_b3f"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_b3f.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_black_cat"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_black_cat.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_cat"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_cat.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_middle"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_middle.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="audio_share"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\audio_share.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="b4i"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\b4i.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="b6o"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\b6o.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="ic_launcher"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="loop"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\loop.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_loved"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_loved.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_love_white"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_love_white.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_next_white"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_next_white.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_pause_white"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_pause_white.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_play_white"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_play_white.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="note_btn_pre_white"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\note_btn_pre_white.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="once"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\once.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="player_loop"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\player_loop.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="player_once"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\player_once.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="player_random"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\player_random.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="player_settings_bright_thumb"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\player_settings_bright_thumb.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file name="random"
+                path="F:\Android\Project\Android-EasyTools\audio\src\main\res\mipmap-xhdpi\random.png"
+                qualifiers="xhdpi-v4" type="mipmap" />
+            <file path="F:\Android\Project\Android-EasyTools\audio\src\main\res\values\strings.xml"
+                qualifiers="">
+                <string name="app_name">audio</string>
+            </file>
+        </source>
+        <source path="F:\Android\Project\Android-EasyTools\audio\build\generated\res\rs\debug" />
+        <source
+            path="F:\Android\Project\Android-EasyTools\audio\build\generated\res\resValues\debug" />
+    </dataSet>
+    <dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated"
+        generated="true"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\debug\res" />
+    </dataSet>
+    <dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug"
+        generated-set="debug$Generated"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\debug\res" />
+    </dataSet>
+    <mergedItems />
+</merger>

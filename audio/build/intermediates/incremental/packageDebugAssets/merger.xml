@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3">
+    <dataSet config="main"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\main\assets" />
+        <source
+            path="F:\Android\Project\Android-EasyTools\audio\build\intermediates\shader_assets\debug\compileDebugShaders\out" />
+    </dataSet>
+    <dataSet config="debug"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="F:\Android\Project\Android-EasyTools\audio\src\debug\assets" />
+    </dataSet>
+</merger>
