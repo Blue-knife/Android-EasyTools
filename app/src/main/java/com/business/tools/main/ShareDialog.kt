@@ -19,11 +19,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.business.tools.utils.ToastUtils
-import com.business.tools.utils.ToolsUtils
 import com.business.tools.views.RoundFrameLayout
-import com.business.tools.views.RoundViewHelper
+import com.example.ui.customView.RoundViewHelper
 import com.business.toos.R
+import com.example.ui.basedialog.utils.dip2px
+import com.example.ui.basedialog.utils.queryShareItems
+import com.example.ui.basedialog.utils.screenHeight
 import java.io.File
 import java.io.FileOutputStream
 
@@ -46,10 +47,10 @@ class ShareDialog(context: Context) : AlertDialog(context) {
 
         val layout = RoundFrameLayout(context)
         layout.setBackgroundColor(Color.WHITE)
-        layout.setViewOutLine(ToolsUtils.dip2px(20f), RoundViewHelper.RADIUS_TOP)
+        layout.setViewOutLine(context.dip2px(20f), RoundViewHelper.RADIUS_TOP)
         val param = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT)
-        param.height = ToolsUtils.screenHeight / 2
+        param.height = context.screenHeight / 2
         layout.layoutParams = param
         setContentView(layout)
 
@@ -59,10 +60,10 @@ class ShareDialog(context: Context) : AlertDialog(context) {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         )
-        params.leftMargin = ToolsUtils.dip2px(30f)
-        params.rightMargin = ToolsUtils.dip2px(20f)
-        params.topMargin = ToolsUtils.dip2px(10f)
-        params.bottomMargin = ToolsUtils.dip2px(10f)
+        params.leftMargin = context.dip2px(30f)
+        params.rightMargin = context.dip2px(20f)
+        params.topMargin = context.dip2px(10f)
+        params.bottomMargin = context.dip2px(10f)
         params.gravity = Gravity.CENTER
         layout.addView(gridView, params)
 
@@ -70,13 +71,13 @@ class ShareDialog(context: Context) : AlertDialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        val shareItems = ToolsUtils.queryShareItems()
+        val shareItems = context.queryShareItems()
         if (shareContent != null) {
             shareAdapter =
                     ShareAdapter(shareItems, context.packageManager, shareContent!!)
             gridView.adapter = shareAdapter
         } else {
-            ToastUtils.showText("分享内容为空")
+            com.example.core.ToastUtils.showText("分享内容为空")
         }
 
     }

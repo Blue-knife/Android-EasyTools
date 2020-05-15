@@ -1,2 +1,5 @@
-include ':app', ':audio'
-rootProject.name='Android Business Toos'
+include ':app'
+include ':bullet_ui'
+include ':bullet_ktx'
+include ':bulletmodels', ':bulletmodels:audio',':bulletmodels:camera'
+include ':bullet_core'

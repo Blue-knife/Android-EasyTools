@@ -1,0 +1,75 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:3:5-33
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:1-24:12
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:6:22-65
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:7:5-77
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:7:22-74
+application
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:9:5-22:19
+	android:label
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:9:18-50
+provider#com.business.audio.app.AudioContentProvider
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:10:9-14:38
+	android:enabled
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:13:13-35
+	android:authorities
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:12:13-48
+	android:exported
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:14:13-36
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:11:13-53
+service#com.business.audio.mediaplayer.core.MusicService
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:16:9-19:40
+	android:enabled
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:18:13-35
+	android:exported
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:19:13-37
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:17:13-58
+activity#com.business.audio.mediaplayer.core.MusicPlayerActivity
+ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:21:9-73
+	android:name
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:21:19-71
+uses-sdk
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		ADDED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+		INJECTED from F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml

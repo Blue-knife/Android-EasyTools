@@ -1,0 +1,51 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.business.audio"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="15"
+8-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" /> <!-- 在电量弱的前提下工作需要此权限 -->
+11-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:5:5-67
+11-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.WAKE_LOCK" />
+12-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:6:5-68
+12-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:6:22-65
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:7:5-77
+13-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:7:22-74
+14
+15    <application android:label="@string/app_name" >
+15-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:9:5-22:19
+15-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:9:18-50
+16        <provider
+16-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:10:9-14:38
+17            android:name="com.business.audio.app.AudioContentProvider"
+17-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:11:13-53
+18            android:authorities="audio.content"
+18-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:12:13-48
+19            android:enabled="true"
+19-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:13:13-35
+20            android:exported="true" />
+20-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:14:13-36
+21
+22        <service
+22-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:16:9-19:40
+23            android:name="com.business.audio.mediaplayer.core.MusicService"
+23-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:17:13-58
+24            android:enabled="true"
+24-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:18:13-35
+25            android:exported="false" />
+25-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:19:13-37
+26
+27        <activity android:name="com.business.audio.mediaplayer.core.MusicPlayerActivity" />
+27-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:21:9-73
+27-->F:\Android\Project\Android-EasyTools\audio\src\main\AndroidManifest.xml:21:19-71
+28    </application>
+29
+30</manifest>
