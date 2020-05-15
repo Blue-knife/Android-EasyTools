@@ -39,4 +39,14 @@
         <attr name="endPosInteger" format="integer" />
 
     </declare-styleable>
+
+
+    <declare-styleable name="SideBar">
+        <attr name="fontSize" format="float" />
+        <attr name="selectFontSize" format="float" />
+        <attr name="mergeHeight" format="float" />
+        <attr name="fontColor" format="float" />
+        <attr name="selectFontColor" format="float" />
+        <attr name="actionUpFontColor" format="color" />
+    </declare-styleable>
 </resources>
