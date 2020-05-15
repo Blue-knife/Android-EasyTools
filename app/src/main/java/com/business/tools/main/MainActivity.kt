@@ -1,17 +1,13 @@
 package com.business.tools.main
 
+import NoticeActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.business.audio.mediaplayer.core.MusicPlayerActivity
-import com.business.tools.basedialog.test.DialogActivity
-import com.business.tools.camera.CameraActivity
-import com.business.tools.flowlayout.test.FlowLayoutActivity
-import com.business.tools.image_card.test.CardaActivity
-import com.business.tools.utils.ToastUtils
-import com.business.tools.utils.download.DownLoadActivity
-import com.business.tools.views.ViewsActivity
+import com.business.tools.test.DialogActivity
+import com.business.tools.test.*
 import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,8 +38,8 @@ class MainActivity : AppCompatActivity() {
                 Pair("自定义View", ViewsActivity::class.java),
                 Pair("开启 JobService", null),
                 Pair("播放 Music", MusicPlayerActivity::class.java),
-                Pair("一键式文件下载", DownLoadActivity::class.java)
-
+                Pair("一键式文件下载", DownLoadActivity::class.java),
+                Pair("通知相关", NoticeActivity::class.java)
         )
     }
 
