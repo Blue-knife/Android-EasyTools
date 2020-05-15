@@ -1,6 +1,7 @@
-package com.business.tools
+package com.business.tools.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.business.audio.mediaplayer.core.MusicPlayerActivity
@@ -8,6 +9,7 @@ import com.business.tools.basedialog.test.DialogActivity
 import com.business.tools.camera.CameraActivity
 import com.business.tools.flowlayout.test.FlowLayoutActivity
 import com.business.tools.image_card.test.CardaActivity
+import com.business.tools.utils.ToastUtils
 import com.business.tools.utils.download.DownLoadActivity
 import com.business.tools.views.ViewsActivity
 import com.business.toos.R
@@ -18,7 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        actionBar?.hide()
         initRv()
+        main_share.setOnClickListener(listener)
     }
 
     private fun initRv() {
@@ -35,14 +39,18 @@ class MainActivity : AppCompatActivity() {
                 Pair("流式布局FlowLayout", FlowLayoutActivity::class.java),
                 Pair("状态栏工具", null),
                 Pair("拍照，裁剪，扫描生成二维码等", CameraActivity::class.java),
-                Pair("自定义Tv颜色", ViewsActivity::class.java),
+                Pair("自定义View", ViewsActivity::class.java),
                 Pair("开启 JobService", null),
                 Pair("播放 Music", MusicPlayerActivity::class.java),
                 Pair("一键式文件下载", DownLoadActivity::class.java)
 
-              
-
         )
+    }
+
+    private val listener = View.OnClickListener {
+        val shareDialog = ShareDialog(this)
+        shareDialog.setShareContent("https://github.com/Blue-knife/Android-EasyTools")
+        shareDialog.show()
     }
 
 }

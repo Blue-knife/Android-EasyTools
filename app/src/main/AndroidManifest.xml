@@ -24,8 +24,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="n">
-        <activity android:name="com.business.tools.utils.download.DownLoadActivity"></activity>
-        <activity android:name="com.business.tools.MainActivity">
+        <activity android:name="com.business.tools.utils.download.DownLoadActivity" />
+        <activity android:name="com.business.tools.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
