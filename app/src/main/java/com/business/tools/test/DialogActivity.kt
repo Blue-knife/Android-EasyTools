@@ -3,12 +3,13 @@ package com.business.tools.test
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
 import com.business.toos.R
-import com.example.ui.basedialog.utils.BaseFragDialog
-import com.example.ui.basedialog.utils.DateDialog
-import com.example.ui.basedialog.utils.ToastDialog
+import com.example.ui.dialog.ToastDialog
+import com.example.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_dialog_test.*
 
 
@@ -34,43 +35,41 @@ class DialogActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.dialog_test_one -> BaseFragDialog.Builder()
-                    .setAlpha(1f)
-                    .setAnimation(R.style.BottomAnimStyle)
-                    .setGravity(Gravity.CENTER)
-                    .setContentView(R.layout.dialog_hint)
-                    .build()
-                    .setWidth(this, 0.6f)
-                    .setText(R.id.tv_dialog_title, "我是名字")
-                    .setText(R.id.tv_dialog_message, "我是内容")
-                    .setListener(R.id.tv_dialog_confirm) { dialog, view ->
-                        Toast.makeText(this@DialogActivity, "成功", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }
-                    .show(supportFragmentManager, "345")
-            R.id.dialog_test_two -> DateDialog.DateBuilder()
-                    .setContentView(R.layout.dialog_hint)
-                    .setCancelable(false)
-                    .build()
-                    .setWidth(this, 0.6f)
-                    .setListener(R.id.tv_dialog_cancel) { dialog, view ->
-                        Toast.makeText(this@DialogActivity, "关闭", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }
-                    .setListener(R.id.tv_dialog_confirm) { dialog, view ->
-                        Toast.makeText(this@DialogActivity, "确定", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }
-                    .show(supportFragmentManager, "345")
-            R.id.dialog_test_three -> ToastDialog.ToastBuilder()
-                    .setContentView(R.layout.dialog_toast)
-                    .setCancelable(false)
-                    .build()
-                    .postAtTime(3000)
-                    .setMessage("加载中")
-                    //多种 type ，加载，加载完成，警告，失败等
-                    .setType(ToastDialog.Type.LOADING)
-                    .show(supportFragmentManager, "345")
+            R.id.dialog_test_one -> {
+                FastDialog.Builder(this)
+                        .setContentView(R.layout.dialog_hint)
+                        .setText(R.id.tv_dialog_title, "标题")
+                        .setWidth(0.6f)
+                        .setText(R.id.tv_dialog_message, "我是 345")
+                        .setOnClickListener(R.id.tv_dialog_confirm) {
+                            Toast.makeText(this@DialogActivity, "确定", Toast.LENGTH_SHORT).show()
+                        }
+                        .setOnClickListener(R.id.tv_dialog_cancel) {
+                            Toast.makeText(this@DialogActivity, "关闭", Toast.LENGTH_SHORT).show()
+                            it.second.dismiss()
+                        }
+                        .show()
+            }
+            R.id.dialog_test_two -> {
+                val dialog = FastDialog.Builder(this)
+                        .setContentView(R.layout.dialog_bottom)
+                        .setAlpha(1f)
+                        .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                        .fromBottom(true)
+                        .setCancelable(true)
+                        .show()
+                val edit = dialog.getView<AppCompatEditText>(R.id.dialog_edit)
+                dialog.setOnClickListener(R.id.dialog_text) {
+                    Toast.makeText(this@DialogActivity, edit?.text.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            R.id.dialog_test_three -> {
+                ToastDialog.loading(this)
+//                ToastDialog.error(this)
+//                ToastDialog.finish(this)
+//                ToastDialog.warn(this)
+            }
 //            R.id.dialog_test_spin -> CustomSpinDialog.CustomSpinBuilder()
 //                    .setAlpha(1f)
 //                    .setContentView(R.layout.dialog_custom_spin)
