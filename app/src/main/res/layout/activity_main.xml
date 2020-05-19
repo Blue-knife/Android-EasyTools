@@ -3,22 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:fillViewport="true"
     android:orientation="vertical"
     tools:context="com.business.tools.main.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/toolbar_color">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_Skin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_daytime" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_toRightOf="@id/main_Skin"
             android:gravity="center_vertical"
             android:paddingStart="15dp"
             android:text="@string/easyTools"
-            android:textColor="#000000"
+            android:textColor="@color/toolbar_tv_color"
             android:textSize="25sp"
             android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
@@ -42,8 +53,7 @@
 
     <com.example.ui.customView.CustomNestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/ll_main"
