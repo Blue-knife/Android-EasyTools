@@ -53,11 +53,10 @@ class SkinResource(private val context: Context, private val skinPath: String) {
     /**
      * 通过名字获取颜色
      */
-    @RequiresApi(Build.VERSION_CODES.M)
     fun getColorByName(resName: String): ColorStateList? {
         return tryCatch {
             val resId = mSkinResource!!.getIdentifier(resName, "color", mPackageName)
-            mSkinResource!!.getColorStateList(resId, null)
+            mSkinResource!!.getColorStateList(resId)
         }
     }
 
