@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import com.business.toos.R
+import com.example.core.base.BaseSkinActivity
 import com.example.ui.dialog.ToastDialog
 import com.example.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_dialog_test.*
@@ -17,12 +18,13 @@ import kotlinx.android.synthetic.main.activity_dialog_test.*
  * @author 345
  */
 
-class DialogActivity : AppCompatActivity(), View.OnClickListener {
+class DialogActivity : BaseSkinActivity(), View.OnClickListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dialog_test)
+    override fun layout(): Int {
+        return R.layout.activity_dialog_test
+    }
 
+    override fun bindView() {
         init()
     }
 

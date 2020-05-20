@@ -33,7 +33,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="NoticeActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.business.tools.fileProvider"
@@ -55,6 +54,8 @@
         <activity android:name="com.business.tools.test.FlowLayoutActivity" />
         <activity android:name="com.business.tools.test.CameraActivity" />
         <activity android:name="com.business.tools.test.ViewsActivity" />
+        <activity android:name="com.business.tools.test.NoticeActivity"/>
+        <activity android:name="com.business.audio.mediaplayer.core.MusicPlayerActivity"/>
     </application>
 
 </manifest>

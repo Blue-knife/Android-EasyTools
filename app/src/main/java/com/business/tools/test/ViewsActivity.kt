@@ -2,6 +2,8 @@ package com.business.tools.test
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.business.tools.views.page.PageAdapter
 import com.business.toos.R
+import com.example.core.base.BaseSkinActivity
 import com.example.ui.customView.CustomTextView
 import kotlinx.android.synthetic.main.activity_views.*
 
@@ -16,10 +19,16 @@ import kotlinx.android.synthetic.main.activity_views.*
  * @author 345
  * @date 2019/12/25
  */
-class ViewsActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_views)
+class ViewsActivity : BaseSkinActivity() {
+
+
+
+
+    override fun layout(): Int {
+        return R.layout.activity_views
+    }
+
+    override fun bindView() {
         init()
         scroll.adapter = ScrollerAdapter(R.layout.item)
     }
@@ -35,6 +44,9 @@ class ViewsActivity : AppCompatActivity() {
             Toast.makeText(this, "${scroll.mPosition}", Toast.LENGTH_LONG).show()
         }
     }
+
+
+
 }
 
 class ScrollerAdapter(itemRes: Int) : PageAdapter(itemRes) {

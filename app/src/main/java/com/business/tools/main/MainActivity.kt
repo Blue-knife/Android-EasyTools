@@ -1,24 +1,61 @@
 package com.business.tools.main
 
-import NoticeActivity
-import android.os.Bundle
+
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.business.audio.mediaplayer.core.MusicPlayerActivity
 import com.business.tools.test.DialogActivity
 import com.business.tools.test.*
 import com.business.toos.R
+import com.example.core.base.BaseSkinActivity
+import com.example.core.base.skin.SkinManager
+import com.example.core.base.skin.config.SkinPreUtils
+import com.example.ui.dialog.ToastDialog
+
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseSkinActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        actionBar?.hide()
+    override fun layout(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun bindView() {
         initRv()
-        main_share.setOnClickListener(listener)
+        copyCache()
+        main_share.setOnClickListener(::shareClick)
+        main_Skin.setOnClickListener(::skinClick)
+    }
+
+    private fun copyCache() {
+        val cacheDir = cacheDir
+        val outFile = File(cacheDir, "easy.skin")
+        val input = resources.assets.open("easy.skin")
+        input.copyTo(outFile.outputStream())
+    }
+
+
+    private fun skinClick(view: View) {
+        val image = view as AppCompatImageView
+        if (SkinPreUtils.getTag()) {
+            SkinManager.restoreDefault()
+            SkinPreUtils.setTag(false)
+            image.setImageResource(R.drawable.main_daytime)
+        } else {
+            val code = SkinManager.loadSkin(cacheDir.path + "/easy.skin")
+//            ToastDialog.show(this, "$code")
+            SkinPreUtils.setTag(true)
+            image.setImageResource(R.drawable.main_night)
+        }
+    }
+
+
+    private fun shareClick(view: View) {
+        val shareDialog = ShareDialog(this)
+        shareDialog.setShareContent("https://github.com/Blue-knife/Android-EasyTools")
+        shareDialog.show()
     }
 
     private fun initRv() {
@@ -43,10 +80,5 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private val listener = View.OnClickListener {
-        val shareDialog = ShareDialog(this)
-        shareDialog.setShareContent("https://github.com/Blue-knife/Android-EasyTools")
-        shareDialog.show()
-    }
 
 }

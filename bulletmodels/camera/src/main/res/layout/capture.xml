@@ -8,7 +8,7 @@
         android:layout_height="fill_parent" />
 
     <!-- 扫描取景框 -->
-    <com.business.tools.camera.zxing.view.ViewfinderView
+    <com.example.camera.camera.zxing.view.ViewfinderView
         android:id="@+id/viewfinder_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

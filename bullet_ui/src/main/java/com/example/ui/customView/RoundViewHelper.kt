@@ -32,16 +32,16 @@ class RoundViewHelper {
         fun setViewOutLine(
                 view: View, attributeSet: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
         ) {
-//            val array = view.context.obtainStyledAttributes(
-//                    attributeSet, R.styleable.ViewOutLineStrategy, defStyleAttr, defStyleRes
-//            )
-//            val radius =
-//                    array.getDimensionPixelOffset(R.styleable.ViewOutLineStrategy_radius, 0)
-//            val radiusSide =
-//                    array.getIndex(R.styleable.ViewOutLineStrategy_radiusSide)
-//            array.recycle()
+            val array = view.context.obtainStyledAttributes(
+                    attributeSet, R.styleable.ViewOutLineStrategy, defStyleAttr, defStyleRes
+            )
+            val radius =
+                    array.getDimensionPixelOffset(R.styleable.ViewOutLineStrategy_radius, 0)
+            val radiusSide =
+                    array.getIndex(R.styleable.ViewOutLineStrategy_radiusSide)
+            array.recycle()
 
-//            setViewOutLine(view, radius, radiusSide)
+            setViewOutLine(view, radius, radiusSide)
         }
 
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

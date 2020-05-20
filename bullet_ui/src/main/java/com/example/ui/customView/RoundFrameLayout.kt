@@ -1,9 +1,10 @@
-package com.business.tools.views
+package com.example.ui.customView
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.example.ui.customView.RoundViewHelper
 
 /**
  * @name Android Business Toos
@@ -23,15 +24,16 @@ class RoundFrameLayout : FrameLayout {
             context, attributeSet, defStyleAttr, 0
     )
 
+    @SuppressLint("NewApi")
     constructor(
             context: Context, attributeSet: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
-    ) : super(
-            context, attributeSet, defStyleAttr, defStyleRes
-    ) {
+    ) : super(context, attributeSet, defStyleAttr, defStyleRes) {
         RoundViewHelper.setViewOutLine(this, attributeSet, defStyleAttr, defStyleRes)
     }
 
     fun setViewOutLine(radius: Int, radiusSize: Int) {
-        RoundViewHelper.setViewOutLine(this, radius, radiusSize)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            RoundViewHelper.setViewOutLine(this, radius, radiusSize)
+        }
     }
 }

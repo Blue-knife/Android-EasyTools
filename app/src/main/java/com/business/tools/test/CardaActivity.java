@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.business.toos.R;
 import com.example.core.ContextTools;
+import com.example.core.base.BaseSkinActivity;
 import com.example.ui.image_card.CardDataItem;
 import com.example.ui.image_card.CardSlidePanel;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * on 2019-12-08
  * Function:
  */
-public class CardaActivity extends AppCompatActivity {
+public class CardaActivity extends BaseSkinActivity {
 
     private CardSlidePanel.CardSwitchListener cardSwitchListener;
 
@@ -33,13 +34,16 @@ public class CardaActivity extends AppCompatActivity {
     }; // 6个图片
 
 
-
     private List<CardDataItem> dataList = new ArrayList<CardDataItem>();
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.card_layout);
+    public int layout() {
+        return R.layout.card_layout;
+    }
+
+    @Override
+    public void bindView() {
         CardSlidePanel slidePanel = findViewById(R.id.image_slide_panel);
         cardSwitchListener = new CardSlidePanel.CardSwitchListener() {
 
@@ -76,4 +80,6 @@ public class CardaActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

@@ -7,14 +7,16 @@ import android.widget.Toast
 import com.example.ktx.download.DownLoadLaunch
 import com.example.ktx.download.OnStateListener
 import com.business.toos.R
+import com.example.core.base.BaseSkinActivity
 import kotlinx.android.synthetic.main.activity_down_load.*
 import java.io.File
 
-class DownLoadActivity : AppCompatActivity() {
+class DownLoadActivity : BaseSkinActivity() {
+    override fun layout(): Int {
+        return R.layout.activity_down_load
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_down_load)
+    override fun bindView() {
         init()
     }
 
