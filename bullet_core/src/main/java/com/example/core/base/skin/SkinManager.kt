@@ -89,7 +89,6 @@ object SkinManager {
         mSkinViews.forEach { maps ->
             val skinViews = maps.value
             skinViews.forEach {
-                Log.e("-----------","------")
                 it.skin()
             }
             maps.key.changeSkin(skinResource!!)

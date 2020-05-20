@@ -47,6 +47,7 @@ class SkinAttrSupport {
             if (attrValue.startsWith("@")) {
                 val value = attrValue.substring(1)
                 val resId = value.toInt()
+                if (resId == 0) return null
                 return context.resources.getResourceEntryName(resId)
             }
             return null
