@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <!--    圆角-->
     <declare-styleable name="ViewOutLineStrategy">
         <attr name="radius" format="dimension" />
@@ -20,5 +19,13 @@
             <enum name="bottom" value="4" />
         </attr>
     </declare-styleable>
+
+    <style name="select_image_tv">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/select_image_tv_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">10.0dip</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
 
 </resources>

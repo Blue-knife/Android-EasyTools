@@ -3,6 +3,8 @@ package com.example.core
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.www.net.LvCreator
+import com.www.net.LvHttp
 
 /**
  * Created by Petterp
@@ -15,6 +17,8 @@ class ContextTools : Application() {
         super.onCreate()
         //音频SDK初始化
         context = this
+
+        LvCreator.init("http://192.168.43.80:80/")
     }
 
     companion object {
