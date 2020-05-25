@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.ui.customView.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.example.ui.customView.SquareImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/selected_indicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right"
+        android:src="@drawable/select_shooser_ic"
+        tools:ignore="RtlHardcoded" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/camera_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.example.ui.customView.SquareImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_chooser_take_picture" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.example.ui.customView.SquareFrameLayout>

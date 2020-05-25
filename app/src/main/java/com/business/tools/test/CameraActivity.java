@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.business.tools.test.selectimage.UpLoadPhotoActivity;
 import com.example.ktx.ImageUtils;
 import com.business.toos.R;
 import com.example.camera.camera.CameraImageBean;
@@ -52,6 +53,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.activity_camera_start).setOnClickListener(this);
         findViewById(R.id.activity_camera_scan).setOnClickListener(this);
         findViewById(R.id.activity_camera_qr_code).setOnClickListener(this);
+        findViewById(R.id.activity_upload_photo).setOnClickListener(this);
     }
 
     @Override
@@ -110,12 +112,17 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                     }
                     Toast.makeText(this, "字符串不允许为空", Toast.LENGTH_SHORT).show();
                     break;
+                case R.id.activity_upload_photo:
+                    startActivity(new Intent(this, UpLoadPhotoActivity.class));
+                    break;
+                default:
             }
         }
     }
 
     /**
      * 回调返回过来
+     *
      * @param requestCode
      * @param resultCode
      * @param data

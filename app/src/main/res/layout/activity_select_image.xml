@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#999999">
+
+        <com.example.ui.customView.SquareImageView
+            android:id="@+id/select_back"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_back_normal"
+            android:padding="10dp"
+            tools:ignore="RtlHardcoded" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/select_type"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/select_back"
+            android:gravity="center_vertical"
+            android:text="所有图片"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/select_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15sp"
+            android:textSize="15sp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="完成(2/7)" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/image_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/op_bar"
+        android:layout_below="@id/toolbar"
+        android:background="#ff261f1f" />
+
+    <RelativeLayout
+        android:id="@+id/op_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="#000000">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/select_preview"
+            style="@style/select_image_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:enabled="false"
+            android:paddingStart="20dp"
+            android:text="预览"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
