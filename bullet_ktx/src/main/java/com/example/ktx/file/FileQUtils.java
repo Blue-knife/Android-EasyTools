@@ -134,7 +134,10 @@ public class FileQUtils {
             if (path != null) {
                 path = Uri.decode(path);
                 ContentResolver cr = context.getContentResolver();
-                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA}, "(" + MediaStore.Images.ImageColumns.DATA + "=" + "'" + path + "'" + ")", null, null);
+                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        new String[]{MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA},
+                        "(" + MediaStore.Images.ImageColumns.DATA + "=" + "'" + path + "'" + ")",
+                        null, null);
                 int index = 0;
                 int dataIdx = 0;
                 for (Objects.requireNonNull(cur).moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
