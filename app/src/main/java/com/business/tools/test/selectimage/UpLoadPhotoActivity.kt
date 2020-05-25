@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.business.toos.R
 import com.example.core.ToastUtils
 import com.example.core.base.BaseSkinActivity
+import com.example.ui.dialog.ToastDialog
 import com.www.net.LvHttp
 import kotlinx.android.synthetic.main.activity_upload_photo.*
 import java.io.File
@@ -45,6 +46,7 @@ class UpLoadPhotoActivity : BaseSkinActivity() {
         activity_upload_rv.adapter = upLoadRvAdapter
 
         activity_upload_btn.setOnClickListener {
+            ToastDialog.loading(this)
             if (images.size == 0) {
                 ToastUtils.showText("请选择图片")
                 return@setOnClickListener
@@ -67,8 +69,10 @@ class UpLoadPhotoActivity : BaseSkinActivity() {
                     .files(map)
                     .send({
                         ToastUtils.showText("上传成功")
+                        ToastDialog.stop()
                     }) {
                         ToastUtils.showText("找不到服务器")
+                        ToastDialog.stop()
                     }
         }
     }
@@ -76,9 +80,9 @@ class UpLoadPhotoActivity : BaseSkinActivity() {
     private fun loadMore() {
         val intent = Intent(this, SelectImageActivity::class.java)
         intent.putExtra(SelectImageActivity.EXTRA_SELECT_COUNT, 9)
-        intent.putExtra(SelectImageActivity.EXTRA_SELECT_MODE, SelectImageActivity.MODE_MULTI)
+        intent.putExtra(SelectImageActivity.EXTRA_SELECT_MODE, SelectImageActivity.MODE_SINGLE)
         intent.putParcelableArrayListExtra(SelectImageActivity.EXTRA_DEFAULT_SELECTED_LIST, images)
-        intent.putExtra(SelectImageActivity.EXTRA_SHOW_CAMERA, true)
+        intent.putExtra(SelectImageActivity.EXTRA_SHOW_CAMERA, false)
         startActivityForResult(intent, 0)
     }
 

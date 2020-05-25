@@ -53,6 +53,12 @@ object ToastDialog {
         show("完成", R.drawable.ic_dialog_finish)
     }
 
+    fun stop() {
+        if (fastDialog != null) {
+            fastDialog?.dismiss()
+            fastDialog = null
+        }
+    }
 
     fun unLoading() {
         fastDialog?.dismiss()

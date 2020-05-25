@@ -49,6 +49,9 @@ class SelectRvAdapter(private val images: ArrayList<Uri?>, private val result: A
             holder.camera.visibility = View.VISIBLE
             holder.image.visibility = View.GONE
             holder.selectImage.visibility = View.GONE
+            holder.camera.setOnClickListener {
+                //调用相机
+            }
         } else {
             holder.image.visibility = View.VISIBLE
             holder.selectImage.visibility = View.VISIBLE
