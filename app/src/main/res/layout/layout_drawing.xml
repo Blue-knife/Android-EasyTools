@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.example.ui.customView.DrawingView
+        android:id="@+id/layout_drawing"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#e3e3e3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/layout_save"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="40dp"
+        android:text="保存图片"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
