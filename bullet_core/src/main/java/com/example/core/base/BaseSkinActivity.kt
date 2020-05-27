@@ -66,7 +66,6 @@ abstract class BaseSkinActivity : BaseActivity(),
             managerSkinView(skinView)
             //判断是否需要换肤、
             SkinManager.checkChangeSkin(skinView)
-            Log.e("--$name ---", view.toString())
         }
         return view
     }
