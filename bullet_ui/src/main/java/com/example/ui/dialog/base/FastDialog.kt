@@ -32,7 +32,7 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
      * 设置事件
      */
     fun setOnClickListener(viewId: Int, listener: (Pair<View, FastDialog>) -> Unit) {
-        mAlert.setOnClickListener(viewId, WeakReference(listener))
+        mAlert.setOnClickListener(viewId, listener)
     }
 
     /**
@@ -186,7 +186,7 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
          * 设置点击事件
          */
         fun setOnClickListener(viewId: Int, listener: (Pair<View, FastDialog>) -> Unit): Builder {
-            p.mClickArray.put(viewId, WeakReference(listener))
+            p.mClickArray.put(viewId, listener)
             return this
         }
 

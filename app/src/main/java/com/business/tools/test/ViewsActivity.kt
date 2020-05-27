@@ -57,6 +57,7 @@ class ViewsActivity : BaseSkinActivity() {
                 activity_views_image.setImageBitmap(bitmap)
             }
             dialog.setOnClickListener(R.id.layout_reset) {
+                ToastUtils.showCenterText("重置")
                 drawingView?.resetCanvas()
             }
         }

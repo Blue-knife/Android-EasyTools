@@ -51,7 +51,7 @@ class FastController(
     /**
      * 设置事件
      */
-    fun setOnClickListener(viewId: Int, onClick: WeakReference<(Pair<View, FastDialog>) -> Unit>) {
+    fun setOnClickListener(viewId: Int, onClick: (Pair<View, FastDialog>) -> Unit) {
         viewHelper?.setOnClickListener(viewId, onClick, alertDialog)
     }
 
@@ -78,7 +78,7 @@ class FastController(
         var mTextArray = SparseArray<CharSequence>()
 
         //存放点击事件
-        var mClickArray = SparseArray<WeakReference<(Pair<View, FastDialog>) -> Unit>>()
+        var mClickArray = SparseArray<(Pair<View, FastDialog>) -> Unit>()
 
         //宽度
         var mWidth: Int = ViewGroup.LayoutParams.WRAP_CONTENT
