@@ -1,12 +1,19 @@
 package com.example.ui.customView
 
-import android.R.attr
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.example.core.ToastUtils
 import java.io.*
 
 
@@ -15,7 +22,7 @@ import java.io.*
  * @package com.example.ui.customView
  * @author 345 QQ:1831712732
  * @time 2020/5/26 20:46
- * @description
+ * @description 画板
  */
 
 class DrawingView : View {
@@ -27,11 +34,17 @@ class DrawingView : View {
     private var cacheCanvas //用户保存签名的Canvas
             : Canvas? = null
 
-    private var lift = 0f
-    private var right: Float = 0f
-    private var top: Float = 0f
-    private var bottom: Float = 0f
+    //位置
+    private var mLeft: Float = 0f
+    private var mRight: Float = 0f
+    private var mTop: Float = 0f
+    private var mBottom: Float = 0f
 
+    //边距
+    private var mPadding = 20f
+
+    //线宽度
+    private var mPaintWidth = 10f
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -44,7 +57,7 @@ class DrawingView : View {
         mPaint = Paint()
         mPaint.style = Paint.Style.STROKE
         mPaint.color = Color.BLACK
-        mPaint.strokeWidth = 10f
+        mPaint.strokeWidth = mPaintWidth
         mPath = Path()
     }
 
@@ -65,24 +78,24 @@ class DrawingView : View {
             MotionEvent.ACTION_DOWN -> {
                 //路径起点
                 mPath.moveTo(event.x, event.y)
-                if (lift == 0f) {
-                    lift = event.x
+                if (mLeft == 0f) {
+                    mLeft = event.x
                 }
-                if (right == 0f) {
-                    lift = event.x
-                }
-                if (top == 0f) {
-                    top = event.y
-                }
-                if (bottom == 0f) {
-                    bottom = event.x
+                if (mTop == 0f) {
+                    mTop = event.y
                 }
                 setVertexCoordinates(event.x, event.y)
             }
             MotionEvent.ACTION_MOVE -> {
                 mPath.lineTo(event.x, event.y)
                 postInvalidate()
-                setVertexCoordinates(event.x, event.y)
+                //限制滑动的位置
+                if (event.x < width && event.x >= 0) {
+                    if (event.y < height && event.y >= 0) {
+                        //如果是第二次按下，也需要记录位置
+                        setVertexCoordinates(event.x, event.y)
+                    }
+                }
             }
             MotionEvent.ACTION_UP -> //将签名绘制到缓存画布上
                 cacheCanvas?.drawPath(mPath, mPaint)
@@ -108,70 +121,131 @@ class DrawingView : View {
         cacheCanvas = Canvas(cacheBitmap!!)
         //设置背景色为透明
         cacheCanvas?.drawColor(Color.WHITE)
-        bottom = 0f
-        top = bottom
-        right = top
-        lift = right
+        mBottom = 0f
+        mTop = mBottom
+        mRight = mTop
+        mLeft = mRight
     }
 
     /**
-     * 设置顶点坐标
+     * 记录四个边的位置
      */
     private fun setVertexCoordinates(x: Float, y: Float) {
-        if (lift > x) lift = x
-        if (right < x) right = x
-        if (top > y) top = y
-        if (bottom < y) bottom = y
+        if (x > mRight) {
+            mRight = x
+        }
+        if (x < mLeft) {
+            mLeft = x
+        }
+        if (y > mBottom) {
+            mBottom = y
+        }
+        if (y < mTop) {
+            mTop = y
+        }
     }
 
+    /**
+     * 返回 bitmap
+     * @param blank ：边距
+     */
+    fun getBitmap(blank: Int): Bitmap? {
+        return cropCanvas(blank.toFloat())
+    }
+
+    /**
+     * 获取图片 file
+     */
+    fun getFile(): File? {
+        val bitmap = getBitmap(15) ?: return null
+        val uri = save(bitmap, "${System.currentTimeMillis()}.png")
+                ?: throw FileNotFoundException("文件未找到")
+        val query = context.contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)
+        query?.moveToFirst()
+        val index = query?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        val path = query!!.getString(index!!)
+        if (path == null) {
+            ToastUtils.showText("获取失败")
+            query.close()
+        }
+        return File(path)
+    }
+
+    /**
+     * 保存图片到本地
+     * @param displayName 图片名称，注意需要加上后缀名 .png
+     */
+    fun save(displayName: String): Uri? {
+        val bitmap = getBitmap(15) ?: return null
+        return save(bitmap, displayName)
+    }
+
+    fun save(bitmap: Bitmap, displayName: String): Uri? {
+        val values = ContentValues()
+        values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
+        values.put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM)
+        } else {
+            values.put(MediaStore.MediaColumns.DATA, "${Environment.getExternalStorageDirectory().path}/${Environment.DIRECTORY_DCIM}/$displayName")
+        }
+        val uri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+
+        if (uri != null) {
+            val outputStream = context.contentResolver.openOutputStream(uri)
+            if (outputStream != null) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                outputStream.close()
+            }
+            ToastUtils.showText("完成")
+            return uri
+        }
+        return null
+    }
 
     /**
      * 剪裁画布把多余的画布去掉只保留签名部分
      *
      * @param blank 边距
      */
-    private fun cropCanvas(blank: Int): Bitmap {
-        return cacheBitmap!!
+    private fun cropCanvas(): Bitmap? {
+        return cropCanvas(mPadding)
     }
 
-    /**
-     * 判断有没有签名
-     * @return true 有 反之没有
-     */
-    fun isEmpty(): Boolean {
-        return mPath.isEmpty()
-    }
+    private fun cropCanvas(padding: Float): Bitmap? {
+        val right = (mRight - mLeft)
+        val height = (mBottom - mTop)
 
-    /**
-     * 返回 bitmap
-     */
-    fun getBitmap(blank: Int): Bitmap {
-        return cropCanvas(blank)
-    }
-
-    /**
-     * 保存签名到本地
-     *
-     * @param path  保存路径
-     * @param blank 边距
-     */
-    @SuppressLint("WrongThread")
-    @Throws(IOException::class)
-    fun save(path: String?, fileName: String?, blank: Int) {
-        val mBitmap = cropCanvas(blank)
-        val foder = File(path)
-        if (!foder.exists()) foder.mkdirs()
-        val myCaptureFile = File(path, fileName)
-        if (!myCaptureFile.exists()) myCaptureFile.createNewFile()
-        try {
-            val bufferedOutputStream = BufferedOutputStream(FileOutputStream(myCaptureFile))
-            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, bufferedOutputStream)
-            bufferedOutputStream.flush()
-            bufferedOutputStream.close()
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        if (right == 0f && height == 0f) {
+            ToastUtils.showText("请进行签名")
+            return null
         }
+
+        val dip2px = dip2px(padding)
+        //裁切签名的部分
+        val cropBitmap = Bitmap.createBitmap(cacheBitmap!!, mLeft.toZero(), mTop.toZero(), right.toZero(), height.toZero())
+
+        //设置边距
+        val bitmap = Bitmap.createBitmap((cropBitmap.width + (dip2px * 2)), (cropBitmap.height + (dip2px * 2)), Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.WHITE)
+        canvas.drawBitmap(cropBitmap, dip2px.toFloat(), dip2px.toFloat(), mPaint)
+        return bitmap
+    }
+
+    private fun Float.toZero(): Int {
+        return if (this < 0f) {
+            0
+        } else {
+            this.toInt()
+        }
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    private fun dip2px(dpValue: Float): Int {
+        val scale = resources.displayMetrics.density
+        return (dpValue * scale + 0.5f).toInt()
     }
 }

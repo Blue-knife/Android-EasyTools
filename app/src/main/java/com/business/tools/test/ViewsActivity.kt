@@ -1,5 +1,6 @@
 package com.business.tools.test
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.View
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.business.tools.views.page.PageAdapter
 import com.business.toos.R
+import com.example.core.ToastUtils
 import com.example.core.base.BaseSkinActivity
 import com.example.ui.customView.CustomTextView
 import com.example.ui.customView.DrawingView
@@ -41,6 +43,7 @@ class ViewsActivity : BaseSkinActivity() {
             Toast.makeText(this, "${scroll.mPosition}", Toast.LENGTH_LONG).show()
         }
 
+        //画板
         activity_drawing.setOnClickListener {
             val dialog = FastDialog.Builder(this)
                     .setContentView(R.layout.layout_drawing)
@@ -49,8 +52,12 @@ class ViewsActivity : BaseSkinActivity() {
             dialog.show()
             val drawingView = dialog.getView<DrawingView>(R.id.layout_drawing)
             dialog.setOnClickListener(R.id.layout_save) {
-                val bitmap = drawingView?.getBitmap(10)
+                val file = drawingView?.getFile()
+                val bitmap = BitmapFactory.decodeFile("${file?.path}")
                 activity_views_image.setImageBitmap(bitmap)
+            }
+            dialog.setOnClickListener(R.id.layout_reset) {
+                drawingView?.resetCanvas()
             }
         }
     }
