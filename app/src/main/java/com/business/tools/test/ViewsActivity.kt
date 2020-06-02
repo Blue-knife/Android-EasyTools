@@ -15,6 +15,7 @@ import com.example.ui.customView.DrawingView
 import com.example.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_views.*
 import kotlinx.android.synthetic.main.layout_drawing.*
+import java.io.File
 
 /**
  * @author 345
@@ -84,7 +85,6 @@ class ViewsActivity : BaseSkinActivity() {
                     .load(url[position])
                     .into((view as AppCompatImageView))
         }
-
     }
 
 
