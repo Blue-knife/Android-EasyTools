@@ -2,7 +2,6 @@ package com.business.tools.test
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
@@ -16,6 +15,7 @@ import com.example.ui.customView.DrawingView
 import com.example.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_views.*
 import kotlinx.android.synthetic.main.layout_drawing.*
+import java.io.File
 
 /**
  * @author 345
@@ -30,6 +30,7 @@ class ViewsActivity : BaseSkinActivity() {
 
     override fun bindView() {
         init()
+        scroll.adapter = ScrollerAdapter(R.layout.item)
     }
 
     private fun init() {
@@ -39,7 +40,9 @@ class ViewsActivity : BaseSkinActivity() {
         textView.setTvs(arrayOf("Android-EasyTools", "通用", "解决方案"),
                 intArrayOf(Color.BLUE, Color.GREEN, Color.RED))
         textView.notifyTv()
-
+        textView.setOnClickListener {
+            Toast.makeText(this, "${scroll.mPosition}", Toast.LENGTH_LONG).show()
+        }
 
         //画板
         activity_drawing.setOnClickListener {
@@ -48,12 +51,15 @@ class ViewsActivity : BaseSkinActivity() {
                     .setWidth(0.7f)
                     .build()
             dialog.show()
-            val drawingView = dialog.getView<DrawingView>(R.id.layout_drawing)!!
+            val drawingView = dialog.getView<DrawingView>(R.id.layout_drawing)
             dialog.setOnClickListener(R.id.layout_save) {
-                activity_views_image.setImageBitmap(drawingView.getBitmap(20))
+                val file = drawingView?.getFile()
+                val bitmap = BitmapFactory.decodeFile("${file?.path}")
+                activity_views_image.setImageBitmap(bitmap)
             }
             dialog.setOnClickListener(R.id.layout_reset) {
-                drawingView.resetCanvas()
+                ToastUtils.showCenterText("重置")
+                drawingView?.resetCanvas()
             }
         }
     }
@@ -79,7 +85,6 @@ class ViewsActivity : BaseSkinActivity() {
                     .load(url[position])
                     .into((view as AppCompatImageView))
         }
-
     }
 
 

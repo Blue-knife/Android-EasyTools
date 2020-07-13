@@ -38,7 +38,7 @@ class RoundViewHelper {
             val radius =
                     array.getDimensionPixelOffset(R.styleable.ViewOutLineStrategy_radius, 0)
             val radiusSide =
-                    array.getIndex(R.styleable.ViewOutLineStrategy_radiusSide)
+                    array.getInt(R.styleable.ViewOutLineStrategy_radiusSide, 0)
             array.recycle()
 
             setViewOutLine(view, radius, radiusSide)

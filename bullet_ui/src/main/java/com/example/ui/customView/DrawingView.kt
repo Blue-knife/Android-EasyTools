@@ -114,7 +114,6 @@ class DrawingView : View {
      */
     fun resetCanvas() {
         mPath.reset()
-        invalidate()
         cacheBitmap = null
         cacheCanvas = null
         cacheBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -125,6 +124,7 @@ class DrawingView : View {
         mTop = mBottom
         mRight = mTop
         mLeft = mRight
+        postInvalidate()
     }
 
     /**
@@ -213,10 +213,18 @@ class DrawingView : View {
     }
 
     private fun cropCanvas(padding: Float): Bitmap? {
-        val right = (mRight - mLeft)
-        val height = (mBottom - mTop)
+        var right = (mRight - mLeft)
+        if (right + (padding * 2) < width) {
+            mLeft -= padding
+            right += padding
+        }
+        var height = (mBottom - mTop)
+        if (height + (padding * 2) < getHeight()) {
+            mTop -= padding
+            height += padding
+        }
 
-        if (right == 0f && height == 0f) {
+        if (right <= padding && height <= padding) {
             ToastUtils.showText("请进行签名")
             return null
         }
