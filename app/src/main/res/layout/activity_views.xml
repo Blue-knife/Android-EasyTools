@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,14 +18,19 @@
         <com.example.ui.customView.CustomTextView
             android:id="@+id/tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp" />
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp" />
 
-        <com.business.tools.views.page.ScrollerLayout
-            android:id="@+id/scroll"
+
+        <com.example.ui.customView.MaterialEditText
+            android:id="@+id/material"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="100dp" />
+            android:layout_height="wrap_content"
+            android:hint="请输入内容"
+            android:layout_marginTop="50dp"
+            app:floatingLabel="true"
+            tools:ignore="HardcodedText" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/activity_drawing"
@@ -41,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="#999999"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

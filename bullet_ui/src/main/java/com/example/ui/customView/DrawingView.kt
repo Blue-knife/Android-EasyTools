@@ -54,7 +54,7 @@ class DrawingView : View {
 
 
     private fun init() { //初始化画笔
-        mPaint = Paint()
+        mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint.style = Paint.Style.STROKE
         mPaint.color = Color.BLACK
         mPaint.strokeWidth = mPaintWidth

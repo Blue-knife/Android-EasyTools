@@ -86,4 +86,9 @@
         </attr>
     </declare-styleable>
 
+
+    <declare-styleable name="MaterialEditText">
+        <attr name="floatingLabel" format="boolean"/>
+    </declare-styleable>
+
 </resources>

@@ -20,4 +20,5 @@ public class ToolsCamera {
     public static void start(Activity activity) {
         new CameraHandler(activity).beginCameraDialog();
     }
+
 }

@@ -227,9 +227,9 @@ class ScrollerLayout : ViewGroup {
                 //当手指抬起时，根据当前滚动值来判定应该滚动到那个子控件界面
                 //计算收松开后要显示的页面 index
                 targetIndex = if (mXDown > event.rawX) {
-                    (scrollX + (width * 0.8).toInt()) / width
+                    (scrollX + (width * 0.7).toInt()) / width
                 } else {
-                    (scrollX + (width * 0.2).toInt()) / width
+                    (scrollX + (width * 0.3).toInt()) / width
                 }
                 val dx = targetIndex * width - scrollX
                 //调用 startScroll 方法来初始化数据并刷新界面
