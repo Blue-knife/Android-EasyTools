@@ -14,7 +14,7 @@ import com.example.ui.customView.CustomTextView
 import com.example.ui.customView.DrawingView
 import com.example.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_views.*
-import kotlinx.android.synthetic.main.layout_drawing.*
+import java.util.*
 
 /**
  * @author 345
@@ -29,7 +29,6 @@ class ViewsActivity : BaseSkinActivity() {
 
     override fun bindView() {
         init()
-        scroll.adapter = ScrollerAdapter(R.layout.item)
     }
 
     private fun init() {
@@ -39,9 +38,19 @@ class ViewsActivity : BaseSkinActivity() {
         textView.setTvs(arrayOf("Android-EasyTools", "通用", "解决方案"),
                 intArrayOf(Color.BLUE, Color.GREEN, Color.RED))
         textView.notifyTv()
-        textView.setOnClickListener {
-            Toast.makeText(this, "${scroll.mPosition}", Toast.LENGTH_LONG).show()
-        }
+
+
+        val list = ArrayList<String>()
+        list.add("我是第一条数据")
+        list.add("我是第二条数据")
+        list.add("我是第三条数据")
+        list.add("我是第四条数据")
+
+        lifecycle.addObserver(carouse)
+        carouse.upDataListAndView(list, 3000)
+        carouse.startLooping()
+        carouse.setOnItemClickListener { position -> ToastUtils.showText(list[position]) }
+
 
         //画板
         activity_drawing.setOnClickListener {
@@ -54,9 +63,11 @@ class ViewsActivity : BaseSkinActivity() {
             dialog.setOnClickListener(R.id.layout_save) {
                 val file = drawingView?.getFile()
                 val bitmap = BitmapFactory.decodeFile("${file?.path}")
+                activity_views_image.visibility = View.VISIBLE
                 activity_views_image.setImageBitmap(bitmap)
             }
             dialog.setOnClickListener(R.id.layout_reset) {
+                ToastUtils.showCenterText("重置")
                 drawingView?.resetCanvas()
             }
         }
@@ -83,7 +94,6 @@ class ViewsActivity : BaseSkinActivity() {
                     .load(url[position])
                     .into((view as AppCompatImageView))
         }
-
     }
 
 

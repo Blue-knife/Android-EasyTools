@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.ui.R
-import com.example.ui.basedialog.utils.ProgressView
+import com.example.ui.customView.ProgressView
 import com.example.ui.dialog.base.FastDialog
 
 /**

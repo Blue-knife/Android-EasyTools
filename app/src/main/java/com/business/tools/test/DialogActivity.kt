@@ -38,19 +38,21 @@ class DialogActivity : BaseSkinActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.dialog_test_one -> {
-                FastDialog.Builder(this)
+                val build = FastDialog.Builder(this)
                         .setContentView(R.layout.dialog_hint)
                         .setText(R.id.tv_dialog_title, "标题")
                         .setWidth(0.6f)
                         .setText(R.id.tv_dialog_message, "我是 345")
-                        .setOnClickListener(R.id.tv_dialog_confirm) {
-                            Toast.makeText(this@DialogActivity, "确定", Toast.LENGTH_SHORT).show()
-                        }
-                        .setOnClickListener(R.id.tv_dialog_cancel) {
-                            Toast.makeText(this@DialogActivity, "关闭", Toast.LENGTH_SHORT).show()
-                            it.second.dismiss()
-                        }
-                        .show()
+                        .build()
+
+                build.show()
+                build.setOnClickListener(R.id.tv_dialog_confirm) {
+                    Toast.makeText(this@DialogActivity, "确定", Toast.LENGTH_SHORT).show()
+                }
+                build.setOnClickListener(R.id.tv_dialog_cancel) {
+                    Toast.makeText(this@DialogActivity, "关闭", Toast.LENGTH_SHORT).show()
+                    it.second.dismiss()
+                }
             }
             R.id.dialog_test_two -> {
                 val dialog = FastDialog.Builder(this)

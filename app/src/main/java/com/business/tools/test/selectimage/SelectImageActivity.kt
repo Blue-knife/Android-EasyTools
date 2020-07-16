@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.business.toos.R
 import com.example.core.base.BaseSkinActivity
 import kotlinx.android.synthetic.main.activity_select_image.*
-import kotlinx.android.synthetic.main.activity_upload_photo.*
+import java.io.File
 
 /**
  * @name SelectImageActivity
@@ -137,10 +138,15 @@ class SelectImageActivity : BaseSkinActivity() {
                         while (data.moveToNext()) {
                             val id =
                                     data.getLong(data.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
-                            val url = ContentUris.withAppendedId(
+                            val uri = ContentUris.withAppendedId(
                                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
                             )
-                            images.add(url)
+                            images.add(uri)
+                            val query = contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)
+                            query?.moveToFirst()
+                            val index = query?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                            val path = query!!.getString(index!!)
+                            query.close()
                         }
                         showImageList(images)
                     }
