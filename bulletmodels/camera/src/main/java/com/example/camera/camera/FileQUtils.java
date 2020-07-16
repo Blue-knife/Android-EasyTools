@@ -18,9 +18,11 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -126,8 +128,7 @@ public class FileQUtils {
      * @param context
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static File getFileByUri(Uri uri, Context context) {
+    private static File getFileByUri(Uri uri, Context context) {
         String path = null;
         if ("file".equals(uri.getScheme())) {
             path = uri.getEncodedPath();
@@ -162,6 +163,43 @@ public class FileQUtils {
             }
             cursor.close();
             return new File(Objects.requireNonNull(path));
+        }
+        return null;
+    }
+
+    /**
+     * 将 uri 转为 file
+     *
+     * @param uri
+     * @param fileName
+     * @return 如果是 10.0 ，会报错到沙箱然后在返回 file 对象
+     */
+    public static File getUriToFile(Context context, Uri uri, String fileName) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+            return getFileByUri(uri, context);
+        }
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            File tempDir = context.getExternalFilesDir("temp");
+            if (inputStream != null && tempDir != null) {
+                File file = new File(tempDir + "/" + fileName);
+                FileOutputStream fos = new FileOutputStream(file);
+                BufferedInputStream bis = new BufferedInputStream(inputStream);
+                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                byte[] byteArray = new byte[1024];
+                int bytes = bis.read(byteArray);
+                while (bytes > 0) {
+                    bos.write(byteArray, 0, bytes);
+                    bos.flush();
+                    bytes = bis.read(byteArray);
+                }
+                bos.close();
+                fos.close();
+                return file;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
         return null;
     }

@@ -1,4 +1,4 @@
-package com.example.camera.camera;
+package com.example.camera.camera
 
 /**
  * @author 345 QQ:1831712732
@@ -7,22 +7,24 @@ package com.example.camera.camera;
  * @time 2019/12/11 23:26
  * @description
  */
-public class RequestCode {
+object RequestCode {
     /**
      * 拍照
      */
-    public static final int TAKE_PHOTO = 0;
+    const val TAKE_PHOTO = 0
+
     /**
      * 选照
      */
-    public static final int PICK_PHOTO = 1;
+    const val PICK_PHOTO = 1
+
     /**
      * 剪裁
      */
-    public static final int CROP_PHOTO = 2;
+    const val CROP_PHOTO = 2
+
     /**
      * 扫描二维码
      */
-    public static final int SCAN = 3;
-
+    const val SCAN = 3
 }
