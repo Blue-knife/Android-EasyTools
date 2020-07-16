@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -17,14 +17,67 @@
         <com.example.ui.customView.CustomTextView
             android:id="@+id/tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp" />
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp" />
 
-        <com.business.tools.views.page.ScrollerLayout
-            android:id="@+id/scroll"
+
+        <com.example.ui.customView.MaterialEditText
+            android:id="@+id/material"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="100dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="MaterialEditText"
+            app:floatingLabel="true"
+            tools:ignore="HardcodedText" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:background="#dae6ff">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:text="公告"
+                android:textColor="#4f8bfd"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+
+            <com.example.ui.customView.CarouselView
+                android:id="@+id/carouse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/item_notice">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColor="#ff0000"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColor="#ff0000"
+                    android:textSize="15sp" />
+            </com.example.ui.customView.CarouselView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/activity_drawing"
@@ -32,16 +85,18 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:text="画板"
+            android:layout_marginTop="50dp"
             android:textColor="#000000"
             android:textSize="18sp"
             tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/activity_views_image"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:background="#999999"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

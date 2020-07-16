@@ -1,6 +1,7 @@
 package com.example.ui.dialog.base
 
 import android.content.Context
+import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -38,12 +39,11 @@ class DialogViewHelper() {
      */
     fun setOnClickListener(
             viewId: Int,
-            onClick: WeakReference<(Pair<View, FastDialog>) -> Unit>,
+            onClick: (Pair<View, FastDialog>) -> Unit,
             alertDialog: FastDialog
     ) {
         getView<View>(viewId)?.setOnClickListener {
-            val parent: ((Pair<View, FastDialog>) -> Unit)? = onClick.get()
-            if (parent != null) parent(Pair(it, alertDialog))
+            onClick(Pair(it, alertDialog))
         }
     }
 

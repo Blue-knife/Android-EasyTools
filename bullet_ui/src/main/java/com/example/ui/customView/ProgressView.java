@@ -1,4 +1,4 @@
-package com.example.ui.basedialog.utils;
+package com.example.ui.customView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -65,7 +65,7 @@ public final class ProgressView extends View {
      * Animation The amount of degrees per second
      */
     private float mSpinSpeed = 230.0f;
-    /** private float mSpinSpeed = 120.0f; */
+    /* private float mSpinSpeed = 120.0f; */
     /**
      * The last time the spinner was animated
      */

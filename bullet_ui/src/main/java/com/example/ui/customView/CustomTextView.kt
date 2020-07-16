@@ -8,6 +8,7 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
@@ -25,10 +26,12 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
      * 要显示文字
      */
     private var mText: String? = null
+
     /**
      * 要改变颜色的文字
      */
     private var mTv: String? = null
+
     /**
      * 文字默认大小 15sp
      */

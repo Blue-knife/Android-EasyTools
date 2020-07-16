@@ -11,7 +11,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Window
 import android.widget.FrameLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageView
@@ -19,12 +22,14 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.business.toos.R
+import com.example.core.ToastUtils
+import com.example.core.ToolsUtils
+import com.example.core.ToolsUtils.dip2px
+import com.example.core.ToolsUtils.queryShareItems
+import com.example.core.ToolsUtils.screenHeight
 import com.example.ui.customView.RoundFrameLayout
 import com.example.ui.customView.RoundViewHelper
-import com.business.toos.R
-import com.example.ui.basedialog.utils.dip2px
-import com.example.ui.basedialog.utils.queryShareItems
-import com.example.ui.basedialog.utils.screenHeight
 import java.io.File
 import java.io.FileOutputStream
 
@@ -47,10 +52,10 @@ class ShareDialog(context: Context) : AlertDialog(context) {
 
         val layout = RoundFrameLayout(context)
         layout.setBackgroundColor(Color.WHITE)
-        layout.setViewOutLine(context.dip2px(20f), RoundViewHelper.RADIUS_TOP)
+        layout.setViewOutLine(dip2px(20f), RoundViewHelper.RADIUS_TOP)
         val param = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT)
-        param.height = context.screenHeight / 2
+        param.height = screenHeight / 2
         layout.layoutParams = param
         setContentView(layout)
 
@@ -60,10 +65,10 @@ class ShareDialog(context: Context) : AlertDialog(context) {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         )
-        params.leftMargin = context.dip2px(30f)
-        params.rightMargin = context.dip2px(20f)
-        params.topMargin = context.dip2px(10f)
-        params.bottomMargin = context.dip2px(10f)
+        params.leftMargin = dip2px(30f)
+        params.rightMargin = dip2px(20f)
+        params.topMargin = dip2px(10f)
+        params.bottomMargin = dip2px(10f)
         params.gravity = Gravity.CENTER
         layout.addView(gridView, params)
 
@@ -71,13 +76,13 @@ class ShareDialog(context: Context) : AlertDialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        val shareItems = context.queryShareItems()
+        val shareItems = queryShareItems()
         if (shareContent != null) {
             shareAdapter =
                     ShareAdapter(shareItems, context.packageManager, shareContent!!)
             gridView.adapter = shareAdapter
         } else {
-            com.example.core.ToastUtils.showText("分享内容为空")
+            ToastUtils.showText("分享内容为空")
         }
 
     }
@@ -132,7 +137,7 @@ class ShareDialog(context: Context) : AlertDialog(context) {
 
         private fun getUri(shareImage: AppCompatImageView): Uri {
             val bitmap = BitmapFactory.decodeResource(
-                    shareImage.context.resources,
+                    shareImage.resources,
                     R.mipmap.icon
             )
             val file = File(shareImage.context.externalCacheDir, "shareImage.png")
