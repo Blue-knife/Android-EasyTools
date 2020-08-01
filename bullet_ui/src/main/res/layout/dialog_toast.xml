@@ -27,7 +27,7 @@
             android:layout_marginBottom="6dp"
             android:src="@drawable/ic_dialog_warning" />
 
-        <com.example.ui.basedialog.utils.ProgressView
+        <com.example.ui.customView.ProgressView
             android:id="@+id/pw_progress"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -46,7 +46,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="6dp"
             android:maxLines="3"
-            android:textColor="@color/white"
+            android:textColor="#ffffff"
             android:textSize="14sp"
             tools:text="提示语" />
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -16,6 +16,7 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
 import com.business.toos.R
 import com.example.core.base.BaseSkinActivity
+import com.example.ui.dialog.ToastDialog
 import kotlinx.android.synthetic.main.activity_select_image.*
 import java.io.File
 
@@ -120,6 +121,7 @@ class SelectImageActivity : BaseSkinActivity() {
                 )
 
                 override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor?> {
+                    ToastDialog.loading(this@SelectImageActivity)
                     return CursorLoader(
                             this@SelectImageActivity,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -150,6 +152,7 @@ class SelectImageActivity : BaseSkinActivity() {
                         }
                         showImageList(images)
                     }
+                    ToastDialog.stop()
                 }
 
                 override fun onLoaderReset(loader: Loader<Cursor?>) = Unit
