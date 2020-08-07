@@ -37,14 +37,32 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':bullet_core')
+
+    implementation rootProject.frame.glide
+
+    def nav_version = "2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$nav_version"
+
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
+
+
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //ui-ktx
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
 }

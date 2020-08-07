@@ -12,12 +12,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bullet_base" />
             <option value="$PROJECT_DIR$/bullet_core" />
             <option value="$PROJECT_DIR$/bullet_ktx" />
             <option value="$PROJECT_DIR$/bullet_ui" />
-            <option value="$PROJECT_DIR$/bulletmodels" />
-            <option value="$PROJECT_DIR$/bulletmodels/audio" />
-            <option value="$PROJECT_DIR$/bulletmodels/camera" />
+            <option value="$PROJECT_DIR$/component" />
+            <option value="$PROJECT_DIR$/component/audio" />
+            <option value="$PROJECT_DIR$/component/camera" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

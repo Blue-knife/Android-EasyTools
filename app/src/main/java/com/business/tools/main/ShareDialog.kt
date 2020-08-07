@@ -23,13 +23,12 @@ import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.business.toos.R
-import com.example.core.ToastUtils
-import com.example.core.ToolsUtils
-import com.example.core.ToolsUtils.dip2px
-import com.example.core.ToolsUtils.queryShareItems
-import com.example.core.ToolsUtils.screenHeight
-import com.example.ui.customView.RoundFrameLayout
-import com.example.ui.customView.RoundViewHelper
+import com.bullet.core.ToastUtils
+import com.bullet.core.ToolsUtils.dip2px
+import com.bullet.core.ToolsUtils.queryShareItems
+import com.bullet.core.ToolsUtils.screenHeight
+import com.bullet.ui.customView.RoundFrameLayout
+import com.bullet.ui.customView.RoundViewHelper
 import java.io.File
 import java.io.FileOutputStream
 

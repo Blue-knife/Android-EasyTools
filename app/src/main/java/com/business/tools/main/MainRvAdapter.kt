@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.business.toos.R
-import com.example.ktx.service.TestJobService
+import com.bullet.ktx.service.TestJobService
 
 class MainRvAdapter(data: List<Pair<String, Any?>>, context: Context) : RecyclerView.Adapter<MainRvAdapter.Holder>() {
 

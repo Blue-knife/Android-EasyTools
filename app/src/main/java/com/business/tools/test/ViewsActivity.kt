@@ -8,11 +8,11 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.business.tools.views.page.PageAdapter
 import com.business.toos.R
-import com.example.core.ToastUtils
-import com.example.core.base.BaseSkinActivity
-import com.example.ui.customView.CustomTextView
-import com.example.ui.customView.DrawingView
-import com.example.ui.dialog.base.FastDialog
+import com.bullet.core.ToastUtils
+import com.bullet.core.base.BaseSkinActivity
+import com.bullet.ui.customView.CustomTextView
+import com.bullet.ui.customView.DrawingView
+import com.bullet.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_views.*
 import java.util.*
 

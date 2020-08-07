@@ -6,7 +6,7 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <com.example.ui.customView.DrawingView
+    <com.bullet.ui.customView.DrawingView
         android:id="@+id/layout_drawing"
         android:layout_width="match_parent"
         android:layout_height="200dp" />

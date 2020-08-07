@@ -6,16 +6,13 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.core.net.toFile
 import androidx.recyclerview.widget.GridLayoutManager
 import com.business.toos.R
-import com.example.core.ToastUtils
-import com.example.core.base.BaseSkinActivity
-import com.example.ui.dialog.ToastDialog
-import com.www.net.LvHttp
+import com.bullet.core.ToastUtils
+import com.bullet.core.base.BaseSkinActivity
+import com.bullet.ui.dialog.ToastDialog
 import kotlinx.android.synthetic.main.activity_upload_photo.*
 import java.io.File
-import kotlin.math.log
 
 /**
  * @name UpLoadPhotoActivity
@@ -65,15 +62,6 @@ class UpLoadPhotoActivity : BaseSkinActivity() {
                 map[it.toString()] = File(path)
                 query.close()
             }
-            LvHttp.uploadMapFile("test/updata.php")
-                    .files(map)
-                    .send({
-                        ToastUtils.showText("上传成功")
-                        ToastDialog.stop()
-                    }) {
-                        ToastUtils.showText("找不到服务器")
-                        ToastDialog.stop()
-                    }
         }
     }
 

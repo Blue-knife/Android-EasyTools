@@ -1,5 +1,6 @@
+include ':bullet_base'
 include ':app'
 include ':bullet_ui'
 include ':bullet_ktx'
-include ':bulletmodels', ':bulletmodels:audio',':bulletmodels:camera'
+include ':component:audio',':component:camera'
 include ':bullet_core'

@@ -8,17 +8,15 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
 import com.business.toos.R
-import com.example.core.base.BaseSkinActivity
-import com.example.ui.dialog.ToastDialog
+import com.bullet.core.base.BaseSkinActivity
+import com.bullet.ui.dialog.ToastDialog
 import kotlinx.android.synthetic.main.activity_select_image.*
-import java.io.File
 
 /**
  * @name SelectImageActivity

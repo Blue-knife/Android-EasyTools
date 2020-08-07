@@ -10,7 +10,7 @@
         android:layout_height="40dp"
         android:background="#999999">
 
-        <com.example.ui.customView.SquareImageView
+        <com.bullet.ui.customView.SquareImageView
             android:id="@+id/select_back"
             android:layout_width="40dp"
             android:layout_height="wrap_content"

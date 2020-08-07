@@ -6,12 +6,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.business.toos.R
-import com.example.core.ContextTools
-import com.example.ui.customView.SquareImageView
+import com.bullet.core.ContextTools
+import com.bullet.ui.customView.SquareImageView
 
 /**
  * @name UpLoadRvAdapter
@@ -43,7 +42,7 @@ class UpLoadRvAdapter(private val images: ArrayList<Uri>, private val loadMore: 
                     .load(imageTranslateUri(R.drawable.ic_more))
                     .into(holder.image)
             holder.image.setBackgroundColor(Color.parseColor("#e3e3e3"))
-            holder.image.setPadding(50)
+            holder.image.setPadding(50,50,50,50)
             holder.image.setOnClickListener {
                 loadMore()
             }

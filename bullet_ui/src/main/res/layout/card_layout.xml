@@ -7,7 +7,7 @@
               android:orientation="vertical">
 
 
-    <com.example.ui.image_card.CardSlidePanel
+    <com.bullet.ui.image_card.CardSlidePanel
         android:id="@+id/image_slide_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,22 +41,22 @@
              />
         </LinearLayout>
 
-        <com.example.ui.image_card.CardItemView
+        <com.bullet.ui.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.ui.image_card.CardItemView
+        <com.bullet.ui.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.ui.image_card.CardItemView
+        <com.bullet.ui.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.ui.image_card.CardItemView
+        <com.bullet.ui.image_card.CardItemView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </com.example.ui.image_card.CardSlidePanel>
+    </com.bullet.ui.image_card.CardSlidePanel>
 
 </LinearLayout>

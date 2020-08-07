@@ -1,17 +1,13 @@
 package com.business.tools.test;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.business.toos.R;
-import com.example.core.ContextTools;
-import com.example.core.base.BaseSkinActivity;
-import com.example.ui.image_card.CardDataItem;
-import com.example.ui.image_card.CardSlidePanel;
+import com.bullet.core.ContextTools;
+import com.bullet.core.base.BaseSkinActivity;
+import com.bullet.ui.image_card.CardDataItem;
+import com.bullet.ui.image_card.CardSlidePanel;
 
 import java.util.ArrayList;
 import java.util.List;

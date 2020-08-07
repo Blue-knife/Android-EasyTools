@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.ui.customView.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.bullet.ui.customView.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.example.ui.customView.SquareImageView
+    <com.bullet.ui.customView.SquareImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.example.ui.customView.SquareImageView
+        <com.bullet.ui.customView.SquareImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -43,4 +43,4 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</com.example.ui.customView.SquareFrameLayout>
+</com.bullet.ui.customView.SquareFrameLayout>

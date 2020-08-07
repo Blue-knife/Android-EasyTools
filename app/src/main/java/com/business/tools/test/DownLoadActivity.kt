@@ -1,13 +1,11 @@
 package com.business.tools.test
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.widget.Toast
-import com.example.ktx.download.DownLoadLaunch
-import com.example.ktx.download.OnStateListener
+import com.petterp.cloud.bullet.base.download.DownLoadLaunch
+import com.petterp.cloud.bullet.base.download.OnStateListener
 import com.business.toos.R
-import com.example.core.base.BaseSkinActivity
+import com.bullet.core.base.BaseSkinActivity
 import kotlinx.android.synthetic.main.activity_down_load.*
 import java.io.File
 

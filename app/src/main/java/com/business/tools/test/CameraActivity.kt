@@ -15,13 +15,13 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import com.business.tools.test.selectimage.UpLoadPhotoActivity
 import com.business.toos.R
-import com.example.camera.camera.CameraImageBean.Companion.instance
-import com.example.camera.camera.CropPhoto.cropPhoto
-import com.example.camera.camera.FileQUtils
-import com.example.camera.camera.RequestCode
-import com.example.camera.camera.ToolsCamera.start
-import com.example.camera.camera.zxing.android.CaptureActivity
-import com.example.ktx.ImageUtils
+import com.bullet.camera.camera.CameraImageBean.Companion.instance
+import com.bullet.camera.camera.CropPhoto.cropPhoto
+import com.bullet.camera.camera.FileQUtils
+import com.bullet.camera.camera.RequestCode
+import com.bullet.camera.camera.ToolsCamera.start
+import com.bullet.camera.camera.zxing.android.CaptureActivity
+import com.petterp.cloud.bullet.base.zxing.CrCodeImageUtils
 
 /**
  * @author 345 QQ:1831712732
@@ -86,7 +86,7 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
                     if (mQRContent!!.text != null) {
                         val s = mQRContent!!.text.toString()
                         if (!s.isEmpty()) {
-                            val qrCodeBitmap = ImageUtils.createQRCodeBitmap(mQRContent!!.text.toString())
+                            val qrCodeBitmap = CrCodeImageUtils.createQRCodeBitmap(mQRContent!!.text.toString())
                             if (qrCodeBitmap != null) {
                                 mImage!!.setImageBitmap(qrCodeBitmap)
                             } else {

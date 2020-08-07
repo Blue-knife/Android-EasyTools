@@ -8,10 +8,9 @@ import com.business.audio.mediaplayer.core.MusicPlayerActivity
 import com.business.tools.test.DialogActivity
 import com.business.tools.test.*
 import com.business.toos.R
-import com.example.core.base.BaseSkinActivity
-import com.example.core.base.skin.SkinManager
-import com.example.core.base.skin.config.SkinPreUtils
-import com.example.ui.dialog.ToastDialog
+import com.bullet.core.base.BaseSkinActivity
+import com.bullet.core.base.skin.SkinManager
+import com.bullet.core.base.skin.config.SkinPreUtils
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File

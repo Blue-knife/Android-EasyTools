@@ -2,19 +2,17 @@ package com.business.tools.test
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import com.business.toos.R
-import com.example.core.ToastUtils
-import com.example.core.base.BaseSkinActivity
-import com.example.ui.dialog.ToastDialog
-import com.example.ui.dialog.base.FastDialog
+import com.bullet.core.ToastUtils
+import com.bullet.core.base.BaseSkinActivity
+import com.bullet.ui.dialog.ToastDialog
+import com.bullet.ui.dialog.base.FastDialog
 import kotlinx.android.synthetic.main.activity_dialog_test.*
 
 

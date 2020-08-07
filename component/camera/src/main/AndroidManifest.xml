@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bullet.camera">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <application>
+        <activity android:name="com.bullet.camera.camera.zxing.android.CaptureActivity" />
+    </application>
+</manifest>

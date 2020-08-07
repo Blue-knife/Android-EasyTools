@@ -27,7 +27,7 @@
             android:layout_marginBottom="6dp"
             android:src="@drawable/ic_dialog_warning" />
 
-        <com.example.ui.customView.ProgressView
+        <com.bullet.ui.customView.ProgressView
             android:id="@+id/pw_progress"
             android:layout_width="60dp"
             android:layout_height="60dp"

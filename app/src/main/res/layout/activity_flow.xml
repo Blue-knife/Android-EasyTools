@@ -11,7 +11,7 @@
         android:layout_below="@id/flow_Layout"
         android:text="点击添加textView" />
 
-    <com.example.ui.customView.FlowLayout
+    <com.bullet.ui.customView.FlowLayout
         android:id="@+id/flow_Layout"
         android:padding="10dp"
         android:layout_width="match_parent"

@@ -12,7 +12,7 @@
     card:cardUseCompatPadding="true"
     >
 
-    <com.example.ui.image_card.AutoScaleRelativeLayout
+    <com.bullet.ui.image_card.AutoScaleRelativeLayout
         android:id="@+id/card_top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true" />
 <!--        这个是为了让我们图片上有波纹-->
-    </com.example.ui.image_card.AutoScaleRelativeLayout>
+    </com.bullet.ui.image_card.AutoScaleRelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

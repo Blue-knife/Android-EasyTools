@@ -7,7 +7,6 @@ import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.NotificationTarget
-import com.example.core.ToastUtils
 import com.business.tools.utils.noticefication.*
 import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_notice.*
@@ -43,7 +42,7 @@ class NoticeActivity : AppCompatActivity(R.layout.activity_notice), View.OnClick
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     //判断渠道是否打开，未打开执行相应逻辑，默认执行打开设置
                     isChannelAvailable(channelId) {
-                        com.example.core.ToastUtils.showCenterText("渠道未打开，执行默认操作")
+                        com.bullet.core.ToastUtils.showCenterText("渠道未打开，执行默认操作")
                         true
                     }
                 }

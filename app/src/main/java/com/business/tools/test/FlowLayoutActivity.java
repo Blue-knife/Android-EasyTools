@@ -1,15 +1,12 @@
 package com.business.tools.test;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.business.toos.R;
-import com.example.core.base.BaseSkinActivity;
-import com.example.ui.customView.FlowLayout;
+import com.bullet.core.base.BaseSkinActivity;
+import com.bullet.ui.customView.FlowLayout;
 
 public class FlowLayoutActivity extends BaseSkinActivity {
 

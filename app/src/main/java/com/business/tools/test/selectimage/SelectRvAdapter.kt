@@ -9,8 +9,8 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.business.toos.R
-import com.example.core.ToastUtils
-import com.example.ui.customView.SquareImageView
+import com.bullet.core.ToastUtils
+import com.bullet.ui.customView.SquareImageView
 
 /**
  * @name SelectRvAdapter
