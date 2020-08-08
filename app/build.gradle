@@ -48,8 +48,8 @@ dependencies {
     implementation project(path: ':bullet_ktx')
     implementation project(path: ':bullet_ui')
     implementation project(path: ':bullet_base')
-    implementation project(path: ':component:audio')
-    implementation project(path: ':component:camera')
+    implementation project(path: ':component:cc_audio')
+    implementation project(path: ':component:cc_camera')
     implementation project(path: ':bullet_core')
 //    implementation project(path: ':audio')
 }

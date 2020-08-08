@@ -17,8 +17,8 @@
             <option value="$PROJECT_DIR$/bullet_ktx" />
             <option value="$PROJECT_DIR$/bullet_ui" />
             <option value="$PROJECT_DIR$/component" />
-            <option value="$PROJECT_DIR$/component/audio" />
-            <option value="$PROJECT_DIR$/component/camera" />
+            <option value="$PROJECT_DIR$/component/cc_audio" />
+            <option value="$PROJECT_DIR$/component/cc_camera" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
