@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.os.EnvironmentCompat;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -24,7 +25,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
+
+import kotlin.jvm.JvmStatic;
 
 /**
  * Created by Petterp
@@ -46,7 +52,7 @@ import java.util.Objects;
  * <p>
  * 公共目录下文件操作
  * 通过MediaStore
- *
+ * <p>
  * 官网链接 https://developer.android.google.cn/training/data-storage/files/media
  */
 public class FileQUtils {
@@ -84,6 +90,8 @@ public class FileQUtils {
             return uri;
         }
     }
+
+
 
     /**
      * 用户保存任何文件时传入
