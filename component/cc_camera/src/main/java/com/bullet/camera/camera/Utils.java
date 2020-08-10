@@ -63,6 +63,7 @@ public class Utils {
 
         String fileName = path + File.separator + name + ".jpg";
 
+
         try {
             b = new FileOutputStream(fileName);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 75, b);// 把数据写入文件

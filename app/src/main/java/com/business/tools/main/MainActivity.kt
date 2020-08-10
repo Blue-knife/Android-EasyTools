@@ -75,7 +75,8 @@ class MainActivity : BaseSkinActivity() {
                 Pair("开启 JobService", null),
                 Pair("播放 Music", MusicPlayerActivity::class.java),
                 Pair("一键式文件下载", DownLoadActivity::class.java),
-                Pair("通知相关", NoticeActivity::class.java)
+                Pair("通知相关", NoticeActivity::class.java),
+                Pair("测试获取设备唯一码", NoticeActivity::class.java)
         )
     }
 

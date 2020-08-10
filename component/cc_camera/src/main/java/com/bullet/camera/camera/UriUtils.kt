@@ -22,6 +22,7 @@ object UriUtils {
 
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            //如果是外部存储
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()
@@ -33,11 +34,13 @@ object UriUtils {
                         Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                     }
                 }
+                //是下载目录
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
                 val contentUri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id))
                 return getDataColumn(context, contentUri, null, null)
+                //如果是媒体文件
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()
@@ -68,6 +71,7 @@ object UriUtils {
         return null
     }
 
+    /** 获取uri真实地址 */
     fun getDataColumn(context: Context, uri: Uri?, selection: String?,
                       selectionArgs: Array<String>?): String? {
         var cursor: Cursor? = null
@@ -78,9 +82,10 @@ object UriUtils {
         try {
             cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs,
                     null)
+            //查询
             if (cursor != null && cursor.moveToFirst()) {
-                val column_index = cursor.getColumnIndexOrThrow(column)
-                return cursor.getString(column_index)
+                val columnIndex = cursor.getColumnIndexOrThrow(column)
+                return cursor.getString(columnIndex)
             }
         } catch (ex: IllegalArgumentException) {
         } finally {
@@ -196,7 +201,7 @@ object UriUtils {
             val cursor = context.contentResolver.query(uri, proj, null, null, null)
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
-                    val columnIndex = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
                     path = cursor.getString(columnIndex)
                 }
                 cursor.close()

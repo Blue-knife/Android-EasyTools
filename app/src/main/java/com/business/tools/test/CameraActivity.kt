@@ -22,6 +22,8 @@ import com.bullet.camera.camera.RequestCode
 import com.bullet.camera.camera.ToolsCamera.start
 import com.bullet.camera.camera.zxing.android.CaptureActivity
 import com.bumptech.glide.Glide
+import com.cloudx.ktx.core.launchIO
+import com.cloudx.ktx.core.withContextMain
 import com.petterp.cloud.bullet.base.zxing.CrCodeImageUtils
 import java.io.File
 
@@ -54,7 +56,7 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun checkPermission(permission: Array<String?>) {
-        if (Build.VERSION.SDK_INT < 23 || permission.size == 0) {
+        if (Build.VERSION.SDK_INT < 23 || permission.isEmpty()) {
             start()
         } else {
             requestPermissions(permission, REQUEST_CODE)
@@ -131,10 +133,10 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
                     cropPhoto(this, pickPath)
                 }
                 RequestCode.CROP_PHOTO -> {
-//                    val uri = instance.path
-//                    if (uri != null) {
-//                        setImage(uri)
-//                    }
+                    val uri = instance.path
+                    if (uri != null) {
+                        setImage(uri)
+                    }
                 }
                 RequestCode.SCAN -> if (data != null) {
                     //返回的文本内容
@@ -153,11 +155,14 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setImage(uri: Uri) {
-        val path = ImageUtils.getPath(this, uri)
-        if (path != null) {
-            Glide.with(this)
-                    .load(File(path))
-                    .into(mImage!!)
+        launchIO {
+            ImageUtils.getPath(this, uri)?.let {
+                withContextMain {
+                    Glide.with(this)
+                            .load(File(it))
+                            .into(mImage!!)
+                }
+            }
         }
     }
 
