@@ -7,7 +7,7 @@ import android.net.Uri
  * @name Android Business Toos
  * @class name：com.business.tools.camera
  * @time 2019/12/11 23:25
- * @description 保存 url 和 file
+ * @description 保存 url
  */
 class CameraImageBean private constructor() {
     var path: Uri? = null

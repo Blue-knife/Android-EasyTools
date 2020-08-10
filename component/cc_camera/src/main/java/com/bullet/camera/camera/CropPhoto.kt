@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import java.io.File
+import androidx.core.content.FileProvider
 
 /**
  * @author 345 QQ:1831712732
@@ -24,7 +24,7 @@ object CropPhoto {
      */
     @JvmStatic
     fun cropPhoto(activity: Activity, uri: Uri?) {
-        val imageUrl: Uri
+        var imageUrl: Uri? = null
         //打开系统自带的裁剪图片的intent
         val intent = Intent("com.android.camera.action.CROP")
         // 注意一定要添加该项权限，否则会提示无法裁剪
@@ -40,19 +40,20 @@ object CropPhoto {
         // 若为false则表示不返回数据
         intent.putExtra("return-data", false)
 
-        // 裁切后图片保存的路径
-        imageUrl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            //10.0 获取保存路径
-            FileQUtils.saveImageWithAndroidQ(activity, "Crop" + System.currentTimeMillis() + ".png", "CaiFu")
+        // 裁切后图片保存的路径，兼容10.0
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            imageUrl = ImageUtils.saveImageWithAndroidQ(activity)
         } else {
-            //创建一个文件，路径为系统相册，第二个参数为名字
-            val tempFile = File(FileUtils.CAMERA_PHOTO_DIR + File.separator, "CaiFu-Crop" + System.currentTimeMillis() + ".png")
-            if (tempFile.parentFile != null) {
-                tempFile.parentFile?.takeIf {
-                    it.exists()
-                }?.mkdirs()
+            // 注意7.0及以上与之前获取的uri不一样了，返回的是provider路径，需在清单中注册
+            val tempFile = ImageUtils.saveImageFile()
+            if (tempFile != null) {
+                imageUrl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    FileProvider.getUriForFile(activity,
+                            "${activity.packageName}.fileProvider", tempFile)
+                } else {
+                    Uri.fromFile(tempFile)
+                }
             }
-            Uri.fromFile(tempFile)
         }
 
         //保存图片路径

@@ -5,7 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -17,11 +17,13 @@ import com.business.tools.test.selectimage.UpLoadPhotoActivity
 import com.business.toos.R
 import com.bullet.camera.camera.CameraImageBean.Companion.instance
 import com.bullet.camera.camera.CropPhoto.cropPhoto
-import com.bullet.camera.camera.FileQUtils
+import com.bullet.camera.camera.ImageUtils
 import com.bullet.camera.camera.RequestCode
 import com.bullet.camera.camera.ToolsCamera.start
 import com.bullet.camera.camera.zxing.android.CaptureActivity
+import com.bumptech.glide.Glide
 import com.petterp.cloud.bullet.base.zxing.CrCodeImageUtils
+import java.io.File
 
 /**
  * @author 345 QQ:1831712732
@@ -117,10 +119,11 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
             when (requestCode) {
                 RequestCode.TAKE_PHOTO -> {
                     val resultUri = instance.path
-                    if (resultUri != null) {
-                        //裁剪
-                        cropPhoto(this, resultUri)
-                    }
+                    //裁剪
+                    cropPhoto(this, resultUri)
+//                    if (resultUri != null) {
+//                        setImage(resultUri)
+//                    }
                 }
                 RequestCode.PICK_PHOTO -> if (data != null) {
                     //裁剪
@@ -128,14 +131,10 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
                     cropPhoto(this, pickPath)
                 }
                 RequestCode.CROP_PHOTO -> {
-                    val uri = instance.path
-                    val bitmap = BitmapFactory.decodeFile(FileQUtils.getUriToFile(this, uri,
-                            System.currentTimeMillis().toString() + ".png").path)
-                    if (bitmap != null) {
-                        mImage!!.setImageBitmap(bitmap)
-                    } else {
-                        Toast.makeText(this, "图片加载失败", Toast.LENGTH_SHORT).show()
-                    }
+//                    val uri = instance.path
+//                    if (uri != null) {
+//                        setImage(uri)
+//                    }
                 }
                 RequestCode.SCAN -> if (data != null) {
                     //返回的文本内容
@@ -150,6 +149,15 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
                 else -> {
                 }
             }
+        }
+    }
+
+    fun setImage(uri: Uri) {
+        val path = ImageUtils.getPath(this, uri)
+        if (path != null) {
+            Glide.with(this)
+                    .load(File(path))
+                    .into(mImage!!)
         }
     }
 

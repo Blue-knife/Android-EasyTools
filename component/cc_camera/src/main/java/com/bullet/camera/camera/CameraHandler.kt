@@ -12,7 +12,6 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.FileProvider
 import com.bullet.camera.R
 import com.bullet.ui.dialog.base.FastDialog
-import java.io.File
 
 /**
  * @author 345 QQ:1831712732
@@ -44,24 +43,22 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
      * 打开相机
      */
     private fun takePhoto() {
-        //获取一个 名字,
-        val currentPhotoName = "CaiFu" + System.currentTimeMillis() + ".png"
         //拍照意图
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        val uri: Uri
-
+        var uri: Uri? = null
         //兼容10.0
-        uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            FileQUtils.saveImageWithAndroidQ(activity, currentPhotoName, "CaiFu")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            uri = ImageUtils.saveImageWithAndroidQ(activity)
         } else {
             // 注意7.0及以上与之前获取的uri不一样了，返回的是provider路径，需在清单中注册
-            //创建一个文件，路径为系统相册，第二个参数为名字
-            val tempFile = File(FileUtils.CAMERA_PHOTO_DIR, currentPhotoName)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                FileProvider.getUriForFile(activity,
-                        "com.fengtong.caifu.provider", tempFile)
-            } else {
-                Uri.fromFile(tempFile)
+            val tempFile = ImageUtils.saveImageFile()
+            if (tempFile != null) {
+                uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    FileProvider.getUriForFile(activity,
+                            "${activity.packageName}.fileProvider", tempFile)
+                } else {
+                    Uri.fromFile(tempFile)
+                }
             }
         }
         CameraImageBean.instance.path = uri
