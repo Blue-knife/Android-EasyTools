@@ -15,7 +15,6 @@ import java.io.File
 
 object UriUtils {
 
-
     @SuppressLint("NewApi")
     fun getPathForUri(context: Context, uri: Uri): String? {
         val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT

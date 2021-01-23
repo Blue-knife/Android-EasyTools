@@ -57,6 +57,7 @@
         <activity android:name="com.business.audio.mediaplayer.core.MusicPlayerActivity" />
         <activity android:name="com.business.tools.test.selectimage.SelectImageActivity" />
         <activity android:name="com.business.tools.test.selectimage.UpLoadPhotoActivity" />
+        <activity android:name="com.business.tools.test.PageBannerActivity"/>
     </application>
 
 </manifest>
