@@ -168,11 +168,11 @@ class VerticalPageLayout : ViewGroup {
             MotionEvent.ACTION_MOVE -> {
                 mYMove = event.rawY
                 val scrolledY = (mYLastMove - mYMove).toInt()
-                if (scrollY + scrolledY < topBorder) {
-                    scrollTo(topBorder, 0)
+                if (scrollY + scrolledY < topBorder - 500) {
+                    mScroller.startScroll(0, scrollY, 0, topBorder)
                     return true
-                } else if (scrollY + height + scrolledY > bottomBorder) {
-                    scrollTo(0, bottomBorder - height)
+                } else if (scrollY + height + scrolledY > bottomBorder + 500) {
+                    mScroller.startScroll(0, scrollY, 0, bottomBorder - height)
                     return true
                 }
                 scrollBy(0, scrolledY)
@@ -200,19 +200,20 @@ class VerticalPageLayout : ViewGroup {
                         mScroller.startScroll(0, scrollY, 0, dy)
                         index
                     }
-                }else{
+                } else {
                     targetIndex = if (mYDown > event.rawY) {
                         (scrollY + (height * 0.8).toInt()) / height
                     } else {
                         (scrollY + (height * 0.2).toInt()) / height
                     }
+                    if (targetIndex >= adapter!!.count() - 1) targetIndex--
                     val dy = targetIndex * height - scrollY
                     mScroller.startScroll(0, scrollY, 0, dy)
                 }
                 invalidate()
                 release()
             }
-            MotionEvent.ACTION_CANCEL->{
+            MotionEvent.ACTION_CANCEL -> {
                 release()
             }
         }
