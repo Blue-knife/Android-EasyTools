@@ -78,7 +78,6 @@ public class FileQUtils {
         values.put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/" + saveDirName);
         Uri external = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         ContentResolver resolver = context.getContentResolver();
-
         //这里为了避免用户如果删除了DCIM文件夹，此时让系统帮我们去寻找合适的存储路径
         //适合Android10
         try {
@@ -90,7 +89,6 @@ public class FileQUtils {
             return uri;
         }
     }
-
 
 
     /**

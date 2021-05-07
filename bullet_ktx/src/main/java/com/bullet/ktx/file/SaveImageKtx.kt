@@ -31,7 +31,6 @@ fun stringtoBitmap(base64Code: String): Bitmap? {
     }
 }
 
-
 /**
  * bitmap转 base64
  */
@@ -53,7 +52,7 @@ fun bitmaptoString(bitmap: Bitmap): String? {
 fun decoderBaseFile(context: Context, base64Code: String, savePath: String) {
     try {
         val fileName = "${System.currentTimeMillis()}.jpg"
-        //Android10自动保存到相册
+        // Android10自动保存到相册
         if (Build.VERSION.SDK_INT > 28) {
             FileQUtils.saveImageWithAndroidQ(context, fileName, "")
         } else {
@@ -61,13 +60,13 @@ fun decoderBaseFile(context: Context, base64Code: String, savePath: String) {
             val buffer = Base64.decode(base64Code, Base64.DEFAULT)
             FileOutputStream(file).use {
                 it.write(buffer)
-                //插入文件图库
+                // 插入文件图库
                 MediaStore.Images.Media.insertImage(
                     context.contentResolver,
                     file.absolutePath, fileName, null
                 )
-                //通知相册刷新
-                FileUtils.refreshDCIM(context)
+                // 通知相册刷新
+                FileUtilsKtx.refreshDCIM(context)
             }
         }
     } catch (e: Exception) {

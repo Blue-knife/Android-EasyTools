@@ -60,7 +60,7 @@ public class FileUtils {
     public static final String CAMERA_PHOTO_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getParent();
 
-    public static final String DirName="EasyToolss";
+    public static final String DirName = "EasyToolss";
 
 
     private static String getTimeFormatName(String timeFormatHeader) {
@@ -187,7 +187,7 @@ public class FileUtils {
     }
 
     public static File writeToDisk(InputStream is, String dir, String name) {
-        final File file = FileUtils.createFile(dir, name);
+        final File file = FileUtilsKtx.createFile(dir, name);
         BufferedInputStream bis = null;
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
@@ -227,7 +227,7 @@ public class FileUtils {
     }
 
     public static File writeToDisk(InputStream is, String dir, String prefix, String extension) {
-        final File file = FileUtils.createFileByTime(dir, prefix, extension);
+        final File file = FileUtilsKtx.createFileByTime(dir, prefix, extension);
         BufferedInputStream bis = null;
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
@@ -271,7 +271,6 @@ public class FileUtils {
     /**
      * 通知系统刷新系统相册，是照片展示出来
      */
-
     public static void refreshDCIM(Context context) {
         if (Build.VERSION.SDK_INT >= 19) {
             //兼容android 4.4 版本，只扫描存放照面的目录
@@ -399,11 +398,6 @@ public class FileUtils {
         }
         return date;
     }
-
-
-
-
-
 
 
 }

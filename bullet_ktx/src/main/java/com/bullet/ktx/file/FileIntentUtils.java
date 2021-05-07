@@ -63,7 +63,7 @@ public class FileIntentUtils {
             // content://开头的Uri
             context.getContentResolver().delete(uri, null, null);
         } else {
-            File file = new File(FileUtils.getRealFilePath(context, uri));
+            File file = new File(FileUtilsKtx.getRealFilePath(context, uri));
             if (file.exists() && file.isFile()) {
                 file.delete();
             }
@@ -76,7 +76,7 @@ public class FileIntentUtils {
      * @return
      */
     public static boolean isFile(Context context, Uri uri) {
-        File file = new File(FileUtils.getRealFilePath(context, uri));
+        File file = new File(FileUtilsKtx.getRealFilePath(context, uri));
         if (file.exists() && file.isFile()) {
             return true;
         }

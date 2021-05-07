@@ -1,4 +1,4 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +19,7 @@ import kotlin.coroutines.CoroutineContext
 /** 发起一个耗时操作，然后在ui线程执行，记得最后发射 */
 @ExperimentalCoroutinesApi
 suspend inline fun <T> ktxFlow(
-    crossinline obj: suspend (FlowCollector<T>) -> Unit,
+    crossinline obj: suspend FlowCollector<T>.() -> Unit,
     crossinline observer: (T) -> Unit,
     context: CoroutineContext = Dispatchers.Main
 ) {

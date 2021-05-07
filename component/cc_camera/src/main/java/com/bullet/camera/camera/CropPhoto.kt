@@ -48,8 +48,7 @@ object CropPhoto {
             val tempFile = ImageUtils.saveImageFile()
             if (tempFile != null) {
                 imageUrl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    FileProvider.getUriForFile(activity,
-                            "${activity.packageName}.fileProvider", tempFile)
+                    FileProvider.getUriForFile(activity, "${activity.packageName}.fileProvider", tempFile)
                 } else {
                     Uri.fromFile(tempFile)
                 }

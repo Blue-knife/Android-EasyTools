@@ -1,4 +1,4 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
