@@ -2,14 +2,12 @@ package com.bullet.ui.customView
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.Scroller
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewConfigurationCompat
 import com.business.tools.views.page.PageAdapter
 import kotlin.math.abs
-
 
 /**
  * @name PageLayout
@@ -60,11 +58,9 @@ class VerticalPageLayout : ViewGroup {
      */
     private var targetIndex = -1
 
-
     private var layoutInflater = LayoutInflater.from(context)
 
     private var velocityTracker: VelocityTracker? = null
-
 
     /**
      * 适配器
@@ -75,27 +71,24 @@ class VerticalPageLayout : ViewGroup {
             startItem()
         }
 
-
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
         mScroller = Scroller(context)
-        //最小移动距离
+        // 最小移动距离
         mTouchSlop = ViewConfigurationCompat.getScaledHoverSlop(ViewConfiguration.get(context))
 
-        //让当前view 可以点击
+        // 让当前view 可以点击
         isClickable = true
     }
-
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         for (i in 0 until childCount) {
             val childView = getChildAt(i)
-            //测量子控件的大小
+            // 测量子控件的大小
             measureChild(childView, widthMeasureSpec, heightMeasureSpec)
         }
     }
-
 
     /**
      * 创建视图
@@ -106,7 +99,7 @@ class VerticalPageLayout : ViewGroup {
 
         for (i in 0 until count!!) {
             val iv = layoutInflater.inflate(
-                    adapter?.layoutRes!!, this, false
+                adapter?.layoutRes!!, this, false
             ) as AppCompatImageView
             listOf.add(iv)
         }
@@ -139,7 +132,6 @@ class VerticalPageLayout : ViewGroup {
             bottomBorder = getChildAt(getChildCount() - 1).bottom
         }
     }
-
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         when (ev.action) {
@@ -179,22 +171,21 @@ class VerticalPageLayout : ViewGroup {
                 mYLastMove = mYMove
             }
             MotionEvent.ACTION_UP -> {
-                //当手指抬起时，根据当前滚动值来判定应该滚动到那个子控件界面
-                //计算收松开后要显示的页面 index
+                // 当手指抬起时，根据当前滚动值来判定应该滚动到那个子控件界面
+                // 计算收松开后要显示的页面 index
 
-
-                //计算当前速度，units 是单位表示
+                // 计算当前速度，units 是单位表示
                 velocityTracker!!.computeCurrentVelocity(1000)
-                //判断 y 轴速度
+                // 判断 y 轴速度
                 if (abs(velocityTracker!!.yVelocity) > 1000) {
-                    //向下滑动
+                    // 向下滑动
                     targetIndex = if (velocityTracker!!.yVelocity > 1000) {
                         val index = if (targetIndex == 0) 0 else targetIndex - 1
                         val dy = index * height - scrollY
                         mScroller.startScroll(0, scrollY, 0, dy)
                         index
                     } else {
-                        //向上滑动
+                        // 向上滑动
                         val index = if (targetIndex == adapter!!.count() - 1) adapter!!.count() - 1 else targetIndex + 1
                         val dy = index * height - scrollY
                         mScroller.startScroll(0, scrollY, 0, dy)

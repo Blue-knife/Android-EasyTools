@@ -7,8 +7,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.text.TextUtils
 import android.widget.Toast
-import com.bullet.core.base.skin.callback.ISkinChangeListener
 import com.bullet.core.base.skin.attr.SkinView
+import com.bullet.core.base.skin.callback.ISkinChangeListener
 import com.bullet.core.base.skin.config.SkinConfig
 import com.bullet.core.base.skin.config.SkinPreUtils
 import java.io.File
@@ -25,7 +25,7 @@ object SkinManager {
     fun init(context: Context) {
         SkinPreUtils.init(context)
         this.mContext = context.applicationContext
-        //每次打开应用都会到这里来，做一系列的预防，防止皮肤被删除
+        // 每次打开应用都会到这里来，做一系列的预防，防止皮肤被删除
         val currentSkinPath = SkinPreUtils.getSkinPath()
         if (!TextUtils.isEmpty(currentSkinPath)) {
             if (!isFile(currentSkinPath!!)) return
@@ -35,7 +35,7 @@ object SkinManager {
         } else {
             return
         }
-        //做一些初始化的工作
+        // 做一些初始化的工作
         skinResource = SkinResource(mContext!!, currentSkinPath)
     }
 
@@ -48,9 +48,9 @@ object SkinManager {
         if (!isPackageName(skinPath)) return SkinConfig.SKIN_FILE_ERROR
 
         skinResource = SkinResource(mContext!!, skinPath)
-        //改变皮肤
+        // 改变皮肤
         checkSkin()
-        //保存皮肤的状态
+        // 保存皮肤的状态
         saveSkinStatus(skinPath)
         return SkinConfig.SKIN_CHANGE_SUCCESS
     }
@@ -61,10 +61,10 @@ object SkinManager {
     fun restoreDefault(): Int {
         SkinPreUtils.getSkinPath() ?: return SkinConfig.SKIN_CHANGE_NOTHING
         SkinPreUtils.clearSkinInfo()
-        //当前app资源路径
+        // 当前app资源路径
         val resPath = mContext!!.packageResourcePath
         skinResource = SkinResource(mContext!!, resPath)
-        //设置为默认皮肤
+        // 设置为默认皮肤
         checkSkin()
         return SkinConfig.SKIN_CHANGE_SUCCESS
     }
@@ -75,7 +75,7 @@ object SkinManager {
     fun checkChangeSkin(skinView: SkinView) {
         val currentSkinPath = SkinPreUtils.getSkinPath()
         if (!TextUtils.isEmpty(currentSkinPath)) {
-            //换肤
+            // 换肤
             skinView.skin()
         }
     }
@@ -105,7 +105,6 @@ object SkinManager {
         return false
     }
 
-
     /**
      * 文件是否存在，true 表示存在
      */
@@ -116,7 +115,6 @@ object SkinManager {
         }
         return true
     }
-
 
     /**
      * 保存当前使用的皮肤
@@ -163,6 +161,4 @@ object SkinManager {
     fun unregister(changeListener: ISkinChangeListener) {
         mSkinViews.remove(changeListener)
     }
-
-
 }

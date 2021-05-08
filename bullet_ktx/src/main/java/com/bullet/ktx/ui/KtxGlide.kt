@@ -18,7 +18,6 @@ import com.bumptech.glide.request.target.Target
 import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.ColorFilterTransformation
 
-
 /**
  * @Author petterp
  * @Date 2020/5/31-10:37 PM
@@ -29,12 +28,12 @@ import jp.wasabeef.glide.transformations.ColorFilterTransformation
  * 便于加载图
  * 默认大图
  */
-//fun ImageView.glideL(url: String, @DrawableRes placeImage: Int = null) {
+// fun ImageView.glideL(url: String, @DrawableRes placeImage: Int = null) {
 //    Glide.with(KtxContext.context).load(url).placeholder(placeImage)
 //        .diskCacheStrategy(DiskCacheStrategy.ALL).error(placeImage).into(this)
-//}
+// }
 //
-//fun ImageView.glideMax(url: String, @DrawableRes placeImage: Int = R.mipmap.img_place_default_xxh) {
+// fun ImageView.glideMax(url: String, @DrawableRes placeImage: Int = R.mipmap.img_place_default_xxh) {
 //    Glide.with(MyApplication.context).asBitmap()
 //        .format(DecodeFormat.PREFER_ARGB_8888)//设置图片解码格式
 //        .placeholder(placeImage)
@@ -42,7 +41,7 @@ import jp.wasabeef.glide.transformations.ColorFilterTransformation
 //        .load(url)
 //        .into(this)
 //
-//}
+// }
 
 fun ImageView.glide(url: String) {
     Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(this)
@@ -82,7 +81,7 @@ fun ImageView.circleBitmap(url: String) {
 
 fun ImageView.glideNoComPress(url: String) {
     val requestOptions = RequestOptions()
-    requestOptions.override(1080, 2200); //指定大小为300*200，无视imageView大小
+    requestOptions.override(1080, 2200); // 指定大小为300*200，无视imageView大小
     Glide.with(context).load(url).apply(requestOptions).into(this)
 }
 
@@ -124,16 +123,15 @@ fun ImageView.glideblurry(url: String, radius: Int = 200, colorRes: String = "#9
                 }
                 return true
             }
-
         })
         .dontAnimate()
         .apply(RequestOptions.bitmapTransform(multi)).into(this)
 }
 //
-///**
+// /**
 // * 默认小图
 // */
-//fun ImageView.glide(url: String, @DrawableRes placeImage: Int = R.mipmap.img_place_default_xh) {
+// fun ImageView.glide(url: String, @DrawableRes placeImage: Int = R.mipmap.img_place_default_xh) {
 //    Glide.with(MyApplication.context).load(url).placeholder(placeImage)
 //        .diskCacheStrategy(DiskCacheStrategy.ALL).error(placeImage).into(this)
-//}
+// }

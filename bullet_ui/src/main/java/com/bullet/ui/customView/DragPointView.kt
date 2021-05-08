@@ -55,15 +55,20 @@ class DragPointView(context: Context?, attrs: AttributeSet?) : TextView(context,
 
     private fun initbg() {
         gravity = Gravity.CENTER
-        viewTreeObserver.addOnPreDrawListener(ViewTreeObserver.OnPreDrawListener {
-            if (!initBgFlag) {
-                setBackgroundDrawable(createStateListDrawable(
-                        (if (height > width) height else width) / 2, backgroundColor))
-                initBgFlag = true
-                return@OnPreDrawListener false
+        viewTreeObserver.addOnPreDrawListener(
+            ViewTreeObserver.OnPreDrawListener {
+                if (!initBgFlag) {
+                    setBackgroundDrawable(
+                        createStateListDrawable(
+                            (if (height > width) height else width) / 2, backgroundColor
+                        )
+                    )
+                    initBgFlag = true
+                    return@OnPreDrawListener false
+                }
+                true
             }
-            true
-        })
+        )
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -139,10 +144,10 @@ class DragPointView(context: Context?, attrs: AttributeSet?) : TextView(context,
         private var paint: Paint? = null
         private val path = Path()
         private val maxDistance = 8 // 10倍半径距离视为拉断
-        var broken // 是否拉断过
-                = false
-        private var out // 放手的时候是否拉断
-                = false
+        var broken = // 是否拉断过
+            false
+        private var out = // 放手的时候是否拉断
+            false
         var nearby = false
         var brokenProgress = 0
         fun init() {
@@ -197,11 +202,21 @@ class DragPointView(context: Context?, attrs: AttributeSet?) : TextView(context,
                     canvas.drawCircle(c1!!.x, c1!!.y, c1!!.r, paint!!)
                     path.moveTo((c1!!.x - c1!!.r * sin).toFloat(), (c1!!.y - c1!!.r * cos).toFloat())
                     path.lineTo((c1!!.x + c1!!.r * sin).toFloat(), (c1!!.y + c1!!.r * cos).toFloat())
-                    path.quadTo((c1!!.x + c2!!.x) / 2, (c1!!.y + c2!!.y) / 2, (c2!!.x + c2!!.r * sin).toFloat(), (c2!!.y + c2!!.r
-                            * cos).toFloat())
+                    path.quadTo(
+                        (c1!!.x + c2!!.x) / 2, (c1!!.y + c2!!.y) / 2, (c2!!.x + c2!!.r * sin).toFloat(),
+                        (
+                            c2!!.y + c2!!.r
+                                * cos
+                            ).toFloat()
+                    )
                     path.lineTo((c2!!.x - c2!!.r * sin).toFloat(), (c2!!.y - c2!!.r * cos).toFloat())
-                    path.quadTo((c1!!.x + c2!!.x) / 2, (c1!!.y + c2!!.y) / 2, (c1!!.x - c1!!.r * sin).toFloat(), (c1!!.y - c1!!.r
-                            * cos).toFloat())
+                    path.quadTo(
+                        (c1!!.x + c2!!.x) / 2, (c1!!.y + c2!!.y) / 2, (c1!!.x - c1!!.r * sin).toFloat(),
+                        (
+                            c1!!.y - c1!!.r
+                                * cos
+                            ).toFloat()
+                    )
                     canvas.drawPath(path, paint!!)
                 } else {
                     broken = true // 已经拉断了
@@ -265,7 +280,6 @@ class DragPointView(context: Context?, attrs: AttributeSet?) : TextView(context,
                 val deltaY = y - c.y
                 return Math.sqrt(deltaX * deltaX + deltaY * deltaY.toDouble())
             }
-
         }
 
         init {

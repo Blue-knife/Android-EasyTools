@@ -11,7 +11,7 @@ import com.bullet.ui.customView.RoundViewHelper.Companion.setViewOutLine
  * 圆角 Button
  */
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-class RoundButton @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatButton(context, attrs, defStyleAttr) {
+class RoundButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatButton(context, attrs, defStyleAttr) {
     fun setViewOutLine(radius: Int, radiusSize: Int) {
         setViewOutLine(this, radius, radiusSize)
     }

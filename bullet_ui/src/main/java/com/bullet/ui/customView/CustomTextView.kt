@@ -36,7 +36,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
      */
     private var mTextSize = 15
 
-
     /**
      * 文字默认颜色
      */
@@ -46,7 +45,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
      * 需要改变的颜色
      */
     private var mTvColor = Color.RED
-
 
     /**
      * 画笔
@@ -60,7 +58,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     private var mTvs: Array<String>? = null
     private var mColors: IntArray? = null
-
 
     /**
      * 获取基线
@@ -78,7 +75,7 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomTextView)
         // 获取文字
         mText = typedArray.getString(R.styleable.CustomTextView_text)
-        //获取设置颜色的文字
+        // 获取设置颜色的文字
         mTv = typedArray.getString(R.styleable.CustomTextView_tv)
         // 获取文字大小
         mTextSize = typedArray.getDimensionPixelSize(R.styleable.CustomTextView_textSize, sp2px(mTextSize))
@@ -98,12 +95,10 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
         mPaint.textSize = mTextSize.toFloat()
         // 设置画笔颜色
         mPaint.color = mTextColor
-
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
 
         // 如果在布局文件中设置的宽高都是固定值[比如100dp、200dp等]，就用下边方式直接获取宽高
         var width = View.MeasureSpec.getSize(widthMeasureSpec)
@@ -124,7 +119,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
             width = wRect!!.width() + paddingLeft + paddingRight
         }
 
-
         if (hRect == null) {
             hRect = Rect()
         }
@@ -132,7 +126,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
             mPaint.getTextBounds(mText, 0, mText!!.length, hRect)
             height = hRect!!.height() + paddingTop + paddingBottom
         }
-
 
         // 给文字设置宽高
         setMeasuredDimension(width, height)
@@ -163,7 +156,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
             canvas.drawText(mText!!, paddingLeft.toFloat(), baseLine.toFloat(), mPaint)
         }
     }
-
 
     /**
      * 指定位置的文字变为指定的颜色
@@ -205,7 +197,7 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
     private fun drawTvs(tvs: List<String>, colors: List<Int>, canvas: Canvas) {
         val baseLine = baseLine
         val paddingLeft = paddingLeft
-        val tvWidth = (width - getPaddingLeft() - paddingRight).toFloat() //控件可用宽度
+        val tvWidth = (width - getPaddingLeft() - paddingRight).toFloat() // 控件可用宽度
         for (i in tvs.indices) {
             val start = mText!!.indexOf(tvs[i])
             val end = start + tvs[i].length
@@ -274,7 +266,6 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
     fun setTvs(tvs: Array<String>, colors: IntArray) {
         this.mTvs = tvs
         this.mColors = colors
-
     }
 
     /**
@@ -325,8 +316,10 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
      * sp转为px
      */
     private fun sp2px(sp: Int): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(),
-                resources.displayMetrics).toInt()
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP, sp.toFloat(),
+            resources.displayMetrics
+        ).toInt()
     }
 
     private fun sort() {
@@ -356,11 +349,9 @@ class CustomTextView @JvmOverloads constructor(context: Context, attrs: Attribut
             return 0
         }
         val staticLayout = StaticLayout(text, paint, maxWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0f, false)
-        //获取第一行最后显示的字符下标
+        // 获取第一行最后显示的字符下标
         return staticLayout.getLineEnd(0)
     }
-
-
 }
 /**
  * 这种调用第1个构造方法

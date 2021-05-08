@@ -13,7 +13,6 @@ import android.media.AudioManager
 class AudioFocusManager(context: Context, private val mAudioFocusListener: AudioFocusListener?) : AudioManager.OnAudioFocusChangeListener {
     private val audioManager: AudioManager
 
-
     init {
         audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
@@ -24,9 +23,11 @@ class AudioFocusManager(context: Context, private val mAudioFocusListener: Audio
      * @return
      */
     fun requestAudioFocus(): Boolean {
-        //1，监听焦点变化 2，请求的音频焦点影响的那种类型流 3，焦点的持续时间
-        return audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
-                AudioManager.AUDIOFOCUS_GAIN) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+        // 1，监听焦点变化 2，请求的音频焦点影响的那种类型流 3，焦点的持续时间
+        return audioManager.requestAudioFocus(
+            this, AudioManager.STREAM_MUSIC,
+            AudioManager.AUDIOFOCUS_GAIN
+        ) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
     }
 
     /**
@@ -53,5 +54,4 @@ class AudioFocusManager(context: Context, private val mAudioFocusListener: Audio
 
         private val TAG = AudioFocusManager::class.java.simpleName
     }
-
 }

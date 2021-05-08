@@ -30,13 +30,13 @@ enum class SkinType(val resName: String) {
         @TargetApi(Build.VERSION_CODES.M)
         @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
         override fun skin(view: View, resName: String) {
-            //背景可能是图片，也可能是颜色
+            // 背景可能是图片，也可能是颜色
             val skinResource = getSkinResource()
             val drawable = skinResource.getDrawableByName(resName)
             if (drawable != null) {
                 view.background = drawable
             } else {
-                //可能是颜色
+                // 可能是颜色
                 val color = skinResource.getColorByName(resName)
                 if (color != null) {
                     view.setBackgroundColor(color.defaultColor)

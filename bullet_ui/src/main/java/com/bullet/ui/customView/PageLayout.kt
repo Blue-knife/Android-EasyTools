@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewConfigurationCompat
 import com.business.tools.views.page.PageAdapter
 
-
 /**
  * @name PageLayout
  * @package com.bullet.ui.customView
@@ -64,9 +63,7 @@ class PageLayout : ViewGroup {
      */
     private var targetIndex = -1
 
-
     private var layoutInflater = LayoutInflater.from(context)
-
 
     /**
      * 适配器
@@ -77,27 +74,24 @@ class PageLayout : ViewGroup {
             startItem()
         }
 
-
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
         mScroller = Scroller(context)
-        //最小移动距离
+        // 最小移动距离
         mTouchSlop = ViewConfigurationCompat.getScaledHoverSlop(ViewConfiguration.get(context))
 
-        //让当前view 可以点击
+        // 让当前view 可以点击
         isClickable = true
     }
-
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         for (i in 0 until childCount) {
             val childView = getChildAt(i)
-            //测量子控件的大小
+            // 测量子控件的大小
             measureChild(childView, widthMeasureSpec, heightMeasureSpec)
         }
     }
-
 
     /**
      * 创建视图
@@ -108,7 +102,7 @@ class PageLayout : ViewGroup {
 
         for (i in 0 until count!!) {
             val iv = layoutInflater.inflate(
-                    adapter?.layoutRes!!, this, false
+                adapter?.layoutRes!!, this, false
             ) as AppCompatImageView
             listOf.add(iv)
         }
@@ -141,7 +135,6 @@ class PageLayout : ViewGroup {
             rightBorder = getChildAt(getChildCount() - 1).right
         }
     }
-
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         when (ev.action) {
@@ -178,8 +171,8 @@ class PageLayout : ViewGroup {
                 mXLastMove = mXMove
             }
             MotionEvent.ACTION_UP -> {
-                //当手指抬起时，根据当前滚动值来判定应该滚动到那个子控件界面
-                //计算收松开后要显示的页面 index
+                // 当手指抬起时，根据当前滚动值来判定应该滚动到那个子控件界面
+                // 计算收松开后要显示的页面 index
                 targetIndex = if (mXDown > event.rawX) {
                     (scrollX + (width * 0.7).toInt()) / width
                 } else {

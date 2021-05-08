@@ -13,7 +13,7 @@ class ContextTools : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //音频SDK初始化
+        // 音频SDK初始化
         context = this
     }
 
@@ -21,5 +21,4 @@ class ContextTools : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }
-
 }

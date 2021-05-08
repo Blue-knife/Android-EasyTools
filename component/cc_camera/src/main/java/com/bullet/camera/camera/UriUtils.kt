@@ -21,7 +21,7 @@ object UriUtils {
 
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            //如果是外部存储
+            // 如果是外部存储
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()
@@ -33,13 +33,14 @@ object UriUtils {
                         Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                     }
                 }
-                //是下载目录
+                // 是下载目录
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
                 val contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id))
+                    Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id)
+                )
                 return getDataColumn(context, contentUri, null, null)
-                //如果是媒体文件
+                // 如果是媒体文件
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()
@@ -54,7 +55,7 @@ object UriUtils {
                 }
                 val selection = "_id=?"
                 val selectionArgs = arrayOf(
-                        split[1]
+                    split[1]
                 )
                 return getDataColumn(context, contentUri, selection, selectionArgs)
             }
@@ -71,17 +72,23 @@ object UriUtils {
     }
 
     /** 获取uri真实地址 */
-    fun getDataColumn(context: Context, uri: Uri?, selection: String?,
-                      selectionArgs: Array<String>?): String? {
+    fun getDataColumn(
+        context: Context,
+        uri: Uri?,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): String? {
         var cursor: Cursor? = null
         val column = "_data"
         val projection = arrayOf(
-                column
+            column
         )
         try {
-            cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs,
-                    null)
-            //查询
+            cursor = context.contentResolver.query(
+                uri!!, projection, selection, selectionArgs,
+                null
+            )
+            // 查询
             if (cursor != null && cursor.moveToFirst()) {
                 val columnIndex = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(columnIndex)
@@ -206,7 +213,6 @@ object UriUtils {
                 cursor.close()
                 return File(path)
             }
-
         }
         return null
     }

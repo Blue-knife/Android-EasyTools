@@ -2,7 +2,7 @@ package com.bullet.camera.camera
 
 import android.os.Build
 
-object VersionUtils{
+object VersionUtils {
 
     /**
      * 判断是否是Android L版本

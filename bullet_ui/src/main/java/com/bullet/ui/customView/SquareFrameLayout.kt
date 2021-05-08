@@ -21,7 +21,7 @@ class SquareFrameLayout : FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         val width = MeasureSpec.getSize(widthMeasureSpec)
-        //设置宽高一致
+        // 设置宽高一致
         setMeasuredDimension(width, width)
     }
 }

@@ -66,7 +66,7 @@ fun decoderBaseFile(context: Context, base64Code: String, savePath: String) {
                     file.absolutePath, fileName, null
                 )
                 // 通知相册刷新
-                FileUtilsKtx.refreshDCIM(context)
+//                FileUtilsKtx.refreshDCIM(context)
             }
         }
     } catch (e: Exception) {

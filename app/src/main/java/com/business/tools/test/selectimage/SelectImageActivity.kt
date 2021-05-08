@@ -13,9 +13,9 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
-import com.business.toos.R
 import com.bullet.core.base.BaseSkinActivity
 import com.bullet.ui.dialog.ToastDialog
+import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_select_image.*
 
 /**
@@ -28,16 +28,16 @@ import kotlinx.android.synthetic.main.activity_select_image.*
 class SelectImageActivity : BaseSkinActivity() {
 
     companion object {
-        //多选
+        // 多选
         const val MODE_MULTI = 0x001
 
-        //单选
+        // 单选
         const val MODE_SINGLE = 0x002
 
-        //查询全部
+        // 查询全部
         const val LOADER_TYPE = 0x003
 
-        //KEY
+        // KEY
         // 是否显示相机的EXTRA_KEY
         const val EXTRA_SHOW_CAMERA = "EXTRA_SHOW_CAMERA"
 
@@ -54,10 +54,10 @@ class SelectImageActivity : BaseSkinActivity() {
         const val EXTRA_RESULT = "EXTRA_RESULT"
     }
 
-    //单选或者多选
+    // 单选或者多选
     private var mMode = MODE_MULTI
 
-    //是否显示拍照按钮
+    // 是否显示拍照按钮
     var mShowCamera = true
 
     // int 类型的图片张数
@@ -108,53 +108,53 @@ class SelectImageActivity : BaseSkinActivity() {
      * 加载图片
      */
     private val mLoaderCallback =
-            object : LoaderManager.LoaderCallbacks<Cursor?> {
-                private val IMAGE_PROJECTION = arrayOf(
-                        MediaStore.Images.Media.DATA,
-                        MediaStore.Images.Media.DISPLAY_NAME,
-                        MediaStore.Images.Media.DATE_ADDED,
-                        MediaStore.Images.Media.MIME_TYPE,
-                        MediaStore.Images.Media.SIZE,
-                        MediaStore.Images.Media._ID
+        object : LoaderManager.LoaderCallbacks<Cursor?> {
+            private val IMAGE_PROJECTION = arrayOf(
+                MediaStore.Images.Media.DATA,
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_ADDED,
+                MediaStore.Images.Media.MIME_TYPE,
+                MediaStore.Images.Media.SIZE,
+                MediaStore.Images.Media._ID
+            )
+
+            override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor?> {
+                ToastDialog.loading(this@SelectImageActivity)
+                return CursorLoader(
+                    this@SelectImageActivity,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    IMAGE_PROJECTION,
+                    IMAGE_PROJECTION[4] + ">0 AND " + IMAGE_PROJECTION[3] + "=? OR " +
+                        IMAGE_PROJECTION[3] + "=? ",
+                    arrayOf("image/jpeg", "image/png"),
+                    IMAGE_PROJECTION[2] + " DESC"
                 )
-
-                override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor?> {
-                    ToastDialog.loading(this@SelectImageActivity)
-                    return CursorLoader(
-                            this@SelectImageActivity,
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                            IMAGE_PROJECTION,
-                            IMAGE_PROJECTION[4] + ">0 AND " + IMAGE_PROJECTION[3] + "=? OR "
-                                    + IMAGE_PROJECTION[3] + "=? ",
-                            arrayOf("image/jpeg", "image/png"),
-                            IMAGE_PROJECTION[2] + " DESC"
-                    )
-                }
-
-                override fun onLoadFinished(loader: Loader<Cursor?>, data: Cursor?) {
-                    if (data != null && data.count > 0) {
-                        val images = arrayListOf<Uri?>()
-                        if (mShowCamera) images.add(null)
-                        while (data.moveToNext()) {
-                            val id =
-                                    data.getLong(data.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
-                            val uri = ContentUris.withAppendedId(
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
-                            )
-                            images.add(uri)
-                            val query = contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)
-                            query?.moveToFirst()
-                            val index = query?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                            val path = query!!.getString(index!!)
-                            query.close()
-                        }
-                        showImageList(images)
-                    }
-                    ToastDialog.stop()
-                }
-
-                override fun onLoaderReset(loader: Loader<Cursor?>) = Unit
             }
+
+            override fun onLoadFinished(loader: Loader<Cursor?>, data: Cursor?) {
+                if (data != null && data.count > 0) {
+                    val images = arrayListOf<Uri?>()
+                    if (mShowCamera) images.add(null)
+                    while (data.moveToNext()) {
+                        val id =
+                            data.getLong(data.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
+                        val uri = ContentUris.withAppendedId(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
+                        )
+                        images.add(uri)
+                        val query = contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)
+                        query?.moveToFirst()
+                        val index = query?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                        val path = query!!.getString(index!!)
+                        query.close()
+                    }
+                    showImageList(images)
+                }
+                ToastDialog.stop()
+            }
+
+            override fun onLoaderReset(loader: Loader<Cursor?>) = Unit
+        }
 
     private fun showImageList(images: java.util.ArrayList<Uri?>) {
         image_list_rv.layoutManager = GridLayoutManager(this, 4)

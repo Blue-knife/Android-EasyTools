@@ -24,13 +24,22 @@ class AudioContentProvider : ContentProvider() {
         return false
     }
 
-    override fun query(uri: Uri, projection: Array<String>?, selection: String?,
-                       selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
+    override fun query(
+        uri: Uri,
+        projection: Array<String>?,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        sortOrder: String?
+    ): Cursor? {
         return null
     }
 
-    override fun update(uri: Uri, values: ContentValues?, selection: String?,
-                        selectionArgs: Array<String>?): Int {
+    override fun update(
+        uri: Uri,
+        values: ContentValues?,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): Int {
         return 0
     }
 }

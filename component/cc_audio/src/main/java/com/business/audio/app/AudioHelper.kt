@@ -2,10 +2,8 @@ package com.business.audio.app
 
 import android.annotation.SuppressLint
 import android.content.Context
-
 import com.business.audio.mediaplayer.core.MusicService
 import com.business.audio.mediaplayer.model.AudioBean
-
 import java.util.ArrayList
 
 /**

@@ -21,7 +21,6 @@ import com.bullet.core.ContextTools.Companion.context
 
 object ToolsUtils {
 
-
     private val appContext: Context
         get() = ContextTools.context
 
@@ -46,15 +45,16 @@ object ToolsUtils {
             return dm.heightPixels
         }
 
-
     /**
      * @return 返回 状态栏的 高度，以像素为单位
      */
     val staticBarHeight: Int
         get() {
             var result = 0
-            val resourceId = appContext.resources.getIdentifier("status_bar_height",
-                    "dimen", "android")
+            val resourceId = appContext.resources.getIdentifier(
+                "status_bar_height",
+                "dimen", "android"
+            )
             if (resourceId > 0) {
                 result = appContext.resources.getDimensionPixelSize(resourceId)
             }
@@ -90,7 +90,6 @@ object ToolsUtils {
         return (pxValue / scale + 0.5f).toInt()
     }
 
-
     /**
      * 判断网络是否连接
      */
@@ -98,11 +97,12 @@ object ToolsUtils {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         get() {
             if (appContext.checkCallingOrSelfPermission(Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED
+            ) {
                 return false
             } else {
                 val connectivity = appContext
-                        .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager;
+                    .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 val info: Array<NetworkInfo> = connectivity.allNetworkInfo
                 info.forEach {
                     if (it.isAvailable) {
@@ -130,10 +130,10 @@ object ToolsUtils {
                 val m = systemPropertiesClass.getMethod("get", String::class.java)
                 val navBarOverride = m.invoke(systemPropertiesClass, "qemu.hw.mainkeys") as String
                 if ("1" == navBarOverride) {
-                    //不存在虚拟按键
+                    // 不存在虚拟按键
                     hasNavigationBar = false
                 } else if ("0" == navBarOverride) {
-                    //存在虚拟按键
+                    // 存在虚拟按键
                     hasNavigationBar = true
                 }
             } catch (e: Exception) {
@@ -174,10 +174,12 @@ object ToolsUtils {
 
         val attributes = window.getAttributes() as WindowManager.LayoutParams
 
-        result[0] = attributes.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN != WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        val decorView = window.getDecorView() as ViewGroup;
-        result[1] = (attributes.systemUiVisibility or decorView.windowSystemUiVisibility and View.SYSTEM_UI_FLAG_HIDE_NAVIGATION == 0 &&
-                attributes.flags and WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS != 0);
+        result[0] = attributes.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN != WindowManager.LayoutParams.FLAG_FULLSCREEN
+        val decorView = window.getDecorView() as ViewGroup
+        result[1] = (
+            attributes.systemUiVisibility or decorView.windowSystemUiVisibility and View.SYSTEM_UI_FLAG_HIDE_NAVIGATION == 0 &&
+                attributes.flags and WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS != 0
+            )
 
         //
         val decorViewObj = window.decorView
@@ -223,13 +225,13 @@ object ToolsUtils {
         val shareList = arrayListOf<ResolveInfo>()
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
-        //分享内容为文本类型
+        // 分享内容为文本类型
         intent.type = "text/plain"
-        //查询可以使用文本分享的所有入口
+        // 查询可以使用文本分享的所有入口
         val resolve = context.packageManager.queryIntentActivities(intent, 0)
         resolve.forEach {
             shareList.add(it)
-            //只保留 qq 和 微信的入口
+            // 只保留 qq 和 微信的入口
             /* when (it.activityInfo.packageName) {
                  "com.tencent.mm" -> {
                      shareList.add(it)

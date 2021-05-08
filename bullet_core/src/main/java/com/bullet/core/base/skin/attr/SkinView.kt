@@ -12,5 +12,4 @@ class SkinView(
             it.skin(view)
         }
     }
-
 }

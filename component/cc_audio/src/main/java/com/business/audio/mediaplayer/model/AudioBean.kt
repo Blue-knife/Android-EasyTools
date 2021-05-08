@@ -9,32 +9,34 @@ import java.io.Serializable
  * @time 2019/12/17 22:50
  * @description
  */
-class AudioBean(var id: String,
-                /**
-                 * 地址
-                 */
-                var mUrl: String,
-                /**
-                 * 歌名
-                 */
-                var name: String,
-                /**
-                 * 作者
-                 */
-                var author: String,
-                /**
-                 * 所属专辑
-                 */
-                var album: String,
-                /**
-                 * 专辑信息
-                 */
-                var albumInfo: String,
-                /**
-                 * 专辑封面
-                 */
-                var albumPic: String,
-                /**
-                 * 时长
-                 */
-                var totalTime: String) : Serializable
+class AudioBean(
+    var id: String,
+    /**
+     * 地址
+     */
+    var mUrl: String,
+    /**
+     * 歌名
+     */
+    var name: String,
+    /**
+     * 作者
+     */
+    var author: String,
+    /**
+     * 所属专辑
+     */
+    var album: String,
+    /**
+     * 专辑信息
+     */
+    var albumInfo: String,
+    /**
+     * 专辑封面
+     */
+    var albumPic: String,
+    /**
+     * 时长
+     */
+    var totalTime: String
+) : Serializable

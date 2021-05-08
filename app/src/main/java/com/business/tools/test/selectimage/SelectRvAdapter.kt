@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.business.toos.R
 import com.bullet.core.ToastUtils
 import com.bullet.ui.customView.SquareImageView
+import com.bumptech.glide.Glide
+import com.business.toos.R
 
 /**
  * @name SelectRvAdapter
@@ -20,10 +20,13 @@ import com.bullet.ui.customView.SquareImageView
  * @description
  */
 
-class SelectRvAdapter(private val images: ArrayList<Uri?>, private val result: ArrayList<Uri>,
-                      private val maxCount: Int, private val block: () -> Unit) :
-        RecyclerView.Adapter<SelectRvAdapter.ViewHolder>() {
-
+class SelectRvAdapter(
+    private val images: ArrayList<Uri?>,
+    private val result: ArrayList<Uri>,
+    private val maxCount: Int,
+    private val block: () -> Unit
+) :
+    RecyclerView.Adapter<SelectRvAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: SquareImageView = view.findViewById(R.id.image)
@@ -34,7 +37,7 @@ class SelectRvAdapter(private val images: ArrayList<Uri?>, private val result: A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.select_image_item, parent, false)
+            .inflate(R.layout.select_image_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,7 +53,7 @@ class SelectRvAdapter(private val images: ArrayList<Uri?>, private val result: A
             holder.image.visibility = View.GONE
             holder.selectImage.visibility = View.GONE
             holder.camera.setOnClickListener {
-                //调用相机
+                // 调用相机
             }
         } else {
             holder.image.visibility = View.VISIBLE
@@ -58,10 +61,10 @@ class SelectRvAdapter(private val images: ArrayList<Uri?>, private val result: A
             holder.mask.visibility = View.GONE
             holder.camera.visibility = View.GONE
 
-            //显示图片
+            // 显示图片
             Glide.with(holder.image.context)
-                    .load(path)
-                    .into(holder.image)
+                .load(path)
+                .into(holder.image)
 
             if (result.contains(path)) {
                 holder.selectImage.setImageResource(R.drawable.chooser_ic_selected)

@@ -19,12 +19,11 @@ import java.lang.IllegalArgumentException
  */
 
 class FastController(
-        private val alertDialog: FastDialog,
-        private val window: Window?
+    private val alertDialog: FastDialog,
+    private val window: Window?
 ) {
 
     private var viewHelper: DialogViewHelper? = null
-
 
     /**
      * 获取 Dialog
@@ -61,56 +60,54 @@ class FastController(
         return viewHelper?.getView(viewId)
     }
 
-
     class AlertParams(val mContext: Context, val mThemeRedId: Int) {
 
-        //布局的 View
+        // 布局的 View
         var mView: View? = null
 
-        //布局的 Layout Id
+        // 布局的 Layout Id
         var mViewLayoutResId: Int = 0
 
-        //点击空白是否能够取消 ,默认可以取消
+        // 点击空白是否能够取消 ,默认可以取消
         var mCancelable: Boolean = true
 
-        //存放字体的修改，SparseArray 比 map 更加高效，条件是 key 必须为 Int
+        // 存放字体的修改，SparseArray 比 map 更加高效，条件是 key 必须为 Int
         var mTextArray = SparseArray<CharSequence>()
 
-        //存放点击事件
+        // 存放点击事件
         var mClickArray = SparseArray<(Pair<View, FastDialog>) -> Unit>()
 
-        //宽度
+        // 宽度
         var mWidth: Int = ViewGroup.LayoutParams.WRAP_CONTENT
 
-        //高度
+        // 高度
         var mHeight: Int = ViewGroup.LayoutParams.WRAP_CONTENT
 
-        //百分比宽度
+        // 百分比宽度
         var mPercentWidth = -1f
 
         // 百分比高度
         var mPercentHeight = -1f
 
-        //透明度
+        // 透明度
         var mAlpha = 1f
 
-        //动画
+        // 动画
         var mAnimations = 0
 
-        //位置
+        // 位置
         var mGravity = Gravity.CENTER
-
 
         /**
          * 绑定和设置参数
          */
         fun apply(fast: FastController) {
-            //设置布局
+            // 设置布局
             var viewHelper: DialogViewHelper? = null
             if (mViewLayoutResId != 0) {
                 viewHelper = DialogViewHelper(
-                        mContext,
-                        mViewLayoutResId
+                    mContext,
+                    mViewLayoutResId
                 )
             }
             if (mView != null) {
@@ -123,19 +120,19 @@ class FastController(
                 fast.viewHelper = viewHelper
             }
 
-            //给 dialog 设置布局
+            // 给 dialog 设置布局
             fast.getDialog().setContentView(viewHelper.mContentView)
 
-            //设置文本
+            // 设置文本
             mTextArray.forEach { key, value ->
                 fast.setText(key, value)
             }
-            //设置点击事件
+            // 设置点击事件
             mClickArray.forEach { key, value ->
                 fast.setOnClickListener(key, value)
             }
 
-            //配置参数
+            // 配置参数
             val window = fast.window
             if (window != null) {
                 window.setGravity(mGravity)
@@ -175,7 +172,5 @@ class FastController(
             defaultDisplay.getSize(point)
             return point.y
         }
-
     }
-
 }

@@ -68,19 +68,20 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
     private fun init() {
         mMediaPlayer = CustomMediaPlayer()
         mMediaPlayer!!.setWakeMode(AudioHelper.context, PowerManager.PARTIAL_WAKE_LOCK)
-        //设置此MediaPlayer的音频流类型
+        // 设置此MediaPlayer的音频流类型
         mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
         mMediaPlayer!!.setOnCompletionListener(this)
         mMediaPlayer!!.setOnPreparedListener(this)
         mMediaPlayer!!.setOnBufferingUpdateListener(this)
         mMediaPlayer!!.setOnErrorListener(this)
-        //初始化 WifiLocal
-        mWifiLock = (AudioHelper.context!!
-                .getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager)
-                .createWifiLock(WifiManager.WIFI_MODE_FULL, TAG)
+        // 初始化 WifiLocal
+        mWifiLock = (
+            AudioHelper.context!!
+                .getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            )
+            .createWifiLock(WifiManager.WIFI_MODE_FULL, TAG)
         mAudioFocusManager = AudioFocusManager(AudioHelper.context!!, this)
     }
-
 
     fun prepare(audioBean: AudioBean) {
         EventBus.getDefault().post(AudioPrepareEvent(audioBean))
@@ -95,13 +96,12 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
             mMediaPlayer!!.reset()
             mMediaPlayer!!.setDataSource(audioBean.mUrl)
             mMediaPlayer!!.prepareAsync()
-            //对外发送 load 事件
+            // 对外发送 load 事件
             EventBus.getDefault().post(AudioLoadEvent(audioBean))
         } catch (e: Exception) {
-            //对外发送 Error 事件
+            // 对外发送 Error 事件
             EventBus.getDefault().post(AudioErrorEvent())
         }
-
     }
 
     /**
@@ -110,26 +110,25 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
     fun pause() {
         if (status == Status.STARTED) {
             mMediaPlayer!!.pause()
-            //释放WifiLock
+            // 释放WifiLock
             if (mWifiLock!!.isHeld) {
                 mWifiLock!!.release()
             }
             if (mAudioFocusManager != null) {
-                //释放音频焦点
+                // 释放音频焦点
                 mAudioFocusManager!!.abandonAudioFocus()
             }
-            //发送暂停事件
+            // 发送暂停事件
             EventBus.getDefault().post(AudioPauseEvent())
         }
     }
-
 
     /**
      * 对外提供恢复
      */
     fun resume() {
         if (status == Status.PAUSED) {
-            //继续播放
+            // 继续播放
             start()
         }
     }
@@ -151,10 +150,9 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
         }
         mAudioFocusManager = null
         mWifiLock = null
-        //发送 release 销毁事件
+        // 发送 release 销毁事件
         EventBus.getDefault().post(AudioReleaseEvent())
     }
-
 
     /**
      * 设置音量
@@ -168,9 +166,8 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
         }
     }
 
-
     override fun onBufferingUpdate(mp: MediaPlayer, percent: Int) {
-        //缓存进度回调
+        // 缓存进度回调
     }
 
     /**
@@ -192,7 +189,7 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
         }
         mMediaPlayer!!.start()
         mWifiLock!!.acquire()
-        //对外发送 start 事件
+        // 对外发送 start 事件
         EventBus.getDefault().post(AudioStartEvent())
     }
 
@@ -205,7 +202,7 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
      * @return
      */
     override fun onError(mp: MediaPlayer, what: Int, extra: Int): Boolean {
-        //播放出错回调
+        // 播放出错回调
         EventBus.getDefault().post(AudioErrorEvent())
         return true
     }
@@ -219,9 +216,8 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
         start()
     }
 
-
     override fun audioFocusGrant() {
-        //再次获得音频焦点
+        // 再次获得音频焦点
         setVolume(1.0f, 1.0f)
         if (isPauseByFocusLossTransient) {
             resume()
@@ -229,20 +225,19 @@ class AudioPlayer : MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpd
         isPauseByFocusLossTransient = false
     }
 
-
     override fun audioFocusLoss() {
-        //永久失去焦点
+        // 永久失去焦点
         pause()
     }
 
     override fun audioFocusLossTransient() {
-        //短暂性失去焦点
+        // 短暂性失去焦点
         pause()
         isPauseByFocusLossTransient = true
     }
 
     override fun audioFocusLossDuck() {
-        //瞬间失去焦点，如短信通知
+        // 瞬间失去焦点，如短信通知
         setVolume(0.5f, 0.5f)
     }
 

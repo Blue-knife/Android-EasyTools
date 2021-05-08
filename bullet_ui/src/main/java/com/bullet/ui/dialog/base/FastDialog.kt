@@ -41,7 +41,6 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
         return mAlert.getView(viewId)
     }
 
-
     /**
      * 建造者
      */
@@ -55,7 +54,6 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
         constructor(context: Context, themeResId: Int) {
             p = FastController.AlertParams(context, themeResId)
         }
-
 
         /**
          * 设置 ContentView
@@ -180,7 +178,6 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
             return this
         }
 
-
         /**
          * 设置点击事件
          */
@@ -189,12 +186,11 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
             return this
         }
 
-
         private fun create(): FastDialog {
             // Context has already been wrapped with the appropriate theme.
             val dialog = FastDialog(
-                    p.mContext,
-                    p.mThemeRedId
+                p.mContext,
+                p.mThemeRedId
             )
             p.apply(dialog.mAlert)
             dialog.setCancelable(p.mCancelable)
@@ -203,7 +199,6 @@ class FastDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
             }
             return dialog
         }
-
 
         fun build(): FastDialog {
             if (fastDialog == null) fastDialog = create()

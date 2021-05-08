@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
-
 /**
  * @Author petterp
  * @Date 2020/6/6-8:20 PM

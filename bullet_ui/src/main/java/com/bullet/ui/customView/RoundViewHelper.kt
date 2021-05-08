@@ -25,20 +25,22 @@ class RoundViewHelper {
         const val RADIUS_RIGHT = 3
         const val RADIUS_BOTTOM = 4
 
-
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         @SuppressLint("Recycle")
         @JvmStatic
         fun setViewOutLine(
-                view: View, attributeSet: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
+            view: View,
+            attributeSet: AttributeSet?,
+            defStyleAttr: Int,
+            defStyleRes: Int
         ) {
             val array = view.context.obtainStyledAttributes(
-                    attributeSet, R.styleable.ViewOutLineStrategy, defStyleAttr, defStyleRes
+                attributeSet, R.styleable.ViewOutLineStrategy, defStyleAttr, defStyleRes
             )
             val radius =
-                    array.getDimensionPixelOffset(R.styleable.ViewOutLineStrategy_radius, 0)
+                array.getDimensionPixelOffset(R.styleable.ViewOutLineStrategy_radius, 0)
             val radiusSide =
-                    array.getInt(R.styleable.ViewOutLineStrategy_radiusSide, 0)
+                array.getInt(R.styleable.ViewOutLineStrategy_radiusSide, 0)
             array.recycle()
 
             setViewOutLine(view, radius, radiusSide)

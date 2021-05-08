@@ -22,15 +22,13 @@ class ScrollerExt : Scroller {
 
     var listener: ScrollListener? = null
 
-
     constructor(context: Context) : super(context)
     constructor(context: Context, interpolator: Interpolator) : super(context, interpolator)
     constructor(context: Context, interpolator: Interpolator, flywheel: Boolean) : super(
-            context,
-            interpolator,
-            flywheel
+        context,
+        interpolator,
+        flywheel
     )
-
 
     override fun computeScrollOffset(): Boolean {
         val offset = super.computeScrollOffset()

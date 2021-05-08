@@ -1,6 +1,5 @@
 package com.bullet.ktx.ui
 
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -11,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
  * @Function Ktx-UI-core
  */
 
-
-
 /**
  * RecyclerView 移动到当前位置，
  *
@@ -21,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @param n             要跳转的位置
  */
 fun RecyclerView.moveToPosition(
-        n: Int
+    n: Int
 ) {
     val firstItem: Int = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
     val lastItem: Int = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()

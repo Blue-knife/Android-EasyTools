@@ -31,22 +31,20 @@ import com.bumptech.glide.request.transition.Transition
  */
 class ImageLoaderManager private constructor() {
 
-
     private object SignletonHolder {
         val INSTANCE = ImageLoaderManager()
     }
-
 
     /**
      * 为 ImageView 加载图片
      */
     fun displayImageForView(imageView: ImageView, url: String) {
         Glide.with(imageView.context)
-                .asBitmap()
-                .load(url)
-                .apply(initCommonRequestOption())
-                .transition(BitmapTransitionOptions.withCrossFade())
-                .into(imageView)
+            .asBitmap()
+            .load(url)
+            .apply(initCommonRequestOption())
+            .transition(BitmapTransitionOptions.withCrossFade())
+            .into(imageView)
     }
 
     /**
@@ -57,18 +55,18 @@ class ImageLoaderManager private constructor() {
      */
     fun displayImageForCircle(imageView: ImageView, url: String) {
         Glide.with(imageView.context)
-                .asBitmap()
-                .load(url)
-                .apply(initCommonRequestOption())
-                .into(object : BitmapImageViewTarget(imageView) {
-                    //将 imageView 包装成 target
-                    override fun setResource(resource: Bitmap?) {
-                        val drawable = RoundedBitmapDrawableFactory.create(imageView.resources, resource)
-                        //设置圆形 drawable
-                        drawable.isCircular = true
-                        imageView.setImageDrawable(drawable)
-                    }
-                })
+            .asBitmap()
+            .load(url)
+            .apply(initCommonRequestOption())
+            .into(object : BitmapImageViewTarget(imageView) {
+                // 将 imageView 包装成 target
+                override fun setResource(resource: Bitmap?) {
+                    val drawable = RoundedBitmapDrawableFactory.create(imageView.resources, resource)
+                    // 设置圆形 drawable
+                    drawable.isCircular = true
+                    imageView.setImageDrawable(drawable)
+                }
+            })
     }
 
     /**
@@ -79,27 +77,32 @@ class ImageLoaderManager private constructor() {
      */
     fun displayImageForViewGroup(group: ViewGroup, ulr: String) {
         Glide.with(group.context)
-                .asBitmap()
-                .load(ulr)
-                .apply(initCommonRequestOption())
-                .into(object : SimpleTarget<Bitmap>() {
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-                    @SuppressLint("CheckResult")
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        val drawable = BitmapDrawable(
-                                Utils.doBlur(resource, 100, true))
-                        group.background = drawable
-
-                    }
-                })
+            .asBitmap()
+            .load(ulr)
+            .apply(initCommonRequestOption())
+            .into(object : SimpleTarget<Bitmap>() {
+                @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                @SuppressLint("CheckResult")
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    val drawable = BitmapDrawable(
+                        Utils.doBlur(resource, 100, true)
+                    )
+                    group.background = drawable
+                }
+            })
     }
-
 
     /**
      * 为notification加载图
      */
-    fun displayImageForNotification(context: Context, rv: RemoteViews, id: Int,
-                                    notification: Notification, notificationId: Int, url: String) {
+    fun displayImageForNotification(
+        context: Context,
+        rv: RemoteViews,
+        id: Int,
+        notification: Notification,
+        notificationId: Int,
+        url: String
+    ) {
         this.displayImageForTarget(context, initNotificationTarget(context, id, rv, notification, notificationId), url)
     }
 
@@ -107,25 +110,24 @@ class ImageLoaderManager private constructor() {
         return NotificationTarget(context, id, rv, notification, notificationid)
     }
 
-
     private fun displayImageForTarget(context: Context, target: Target<Bitmap>, url: String) {
         Glide.with(context)
-                .asBitmap()
-                .load(url)
-                .apply(initCommonRequestOption())
-                .transition(BitmapTransitionOptions.withCrossFade())
-                .fitCenter()
-                .into(target)
+            .asBitmap()
+            .load(url)
+            .apply(initCommonRequestOption())
+            .transition(BitmapTransitionOptions.withCrossFade())
+            .fitCenter()
+            .into(target)
     }
 
     @SuppressLint("CheckResult")
     private fun initCommonRequestOption(): RequestOptions {
         val options = RequestOptions()
         options.placeholder(android.R.mipmap.sym_def_app_icon)
-                .error(android.R.mipmap.sym_def_app_icon)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .skipMemoryCache(false)
-                .priority(Priority.NORMAL)
+            .error(android.R.mipmap.sym_def_app_icon)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+            .skipMemoryCache(false)
+            .priority(Priority.NORMAL)
         return options
     }
 
@@ -134,5 +136,4 @@ class ImageLoaderManager private constructor() {
         val instance: ImageLoaderManager
             get() = SignletonHolder.INSTANCE
     }
-
 }

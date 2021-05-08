@@ -17,14 +17,13 @@ import com.bullet.ui.dialog.base.FastDialog
 
 object ToastDialog {
 
-
     private var fastDialog: FastDialog? = null
 
     private fun createDialog(context: Context) {
         fastDialog = FastDialog.Builder(context)
-                .setContentView(R.layout.dialog_toast)
-                .setAlpha(1f)
-                .build()
+            .setContentView(R.layout.dialog_toast)
+            .setAlpha(1f)
+            .build()
         fastDialog?.setOnDismissListener {
             fastDialog = null
         }
@@ -72,19 +71,16 @@ object ToastDialog {
         fastDialog?.show()
     }
 
-
     private fun show(text: String, imageResId: Int) {
         hideLoad()
         fastDialog?.getView<AppCompatImageView>(R.id.iv_toast_icon)
-                ?.setBackgroundResource(imageResId)
+            ?.setBackgroundResource(imageResId)
         fastDialog?.setText(R.id.tv_toast_message, text)
         fastDialog?.show()
     }
-
 
     private fun hideLoad() {
         fastDialog?.getView<ProgressView>(R.id.pw_progress)?.visibility = View.GONE
         fastDialog?.getView<AppCompatImageView>(R.id.iv_toast_icon)?.visibility = View.VISIBLE
     }
-
 }

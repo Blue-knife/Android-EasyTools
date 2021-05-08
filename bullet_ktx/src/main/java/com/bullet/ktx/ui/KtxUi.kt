@@ -1,7 +1,6 @@
 package com.bullet.ktx.ui
 
 import android.app.Activity
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
 import android.view.Display
@@ -16,7 +15,6 @@ import android.widget.Checkable
  * @Email ShiyihuiCloud@163.com
  * @Function Ktx-常用ui的扩展
  */
-
 
 /** viewGroup遍历添加tag */
 fun ViewGroup.viewAllTag(tag: Any, listener: View.OnClickListener) {
@@ -49,7 +47,6 @@ fun Activity.widthScreen(isDp: Boolean = false): Int {
     return point.y
 }
 
-
 /**
  * 获取屏幕高,默认返回px
  * [isNavigationBar] 是否需包含底部栏+状态栏
@@ -71,7 +68,6 @@ fun Activity.heightScreen(isDp: Boolean = false, isNavigationBar: Boolean = true
     return height
 }
 
-
 /**
  * dp转px
  */
@@ -79,7 +75,6 @@ fun dip2px(dpValue: Float): Int {
     val scale: Float = Resources.getSystem().displayMetrics.density
     return (dpValue * scale + 0.5f).toInt()
 }
-
 
 /**
  * px转dp
@@ -99,7 +94,6 @@ fun <T : View> T.delayView(obj: (T) -> Unit) {
             obj(this@delayView)
             return true
         }
-
     })
 }
 
@@ -132,7 +126,6 @@ fun <T : View> T.singleClicks(onClickListener: View.OnClickListener, time: Long 
         }
     }
 }
-
 
 interface OnClickListener {
     fun listenerClick(position: Int, v: View)

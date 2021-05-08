@@ -1,11 +1,10 @@
 package com.petterp.cloud.bullet.base.download
 
-
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import java.io.File
 import androidx.lifecycle.observe
 import kotlinx.coroutines.launch
+import java.io.File
 
 /**
  * @name Android Business Toos
@@ -26,19 +25,19 @@ object DownLoadLaunch {
     private val mDownloadModel: DownloadModel = DownloadModel()
 
     fun create(
-            owner: LifecycleOwner,
-            url: String,
-            fileName: String,
-            stateListener: OnStateListener
+        owner: LifecycleOwner,
+        url: String,
+        fileName: String,
+        stateListener: OnStateListener
     ) {
-        //这里的 Lambda 会被多次调用，当 liveData 发送消息后 lambda会得到执行
+        // 这里的 Lambda 会被多次调用，当 liveData 发送消息后 lambda会得到执行
         mDownloadModel.downloadStateLiveData.observe(owner) { status ->
             when (status) {
                 DownLoadManager.DownloadStatus.None -> {
-                    //启动协程
+                    // 启动协程
                     owner.lifecycleScope.launch {
                         stateListener.start()
-                        //下载
+                        // 下载
                         mDownloadModel.download(url, fileName)
                     }
                 }

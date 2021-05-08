@@ -41,7 +41,7 @@ dependencies {
 
     implementation rootProject.frame.glide
 
-    def nav_version = "2.3.1"
+    def nav_version = "2.2.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$nav_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$nav_version"

@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.regex.Pattern
 
-
 /**
  * @Author petterp
  * @Date 2020/6/2-11:16 AM
@@ -72,7 +71,7 @@ fun TextView.underLines(
     fromHtml("$res$endRes")
 }
 
-//<font color=#ff0000> </font>
+// <font color=#ff0000> </font>
 
 fun TextView.fromHtml(
     res: String,
@@ -85,7 +84,6 @@ fun TextView.fromHtml(
     }
 }
 
-
 /** 指定单个字符颜色改变 */
 fun TextView.disColorSingle(color: Int, selectRes: String, allRes: String) {
     val spannableString = SpannableString(allRes)
@@ -96,7 +94,6 @@ fun TextView.disColorSingle(color: Int, selectRes: String, allRes: String) {
         }
     }
 }
-
 
 /** 指定字符集颜色背景改变 */
 fun TextView.disColors(color: Int, selectRes: List<String>?, allRes: String) {
@@ -110,7 +107,6 @@ fun TextView.disColors(color: Int, selectRes: List<String>?, allRes: String) {
         }
     }
 }
-
 
 private fun disColor(
     spannableString: SpannableString,
@@ -137,7 +133,6 @@ private fun disColor(
     }
 }
 
-
 private fun disColorNoBack(
     spannableString: SpannableString,
     color: Int,
@@ -158,15 +153,17 @@ private fun disColorNoBack(
     }
 }
 
-
 @SuppressLint("SetTextI18n")
 fun TextView.appendLike(likeRes: String, context: String, likeResColor: Int, obj: (View) -> Unit) {
     val spanString = SpannableString(likeRes)
-    spanString.setSpan(object : ClickableSpan() {
-        override fun onClick(widget: View) {
-            obj(widget)
-        }
-    }, 0, spanString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    spanString.setSpan(
+        object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                obj(widget)
+            }
+        },
+        0, spanString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
     spanString.setSpan(
         NoLineClickSpan(likeResColor),
         0,
@@ -187,11 +184,14 @@ fun TextView.appendNoLike(
     obj: (View) -> Unit
 ) {
     val spanString = SpannableString(likeRes)
-    spanString.setSpan(object : ClickableSpan() {
-        override fun onClick(widget: View) {
-            obj(widget)
-        }
-    }, 0, spanString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    spanString.setSpan(
+        object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                obj(widget)
+            }
+        },
+        0, spanString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
     spanString.setSpan(
         NoLineClickSpan(likeResColor),
         0,

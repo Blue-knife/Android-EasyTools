@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout())
@@ -19,5 +18,4 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun params(intent: Intent) = Unit
 
     abstract fun bindView()
-
 }

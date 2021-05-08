@@ -22,13 +22,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.business.toos.R
 import com.bullet.core.ToastUtils
 import com.bullet.core.ToolsUtils.dip2px
 import com.bullet.core.ToolsUtils.queryShareItems
 import com.bullet.core.ToolsUtils.screenHeight
 import com.bullet.ui.customView.RoundFrameLayout
 import com.bullet.ui.customView.RoundViewHelper
+import com.business.toos.R
 import java.io.File
 import java.io.FileOutputStream
 
@@ -52,8 +52,10 @@ class ShareDialog(context: Context) : AlertDialog(context) {
         val layout = RoundFrameLayout(context)
         layout.setBackgroundColor(Color.WHITE)
         layout.setViewOutLine(dip2px(20f), RoundViewHelper.RADIUS_TOP)
-        val param = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT)
+        val param = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
         param.height = screenHeight / 2
         layout.layoutParams = param
         setContentView(layout)
@@ -61,8 +63,8 @@ class ShareDialog(context: Context) : AlertDialog(context) {
         val gridView = RecyclerView(context)
         gridView.layoutManager = GridLayoutManager(context, 4)
         val params = FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
         )
         params.leftMargin = dip2px(30f)
         params.rightMargin = dip2px(20f)
@@ -78,28 +80,26 @@ class ShareDialog(context: Context) : AlertDialog(context) {
         val shareItems = queryShareItems()
         if (shareContent != null) {
             shareAdapter =
-                    ShareAdapter(shareItems, context.packageManager, shareContent!!)
+                ShareAdapter(shareItems, context.packageManager, shareContent!!)
             gridView.adapter = shareAdapter
         } else {
             ToastUtils.showText("分享内容为空")
         }
-
     }
 
     fun setShareContent(shareContent: String) {
         this.shareContent = shareContent
     }
 
-
     private class ShareAdapter(
-            val item: MutableList<ResolveInfo>?,
-            val packageManager: PackageManager,
-            val shareContent: String
+        val item: MutableList<ResolveInfo>?,
+        val packageManager: PackageManager,
+        val shareContent: String
     ) :
-            RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.layout_share_item, parent, false)
+                .inflate(R.layout.layout_share_item, parent, false)
             return object : RecyclerView.ViewHolder(view) {}
         }
 
@@ -124,20 +124,19 @@ class ShareDialog(context: Context) : AlertDialog(context) {
 //                    intent.type = "image/*"
                     intent.component = ComponentName(pkg, cls)
 
-                    //分享的内容
+                    // 分享的内容
                     intent.putExtra(Intent.EXTRA_TEXT, shareContent)
 //                    intent.putExtra(Intent.EXTRA_STREAM, getUri(shareImage))
                     val shareIntent = Intent.createChooser(intent, "Android EasyTools")
                     shareImage.context.startActivity(shareIntent)
                 }
             }
-
         }
 
         private fun getUri(shareImage: AppCompatImageView): Uri {
             val bitmap = BitmapFactory.decodeResource(
-                    shareImage.resources,
-                    R.mipmap.icon
+                shareImage.resources,
+                R.mipmap.icon
             )
             val file = File(shareImage.context.externalCacheDir, "shareImage.png")
             val fos = FileOutputStream(file)
@@ -145,11 +144,9 @@ class ShareDialog(context: Context) : AlertDialog(context) {
             fos.flush()
             fos.close()
             return FileProvider.getUriForFile(
-                    shareImage.context,
-                    "${shareImage.context.packageName}.fileProvider", file
+                shareImage.context,
+                "${shareImage.context.packageName}.fileProvider", file
             )
         }
-
-
     }
 }
