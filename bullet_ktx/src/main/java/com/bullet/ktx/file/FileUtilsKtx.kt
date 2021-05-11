@@ -1,14 +1,14 @@
 package com.bullet.ktx.file
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
-import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.provider.MediaStore
 import androidx.annotation.RequiresApi
+import androidx.core.net.toFile
 import java.io.File
 import java.io.FileInputStream
 
@@ -21,108 +21,73 @@ import java.io.FileInputStream
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 object FileUtilsKtx {
 
+    private const val TAG = "FileUtilsKtx"
+
+    /** 是否可写入外部存储 */
+    val isExternalStorageWritable: Boolean
+        get() =
+            FileExt.isExternalStorageWritable()
+
+    /** 是否可读取外部存储 */
+    val isExternalStorageReadable: Boolean
+        get() =
+            FileExt.isExternalStorageReadable()
+
     /**
+     * 保存bitmap到公共存储目录
      * fileName 文件名
      * dirName 文件夹名字 示例 easy/blue
      * */
-    lateinit var applicationContext: Context
-    private const val APP_FOLDER_NAME = "lanfan"
-    val FILE_DIRECTORY_PICTURES by lazy(LazyThreadSafetyMode.NONE) {
-        getDirectory(applicationContext, Environment.DIRECTORY_PICTURES)
-    }
-    val FILE_DIRECTORY_DOWNLOADS by lazy(LazyThreadSafetyMode.NONE) {
-        getDirectory(applicationContext, Environment.DIRECTORY_DOWNLOADS)
-    }
-    val FILE_DIRECTORY_DCIM by lazy(LazyThreadSafetyMode.NONE) {
-        getDirectory(applicationContext, Environment.DIRECTORY_DCIM)
-    }
-    val FILE_DIRECTORY_DOCUMENTS by lazy(LazyThreadSafetyMode.NONE) {
-        getDirectory(applicationContext, Environment.DIRECTORY_DOCUMENTS)
-    }
-
-    suspend fun saveBitmapToPictures(
+    fun saveBitmapToPictures(
         bitmap: Bitmap,
-        context: Context,
         fileName: String,
-        folderPath: String = APP_FOLDER_NAME,
+        folderPath: String = FileConfig.APP_FOLDER_PATH,
         quality: Int = 80,
         mimeType: String = "image/*",
+        context: Context = FileConfig.fileContext,
         compressFormat: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
     ): Uri? {
-        val path = getAppDirectoryPath(Environment.DIRECTORY_PICTURES, folderPath)
-        val uri = getStorageUri(context, fileName, path, mimeType)
+        // 当前不可写入
+        if (!isExternalStorageWritable) return null
+        val path = FileExt.getAppDirectoryPath(Environment.DIRECTORY_PICTURES, folderPath)
+        val uri = FileExt.createStorageUri(context, fileName, path, mimeType)
         saveBitMap(context.contentResolver, uri, bitmap, quality, compressFormat)
         return uri
     }
 
-    suspend fun saveFileToStorage(
+    /**
+     * 保存文件到公共存储目录
+     * */
+    fun saveFileToStorage(
         file: File,
-        context: Context,
         fileName: String,
-        path: String = APP_FOLDER_NAME,
+        path: String = FileConfig.APP_FOLDER_PATH,
+        context: Context = FileConfig.fileContext,
         mimeType: String = "*/*"
     ): Uri? {
-        val uri = getStorageUri(context, fileName, path, mimeType)
+        if (!isExternalStorageWritable) return null
+        val uri = FileExt.createStorageUri(context, fileName, path, mimeType)
         saveFile(context.contentResolver, uri, file.inputStream())
         return uri
     }
 
-    /**
-     * 将Uri转为File
-     * - 1. Version >=Android11 的处理(可直接操作共有目录File)
-     * - 2. Version = Android10 的处理(不可操作File,需要复制到沙盒完成转换)
-     * - 3. Version >= Android-N 的处理(FileProvider,读写权限)
-     * - 4. Version -> Android-M 的处理(读写权限)
-     * - 5. Version -> 默认处理
-     * */
-    fun uriToFile() {
-        // TODO: 4/23/21  
+    fun delete(fileUri: Uri, context: Context = FileConfig.fileContext) {
+        context.contentResolver.delete(fileUri, null, null)
     }
 
-    private fun getDirectory(context: Context, name: String): File =
-        File(context.getExternalFilesDir(name), APP_FOLDER_NAME).apply {
-            if (!this.exists()) {
-                this.mkdir()
+    @SuppressLint("NewApi")
+    fun uriToFile(uri: Uri, context: Context = FileConfig.fileContext): File? {
+        val sdkVersion = Build.VERSION.SDK_INT
+        return if (uri.scheme == ContentResolver.SCHEME_FILE)
+            uri.toFile()
+        else if (uri.scheme == ContentResolver.SCHEME_CONTENT && sdkVersion >= Build.VERSION_CODES.Q) {
+            if (sdkVersion == Build.VERSION_CODES.Q && Environment.isExternalStorageLegacy()) {
+                UriExt.uri2FileReal(uri, context)
+            } else {
+                FileExt.saveUriToCacheDir(uri, context)
             }
-        }
-
-    private fun getAppDirectoryPath(directory: String, folderPath: String): String {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            // 获取外部存储目录
-            "${Environment.getExternalStorageDirectory().absolutePath}/" +
-                "$directory/$folderPath/"
         } else {
-            // relative path
-            "$directory/$folderPath/"
-        }
-    }
-
-    private fun getStorageUri(
-        context: Context,
-        fileName: String,
-        path: String,
-        mimeType: String = "*/*"
-    ): Uri? {
-        val contentValues = ContentValues()
-        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
-        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, path)
-        } else {
-            val fileDir = File(path)
-            if (!fileDir.exists()) {
-                fileDir.mkdir()
-            }
-            contentValues.put(MediaStore.MediaColumns.DATA, path + fileName)
-        }
-        val external = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        val resolver = context.contentResolver
-        // 健壮性判断,如果文件夹被删除，则让系统去寻找位置
-        return try {
-            resolver.insert(external, contentValues)
-        } catch (e: IllegalArgumentException) {
-            contentValues.remove(MediaStore.Images.Media.RELATIVE_PATH)
-            resolver.insert(external, contentValues)
+            UriExt.uri2FileReal(uri, context)
         }
     }
 
@@ -140,7 +105,7 @@ object FileUtilsKtx {
         }
     }
 
-    private fun saveFile(resolver: ContentResolver, uri: Uri?, inputStream: FileInputStream): Uri? =
+    private fun saveFile(resolver: ContentResolver, uri: Uri?, inputStream: FileInputStream) =
         uri?.also { it ->
             resolver.openOutputStream(it)?.use { os ->
                 val buffer = ByteArray(1024)

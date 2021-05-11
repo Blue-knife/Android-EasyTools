@@ -9,6 +9,7 @@ import com.bullet.core.base.skin.config.SkinPreUtils
 import com.business.audio.mediaplayer.core.MusicPlayerActivity
 import com.business.tools.test.*
 import com.business.tools.test.DialogActivity
+import com.business.tools.test.storage.StorageActivity
 import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -72,7 +73,8 @@ class MainActivity : BaseSkinActivity() {
             Pair("播放 Music", MusicPlayerActivity::class.java),
             Pair("一键式文件下载", DownLoadActivity::class.java),
             Pair("通知相关", NoticeActivity::class.java),
-            Pair("测试获取设备唯一码", NoticeActivity::class.java)
+            Pair("测试获取设备唯一码", NoticeActivity::class.java),
+            Pair("存储机制测试", StorageActivity::class.java)
         )
     }
 }

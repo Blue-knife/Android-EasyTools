@@ -29,6 +29,11 @@ android {
         }
     }
 
+    viewBinding {
+        android.buildFeatures.viewBinding = true
+    }
+
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -51,6 +56,7 @@ dependencies {
     implementation project(path: ':component:cc_audio')
     implementation project(path: ':component:cc_camera')
     implementation project(path: ':bullet_core')
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
     implementation "androidx.lifecycle:lifecycle-extensions:$nav_version"
 

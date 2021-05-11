@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvPhoneInfo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:text="tvPhoneInfo"
+        app:layout_constraintBottom_toTopOf="@+id/ivPlaceHolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/ivPlaceHolder"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/createBitmap"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhoneInfo" />
+
+    <EditText
+        android:id="@+id/editFileName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="要保存的bitmap名"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlaceHolder"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPlaceHolder" />
+
+    <Button
+        android:id="@+id/createBitmap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生成一个测试bitmap"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlaceHolder"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editFileName" />
+
+    <Button
+        android:id="@+id/btnWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试文件写入"
+        app:layout_constraintEnd_toEndOf="@+id/createBitmap"
+        app:layout_constraintStart_toStartOf="@+id/createBitmap"
+        app:layout_constraintTop_toBottomOf="@+id/createBitmap" />
+
+    <Button
+        android:id="@+id/btnReader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文件读取"
+        app:layout_constraintEnd_toEndOf="@+id/btnWrite"
+        app:layout_constraintStart_toStartOf="@+id/btnWrite"
+        app:layout_constraintTop_toBottomOf="@+id/btnWrite" />
+    <Button
+        android:id="@+id/btnFileFromUri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File转Uri"
+        app:layout_constraintEnd_toEndOf="@+id/btnReader"
+        app:layout_constraintStart_toStartOf="@+id/btnReader"
+        app:layout_constraintTop_toBottomOf="@+id/btnReader" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="调用系统对文件进行单次授权"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlaceHolder"
+        app:layout_constraintTop_toBottomOf="@+id/btnFileFromUri" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

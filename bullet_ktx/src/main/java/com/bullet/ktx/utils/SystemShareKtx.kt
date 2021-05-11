@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import com.bullet.ktx.file.FileUtilsKtx
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -34,6 +36,9 @@ fun Context.isAlreadyInstalled(packageName: String): Boolean {
         }
     } catch (e: PackageManager.NameNotFoundException) {
         e.printStackTrace()
+    }
+    GlobalScope.launch {
+
     }
     return false
 }
@@ -86,7 +91,7 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
                     }
                 }
                 val uri = FileUtilsKtx.saveBitmapToPictures(
-                    bitmap!!, context,
+                    bitmap!!,
                     "${System.currentTimeMillis()}.jpg", mimeType = "image/*"
                 )
                 putExtra(Intent.EXTRA_STREAM, uri)
@@ -94,7 +99,7 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
                 val file = File(filePath)
                 when {
                     android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q -> {
-                        val uri = FileUtilsKtx.saveFileToStorage(file, context, file.name, mimeType = "image/*", path = "Pictures/lanfan")
+                        val uri = FileUtilsKtx.saveFileToStorage(file, file.name, mimeType = "image/*", path = "Pictures/lanfan")
                         putExtra(Intent.EXTRA_STREAM, uri)
                     }
                     android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N -> {

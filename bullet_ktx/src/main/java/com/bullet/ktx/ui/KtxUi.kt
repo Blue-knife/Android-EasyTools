@@ -2,11 +2,11 @@ package com.bullet.ktx.ui
 
 import android.app.Activity
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Point
-import android.view.Display
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
+import android.view.*
 import android.widget.Checkable
 
 /**
@@ -125,6 +125,21 @@ fun <T : View> T.singleClicks(onClickListener: View.OnClickListener, time: Long 
             onClickListener.onClick(this)
         }
     }
+}
+
+/**
+ * view转bitmap
+ */
+fun View.toBitMap(): Bitmap {
+    val w = width
+    val h = height
+    val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+    val c = Canvas(bmp)
+    c.drawColor(Color.WHITE)
+    /** 如果不设置canvas画布为白色，则生成透明  */
+    layout(0, 0, w, h)
+    draw(c)
+    return bmp
 }
 
 interface OnClickListener {
