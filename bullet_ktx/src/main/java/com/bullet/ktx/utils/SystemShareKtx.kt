@@ -11,7 +11,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
-import com.bullet.ktx.file.FileKtx
+import com.bullet.ktx.file.FileKtxUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -90,7 +90,7 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
                         Toast.makeText(context, "分享发生错误,截图失败", Toast.LENGTH_SHORT).show()
                     }
                 }
-                val uri = FileKtx.saveBitmapToPictures(
+                val uri = FileKtxUtils.saveBitmapToPictures(
                     bitmap!!,
                     "${System.currentTimeMillis()}.jpg", mimeType = "image/*"
                 )
@@ -99,7 +99,7 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
                 val file = File(filePath)
                 when {
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                        val uri = FileKtx.saveFileToDownload(file, file.name, mimeType = "image/*", folderPath = "Pictures/lanfan")
+                        val uri = FileKtxUtils.saveFileToDownload(file, file.name, mimeType = "image/*", folderPath = "Pictures/lanfan")
                         putExtra(Intent.EXTRA_STREAM, uri)
                     }
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> {

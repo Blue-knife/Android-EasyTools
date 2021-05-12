@@ -18,7 +18,7 @@ import java.io.OutputStream
  * @Function 常用文件读写操作
  */
 @RequiresApi(Build.VERSION_CODES.KITKAT)
-object FileKtx {
+object FileKtxUtils {
 
     private const val TAG = "FileKtx"
 
@@ -155,10 +155,6 @@ object FileKtx {
         return outFile
     }
 
-    fun delete(fileUri: Uri, context: Context = FileConfig.fileContext) {
-        context.contentResolver.delete(fileUri, null, null)
-    }
-
     private fun saveBitMap(
         resolver: ContentResolver,
         uri: Uri?,
@@ -191,6 +187,7 @@ object FileKtx {
             }
         }
 
+    /** fileA读取到file B */
     private fun fileAToB(input: FileInputStream, os: OutputStream) {
         val buffer = ByteArray(1024)
         var bytes = input.read(buffer)
@@ -199,5 +196,9 @@ object FileKtx {
             os.flush()
             bytes = input.read(buffer)
         }
+    }
+
+    fun delete(fileUri: Uri, context: Context = FileConfig.fileContext) {
+        context.contentResolver.delete(fileUri, null, null)
     }
 }

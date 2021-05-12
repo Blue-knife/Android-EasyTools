@@ -7,8 +7,6 @@ import android.os.Build
 import android.os.Environment
 import android.os.FileUtils
 import android.provider.MediaStore
-import android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI
-import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
 import java.io.File
