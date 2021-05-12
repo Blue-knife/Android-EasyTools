@@ -29,9 +29,11 @@ class StorageActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(bing.root)
         bing.createBitmap.singleClicks(this)
         bing.ivPlaceHolder.singleClicks(this)
-        bing.btnWrite.singleClicks(this)
-        bing.btnReader.singleClicks(this)
+        bing.btnWriteBitMapFromDir.singleClicks(this)
         bing.btnFileFromUri.singleClicks(this)
+        bing.btnUriFromFile.singleClicks(this)
+        bing.btnSaveFileFromStorage.singleClicks(this)
+        bing.deleteUri.singleClicks(this)
         initFileConfig()
     }
 
@@ -49,24 +51,37 @@ class StorageActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
+            // 生成bitmap
             bing.createBitmap -> {
                 val bitmap = bing.root.toBitMap()
                 viewModel.bitMap = bitmap
                 bing.ivPlaceHolder.setImageBitmap(bitmap)
                 ToastUtils.showText("生成成功")
             }
-            bing.btnReader -> {
-                viewModel.readerFile()
-            }
-
-            bing.btnWrite -> {
+            // 将bitmap保存到内部存储
+            bing.btnWriteBitMapFromDir -> {
                 val fileName = editFileName.text.toString().trim()
-                viewModel.saveFile(fileName)
+                viewModel.saveBitmapFromDir(fileName)
             }
+            // 将file转为Uri
             bing.btnFileFromUri -> {
                 viewModel.fileFromUri()
             }
+
+            // 将file保存到外部存储
+            bing.btnSaveFileFromStorage -> {
+                viewModel.saveFileToStorage()
+            }
+
+            // 将uri转为File
+            bing.btnUriFromFile -> {
+                viewModel.uriFromFile()
+            }
+
+            // 删除转过来的Uri
+            bing.deleteUri -> {
+                viewModel.deleteUri()
+            }
         }
     }
-
 }

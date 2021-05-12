@@ -11,7 +11,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
-import com.bullet.ktx.file.FileUtilsKtx
+import com.bullet.ktx.file.FileKtx
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -90,7 +90,7 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
                         Toast.makeText(context, "分享发生错误,截图失败", Toast.LENGTH_SHORT).show()
                     }
                 }
-                val uri = FileUtilsKtx.saveBitmapToPictures(
+                val uri = FileKtx.saveBitmapToPictures(
                     bitmap!!,
                     "${System.currentTimeMillis()}.jpg", mimeType = "image/*"
                 )
@@ -98,11 +98,11 @@ suspend fun shareSinaImage(context: Context, filePath: String, bitmap: Bitmap?) 
             } else {
                 val file = File(filePath)
                 when {
-                    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q -> {
-                        val uri = FileUtilsKtx.saveFileToStorage(file, file.name, mimeType = "image/*", path = "Pictures/lanfan")
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                        val uri = FileKtx.saveFileToDownload(file, file.name, mimeType = "image/*", folderPath = "Pictures/lanfan")
                         putExtra(Intent.EXTRA_STREAM, uri)
                     }
-                    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N -> {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> {
                         val imageUri: Uri = FileProvider.getUriForFile(
                             context,
                             "${context.packageName}.fileprovider", // (use your app signature + ".provider" )

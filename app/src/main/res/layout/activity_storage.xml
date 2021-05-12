@@ -41,44 +41,58 @@
         android:id="@+id/createBitmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="生成一个测试bitmap"
+        android:text="1. 生成一个测试bitmap"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/ivPlaceHolder"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editFileName" />
 
     <Button
-        android:id="@+id/btnWrite"
+        android:id="@+id/btn_write_bit_map_from_dir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试文件写入"
-        app:layout_constraintEnd_toEndOf="@+id/createBitmap"
+        android:text="2. 将bitmap写入内部存储生成File"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/createBitmap"
         app:layout_constraintTop_toBottomOf="@+id/createBitmap" />
 
-    <Button
-        android:id="@+id/btnReader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="文件读取"
-        app:layout_constraintEnd_toEndOf="@+id/btnWrite"
-        app:layout_constraintStart_toStartOf="@+id/btnWrite"
-        app:layout_constraintTop_toBottomOf="@+id/btnWrite" />
+
     <Button
         android:id="@+id/btnFileFromUri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="File转Uri"
-        app:layout_constraintEnd_toEndOf="@+id/btnReader"
-        app:layout_constraintStart_toStartOf="@+id/btnReader"
-        app:layout_constraintTop_toBottomOf="@+id/btnReader" />
+        android:text="3. 将生成的File转为Uri"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/btn_write_bit_map_from_dir"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write_bit_map_from_dir" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_save_file_from_storage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="调用系统对文件进行单次授权"
-        app:layout_constraintEnd_toStartOf="@+id/ivPlaceHolder"
+        android:text="4. 将生成的File转存至公用存储"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/btnFileFromUri"
         app:layout_constraintTop_toBottomOf="@+id/btnFileFromUri" />
+
+    <Button
+        android:id="@+id/btnUriFromFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5. 将转成的Uri转回File"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/btn_save_file_from_storage"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save_file_from_storage" />
+
+    <Button
+        android:id="@+id/deleteUri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6. 删除此Uri"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/btnUriFromFile"
+        app:layout_constraintTop_toBottomOf="@+id/btnUriFromFile" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

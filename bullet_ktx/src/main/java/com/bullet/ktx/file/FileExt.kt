@@ -7,10 +7,10 @@ import android.os.Build
 import android.os.Environment
 import android.os.FileUtils
 import android.provider.MediaStore
+import android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI
+import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
-import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import java.io.File
 import java.io.FileOutputStream
 
@@ -43,6 +43,7 @@ val File.extension: String
 
 class FileExt {
     companion object {
+
         @JvmStatic
         val mimeMap by lazy(LazyThreadSafetyMode.NONE) {
             val map: MutableMap<String, String> = HashMap()
@@ -120,6 +121,7 @@ class FileExt {
         }
 
         /** 创建共享文件Uri */
+        @RequiresApi(Build.VERSION_CODES.KITKAT)
         @JvmStatic
         fun createStorageUri(
             context: Context,
@@ -128,55 +130,30 @@ class FileExt {
             mimeType: String = "*/*"
         ): Uri? {
             val contentValues = ContentValues()
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, path)
-            } else {
-                val fileDir = File(path)
-                if (!fileDir.exists()) {
-                    fileDir.mkdir()
-                }
-                contentValues.put(MediaStore.MediaColumns.DATA, path + fileName)
+            with(contentValues) {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+                put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
+                put(MediaStore.Downloads.DATE_TAKEN, System.currentTimeMillis())
             }
-            val external = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            val resolver = context.contentResolver
-            // 健壮性判断,如果文件夹被删除，则让系统去寻找位置
-            return try {
-                resolver.insert(external, contentValues)
-            } catch (e: IllegalArgumentException) {
-                contentValues.remove(MediaStore.Images.Media.RELATIVE_PATH)
-                resolver.insert(external, contentValues)
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                contentValues.put(MediaStore.Downloads.RELATIVE_PATH, path)
+                val external = MediaStore.Downloads.EXTERNAL_CONTENT_URI
+                val resolver = context.contentResolver
+                try {
+                    resolver.insert(external, contentValues)
+                } catch (e: IllegalArgumentException) {
+                    e.printStackTrace()
+                    null
+                }
+            } else {
+                UriExt.fileFromUri(getFile(path, fileName))
             }
         }
 
-        /** file转Uri
-         * - 1. Version >=Android11 的处理(可直接操作共有目录File)
-         * - 2. Version = Android10 的处理(不可操作File,需要复制到沙盒完成转换)
-         * - 3. Version >= Android-N 的处理(FileProvider,读写权限)
-         * - 4. Version -> Android-M 的处理(读写权限)
-         * - 5. Version -> 默认处理
-         * */
-        @JvmStatic
-        fun fileToShareUri(file: File, context: Context = FileConfig.fileContext): Uri? {
-            return when {
-                // 拿不到外部存储的File,所以得先把file转存到外部储存
-                Build.VERSION.SDK_INT == Build.VERSION_CODES.Q -> {
-                    val mimeType = file.mimeType
-                    FileUtilsKtx.saveFileToStorage(file, file.name, mimeType = mimeType)
-                }
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> {
-                    FileProvider.getUriForFile(
-                        context,
-                        "${context.packageName}.fileprovider", // (use your app signature + ".provider" )
-                        file
-                    )
-                }
-                // Android11支持直接操作File
-                else -> {
-                    file.toUri()
-                }
-            }
+        @RequiresApi(Build.VERSION_CODES.KITKAT)
+        fun getFile(path: String, fileName: String): File {
+            val f = FileConfig.getDirectory(path)
+            return File("${f.absolutePath}/$fileName")
         }
     }
 }

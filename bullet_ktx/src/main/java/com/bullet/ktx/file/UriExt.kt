@@ -1,5 +1,6 @@
 package com.bullet.ktx.file
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.Context
@@ -13,6 +14,8 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.content.FileProvider
+import androidx.core.net.toFile
 import java.io.File
 import java.lang.reflect.Array
 import java.lang.reflect.Array.getLength
@@ -26,15 +29,49 @@ import java.lang.reflect.Method
  */
 class UriExt {
     companion object {
+
+        /**
+         * file转Uri
+         * 需要设置了FileProvider
+         * */
+        fun fileFromUri(file: File, context: Context = FileConfig.fileContext): Uri? {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                val authority =
+                    "${context.packageName}.fileprovider"
+                FileProvider.getUriForFile(context, authority, file)
+            } else {
+                Uri.fromFile(file)
+            }
+        }
+
+        /** uri转File */
+        @SuppressLint("NewApi")
+        fun uriFromFile(uri: Uri, context: Context = FileConfig.fileContext): File? {
+            val sdkVersion = Build.VERSION.SDK_INT
+            return if (uri.scheme == ContentResolver.SCHEME_FILE)
+                uri.toFile()
+            else if (uri.scheme == ContentResolver.SCHEME_CONTENT && sdkVersion >= Build.VERSION_CODES.Q) {
+                // 如果是Q且使用了旧版本存储
+                if (sdkVersion == Build.VERSION_CODES.Q && Environment.isExternalStorageLegacy()) {
+                    uri2FileReal(uri, context)
+                } else {
+                    // 去应用沙盒里创建一个临时file
+                    FileExt.saveUriToCacheDir(uri, context)
+                }
+            } else {
+                uri2FileReal(uri, context)
+            }
+        }
+
         /** Uri转File */
         @RequiresApi(Build.VERSION_CODES.KITKAT)
-        fun uri2FileReal(uri: Uri, context: Context = FileConfig.fileContext): File? {
+        private fun uri2FileReal(uri: Uri, context: Context = FileConfig.fileContext): File? {
             Log.d("UriUtils", uri.toString())
             val authority: String? = uri.authority
             val scheme: String? = uri.scheme
             val path: String? = uri.path
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && path != null) {
-                val externals = arrayOf("/external/", "/external_path/")
+                val externals = arrayOf("/external/", "/external_path/", "/rc_external_path/")
                 var file: File? = null
                 for (external: String in externals) {
                     if (path.startsWith(external)) {
