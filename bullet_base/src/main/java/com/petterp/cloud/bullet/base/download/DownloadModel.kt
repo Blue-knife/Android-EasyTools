@@ -16,15 +16,14 @@ import kotlinx.coroutines.flow.flowOn
 class DownloadModel : ViewModel() {
 
     val downloadStateLiveData =
-            MutableLiveData<DownLoadManager.DownloadStatus>(DownLoadManager.DownloadStatus.None)
-
+        MutableLiveData<DownLoadManager.DownloadStatus>(DownLoadManager.DownloadStatus.None)
 
     suspend fun download(url: String, fileName: String) {
         DownLoadManager.download(url, fileName)
-                .flowOn(Dispatchers.IO)
-                .collect {
-                    //发送数据
-                    downloadStateLiveData.value = it
-                }
+            .flowOn(Dispatchers.IO)
+            .collect {
+                // 发送数据
+                downloadStateLiveData.value = it
+            }
     }
 }

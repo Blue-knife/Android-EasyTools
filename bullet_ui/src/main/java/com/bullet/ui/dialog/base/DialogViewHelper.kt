@@ -18,7 +18,7 @@ class DialogViewHelper() {
 
     lateinit var mContentView: View
 
-    //缓存 ,软引用，防止内存泄露
+    // 缓存 ,软引用，防止内存泄露
     private val mCacheViews = SparseArray<WeakReference<View>>()
 
     constructor(mContext: Context, mViewLayoutResId: Int) : this() {
@@ -37,9 +37,9 @@ class DialogViewHelper() {
      * 设置事件
      */
     fun setOnClickListener(
-            viewId: Int,
-            onClick: (Pair<View, FastDialog>) -> Unit,
-            alertDialog: FastDialog
+        viewId: Int,
+        onClick: (Pair<View, FastDialog>) -> Unit,
+        alertDialog: FastDialog
     ) {
         getView<View>(viewId)?.setOnClickListener {
             onClick(Pair(it, alertDialog))
@@ -57,5 +57,4 @@ class DialogViewHelper() {
         if (view != null) mCacheViews.put(viewId, WeakReference(view))
         return view as T
     }
-
 }

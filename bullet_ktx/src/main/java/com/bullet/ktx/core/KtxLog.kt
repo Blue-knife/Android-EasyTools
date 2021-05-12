@@ -18,7 +18,7 @@ object KtxLog {
     const val NOTHING = 6
     const val KEY_TAG = "petterp"
 
-    //控制log等级
+    // 控制log等级
     var LEVEL = VERBOSE
 
     fun init(level: Int = VERBOSE) {

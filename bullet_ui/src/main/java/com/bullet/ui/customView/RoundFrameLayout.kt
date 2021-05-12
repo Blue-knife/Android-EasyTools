@@ -19,14 +19,16 @@ class RoundFrameLayout : FrameLayout {
 
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0) {}
 
-
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : this(
-            context, attributeSet, defStyleAttr, 0
+        context, attributeSet, defStyleAttr, 0
     )
 
     @SuppressLint("NewApi")
     constructor(
-            context: Context, attributeSet: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
+        context: Context,
+        attributeSet: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
     ) : super(context, attributeSet, defStyleAttr, defStyleRes) {
         RoundViewHelper.setViewOutLine(this, attributeSet, defStyleAttr, defStyleRes)
     }

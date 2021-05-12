@@ -1,4 +1,4 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import android.app.Activity
 import android.app.Application
@@ -16,15 +16,13 @@ object ApplicationActivity {
     private var isResume = false
     private var iLifecycleCallbacks: ILifecycleCallbacks? = null
     fun setLifecycleCallbacks(iLifecycleCallbacks: ILifecycleCallbacks?): ApplicationActivity {
-        this.iLifecycleCallbacks = iLifecycleCallbacks
+        ApplicationActivity.iLifecycleCallbacks = iLifecycleCallbacks
         return this
     }
 
-
     fun init(application: Application) {
-        application.registerActivityLifecycleCallbacks(object :Application.ActivityLifecycleCallbacks{
+        application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityPaused(activity: Activity) {
-
             }
 
             override fun onActivityStarted(activity: Activity) {
@@ -43,9 +41,8 @@ object ApplicationActivity {
             }
 
             override fun onActivityResumed(activity: Activity) {
-                ACTIVITY=activity
+                ACTIVITY = activity
             }
-
         })
     }
 }

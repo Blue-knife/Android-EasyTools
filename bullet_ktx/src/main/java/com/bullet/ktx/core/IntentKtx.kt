@@ -1,4 +1,4 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import android.app.Activity
 import android.app.Application
@@ -13,7 +13,6 @@ import android.net.Uri
  * @Email ShiyihuiCloud@163.com
  * @Function IntentKtx-Activity-core
  */
-
 
 /**
  * Activity-Uri跳转简化
@@ -43,7 +42,7 @@ inline fun Context.startActivityKtx(
     obj: (Intent) -> Unit = {}
 ) {
     val intent = Intent(this, cls)
-    //一个有趣的bug.[Android n-Android O]无需添加
+    // 一个有趣的bug.[Android n-Android O]无需添加
     if (this is Application) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
@@ -83,4 +82,3 @@ inline fun Context.startClearAllActivity(cls: Class<*>, obj: (Intent) -> Unit = 
     }
     startActivity(intent)
 }
-

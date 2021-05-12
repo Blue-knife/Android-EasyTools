@@ -1,4 +1,4 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,19 +14,14 @@ import kotlinx.coroutines.launch
 val ktxCoroutineScope =
     CoroutineScope(Dispatchers.Default)
 
-
 inline fun launchKtxUI(crossinline obj: suspend CoroutineScope.() -> Unit) {
     ktxCoroutineScope.launch(Dispatchers.Main) {
         obj()
     }
 }
 
-
 inline fun launchKtxIO(crossinline obj: suspend CoroutineScope.() -> Unit) {
     ktxCoroutineScope.launch(Dispatchers.IO) {
         obj()
     }
 }
-
-
-

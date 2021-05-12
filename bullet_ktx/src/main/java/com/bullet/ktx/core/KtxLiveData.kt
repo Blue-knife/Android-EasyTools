@@ -24,8 +24,5 @@ fun <T> MutableLiveData<T>.norSetValue(value: T?) {
 val MutableLiveData<Boolean>.booleanValue
     get() = value ?: false
 
-
 val MutableLiveData<String>.stringValue
     get() = value ?: ""
-
-

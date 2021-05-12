@@ -25,7 +25,7 @@ object DownLoadManager {
         this.context = context
     }
 
-    //创建文件
+    // 创建文件
     private val downloadDirectory by lazy {
         checkNotNull(context) {
             "DownloadManager context notNull!!"
@@ -40,34 +40,33 @@ object DownLoadManager {
         class Donel(val file: File) : DownloadStatus()
     }
 
-
     fun download(url: String, fileName: String): Flow<DownloadStatus> {
         val file = File(downloadDirectory, fileName)
         return flow {
             val request = Request.Builder().url(url).get().build()
             val response = OkHttpClient.Builder().build()
-                    .newCall(request).execute()
+                .newCall(request).execute()
             if (response.isSuccessful) {
                 response.body!!.let { body ->
-                    //总大小
+                    // 总大小
                     val total = body.contentLength()
-                    //当前值
+                    // 当前值
                     var emittedProcess = 0L
                     file.outputStream().use { output ->
                         body.byteStream().use { input ->
                             input.copyTo(output) { bytesCopied ->
-                                //计算百分比
+                                // 计算百分比
                                 val progress = bytesCopied * 100 / total
-                                //当前的值大于上一次的就进行通知
+                                // 当前的值大于上一次的就进行通知
                                 if (progress - emittedProcess > 1) {
-                                    //发射，外部的 collect 会执行
+                                    // 发射，外部的 collect 会执行
                                     emit(DownloadStatus.Progress(progress.toInt()))
                                     emittedProcess = progress
                                 }
                             }
                         }
                     }
-                    //下载完成
+                    // 下载完成
                     emit(DownloadStatus.Donel(file))
                 }
             } else {
@@ -77,8 +76,7 @@ object DownLoadManager {
 
             file.delete()
             emit(DownloadStatus.Error(it))
-            //保留最新的值
+            // 保留最新的值
         }.conflate()
-
     }
 }

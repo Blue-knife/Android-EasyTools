@@ -1,8 +1,7 @@
-package com.cloudx.ktx.core
+package com.bullet.ktx.core
 
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
-
 
 /**
  * Created by Petterp
@@ -10,16 +9,14 @@ import android.media.MediaMetadataRetriever
  * Function: Kt常用顶级函数-命名[todo]
  */
 
-
-
 fun getNetVideoBitmap(videoUrl: String): Bitmap? {
     var bitmap: Bitmap? = null
 
-    val retriever = MediaMetadataRetriever();
+    val retriever = MediaMetadataRetriever()
     try {
-        //根据url获取缩略图
+        // 根据url获取缩略图
         retriever.setDataSource(videoUrl, HashMap())
-        //获得第一帧图片
+        // 获得第一帧图片
         bitmap = retriever.frameAtTime
     } catch (e: Exception) {
         e.printStackTrace()

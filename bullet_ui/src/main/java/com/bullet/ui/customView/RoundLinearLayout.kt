@@ -11,7 +11,7 @@ import com.bullet.ui.customView.RoundViewHelper.Companion.setViewOutLine
  * 圆角 LinearLayout
  */
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-class RoundLinearLayout @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayoutCompat(context, attrs, defStyleAttr) {
+class RoundLinearLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayoutCompat(context, attrs, defStyleAttr) {
     fun setViewOutLine(radius: Int, radiusSize: Int) {
         setViewOutLine(this, radius, radiusSize)
     }

@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
-import com.business.tools.test.selectimage.UpLoadPhotoActivity
-import com.business.toos.R
 import com.bullet.camera.camera.CameraImageBean.Companion.instance
 import com.bullet.camera.camera.CropPhoto.cropPhoto
 import com.bullet.camera.camera.ImageUtils
@@ -22,6 +20,8 @@ import com.bullet.camera.camera.RequestCode
 import com.bullet.camera.camera.ToolsCamera.start
 import com.bullet.camera.camera.zxing.android.CaptureActivity
 import com.bumptech.glide.Glide
+import com.business.tools.test.selectimage.UpLoadPhotoActivity
+import com.business.toos.R
 import com.cloudx.ktx.core.launchIO
 import com.cloudx.ktx.core.withContextMain
 import com.petterp.cloud.bullet.base.zxing.CrCodeImageUtils
@@ -51,8 +51,12 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         clickView = v
-        checkPermission(arrayOf(Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE))
+        checkPermission(
+            arrayOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        )
     }
 
     fun checkPermission(permission: Array<String?>) {
@@ -121,14 +125,14 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
             when (requestCode) {
                 RequestCode.TAKE_PHOTO -> {
                     val resultUri = instance.path
-                    //裁剪
+                    // 裁剪
                     cropPhoto(this, resultUri)
 //                    if (resultUri != null) {
 //                        setImage(resultUri)
 //                    }
                 }
                 RequestCode.PICK_PHOTO -> if (data != null) {
-                    //裁剪
+                    // 裁剪
                     val pickPath = data.data
                     cropPhoto(this, pickPath)
                 }
@@ -139,9 +143,9 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 RequestCode.SCAN -> if (data != null) {
-                    //返回的文本内容
+                    // 返回的文本内容
                     val content = data.getStringExtra(DECODED_CONTENT_KEY)
-                    //返回的BitMap图像
+                    // 返回的BitMap图像
                     val scan = data.getParcelableExtra<Bitmap>(DECODED_BITMAP_KEY)
                     Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
                     if (scan != null) {
@@ -159,8 +163,8 @@ class CameraActivity : AppCompatActivity(), View.OnClickListener {
             ImageUtils.getPath(this, uri)?.let {
                 withContextMain {
                     Glide.with(this)
-                            .load(File(it))
-                            .into(mImage!!)
+                        .load(File(it))
+                        .into(mImage!!)
                 }
             }
         }

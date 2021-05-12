@@ -13,24 +13,24 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.bullet.ktx.ui.dip2px
 import com.bullet.ui.R
 
-class MaterialEditText(context: Context?, attrs: AttributeSet?) :
-        AppCompatEditText(context, attrs) {
+class MaterialEditText(context: Context, attrs: AttributeSet?) :
+    AppCompatEditText(context, attrs) {
 
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    //文字高度
+    // 文字高度
     private val mTextSize = dip2px(12f)
 
-    //文字和输入框间距
+    // 文字和输入框间距
     private val mTextMargin = dip2px(8f)
 
-    //垂直偏移
+    // 垂直偏移
     private val mTextVerticalOffset = dip2px(22f)
 
-    //纵向偏移
+    // 纵向偏移
     private val mTextHorizontalOffset = dip2px(5f)
 
-    //文字动画偏移量
+    // 文字动画偏移量
     private val mTextAnimationOffset = dip2px(16f)
 
     private var isFloatingLabel: Boolean = true
@@ -39,11 +39,11 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
 
     val animator: ObjectAnimator by lazy {
         ObjectAnimator.ofFloat(
-                this@MaterialEditText, "floatingLabelFaction", 0f, 1f
+            this@MaterialEditText, "floatingLabelFaction", 0f, 1f
         )
     }
 
-    //动画是否显示
+    // 动画是否显示
     private var floatingLabelShown = false
 
     private var floatingLabelFaction = 0f
@@ -59,7 +59,6 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
         init()
     }
 
-
     fun init() {
 
         background.getPadding(backgroundPadding)
@@ -73,14 +72,13 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
         addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) = Unit
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
-                    Unit
+                Unit
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (isFloatingLabel) {
                     if (floatingLabelShown && TextUtils.isEmpty(s)) {
                         animator.reverse()
                         floatingLabelShown = false
-
                     } else if (!floatingLabelShown && !TextUtils.isEmpty(s)) {
                         floatingLabelShown = true
                         animator.start()
@@ -89,7 +87,6 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
             }
         })
     }
-
 
     fun isFloatingLabel(isFloatingLabel: Boolean) {
         if (this.isFloatingLabel != isFloatingLabel) {
@@ -101,13 +98,13 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
     private fun onFloatingLabelChange() {
         if (isFloatingLabel) {
             setPadding(
-                    paddingLeft, backgroundPadding.top + (mTextSize + mTextMargin).toInt(),
-                    paddingRight, paddingBottom
+                paddingLeft, backgroundPadding.top + (mTextSize + mTextMargin).toInt(),
+                paddingRight, paddingBottom
             )
         } else {
             setPadding(
-                    paddingLeft, backgroundPadding.top,
-                    paddingRight, paddingBottom
+                paddingLeft, backgroundPadding.top,
+                paddingRight, paddingBottom
             )
         }
     }
@@ -117,14 +114,13 @@ class MaterialEditText(context: Context?, attrs: AttributeSet?) :
 
         paint.alpha = (floatingLabelFaction * 0xff).toInt()
 
-        //计算偏移量
+        // 计算偏移量
         val extraOffset = mTextAnimationOffset * (1 - floatingLabelFaction)
-        //绘制提示信息
+        // 绘制提示信息
         canvas.drawText(
-                hint as String, mTextHorizontalOffset.toFloat(),
-                mTextVerticalOffset + (-extraOffset),
-                paint
+            hint as String, mTextHorizontalOffset.toFloat(),
+            mTextVerticalOffset + (-extraOffset),
+            paint
         )
-
     }
 }

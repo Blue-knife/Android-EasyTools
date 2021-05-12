@@ -6,10 +6,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.LinearLayout
-
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-
 import com.business.audio.R
 import com.business.audio.mediaplayer.event.AudioLoadEvent
 import com.business.audio.mediaplayer.event.AudioPauseEvent
@@ -17,7 +15,6 @@ import com.business.audio.mediaplayer.event.AudioPrepareEvent
 import com.business.audio.mediaplayer.event.AudioStartEvent
 import com.business.audio.mediaplayer.model.AudioBean
 import com.business.audio.mediaplayer.utils.ImageLoaderManager
-
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -89,17 +86,15 @@ class BottomMusicView @JvmOverloads constructor(private val mContext: Context, a
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onAudioLoadEvent(event: AudioLoadEvent) {
-        //监听加载事件
+        // 监听加载事件
         mAudioBean = event.mAudioBean
         showLoadingView()
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onAudioStartEvent(event: AudioStartEvent) {
         showPlayView()
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onAudioPauseEvent(event: AudioPauseEvent) {
@@ -108,7 +103,7 @@ class BottomMusicView @JvmOverloads constructor(private val mContext: Context, a
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     private fun showLoadingView() {
-        //目前loading状态的UI处理与pause逻辑一样，分开为了以后好扩展
+        // 目前loading状态的UI处理与pause逻辑一样，分开为了以后好扩展
         if (mAudioBean != null) {
             ImageLoaderManager.instance.displayImageForCircle(mLeftView!!, mAudioBean!!.albumPic)
             mTitleView!!.text = mAudioBean!!.name
@@ -119,11 +114,9 @@ class BottomMusicView @JvmOverloads constructor(private val mContext: Context, a
 
     private fun showPlayView() {
         mPlayView!!.setImageResource(R.mipmap.note_btn_pause_white)
-
     }
 
     private fun showPauseView() {
         mPlayView!!.setImageResource(R.mipmap.note_btn_play_white)
-
     }
 }

@@ -42,7 +42,6 @@ class AudioController private constructor() {
         get() = if (mQueue == null) ArrayList() else mQueue!!
         set(beans) = setQueue(beans, 0)
 
-
     /**
      *
      * @return 获取当前播放模式
@@ -57,7 +56,6 @@ class AudioController private constructor() {
             this.mPlayMode = mPlayMode
             EventBus.getDefault().post(AudioPlayModeEvent(mPlayMode!!))
         }
-
 
     /**
      *
@@ -76,7 +74,6 @@ class AudioController private constructor() {
             this.mQueueIndex = mQueueIndex
             play()
         }
-
 
     /**
      * @return 是否为播放状态
@@ -196,13 +193,13 @@ class AudioController private constructor() {
         }
         val query = queryAudio(bean)
         if (query <= -1) {
-            //没有添加
+            // 没有添加
             addCustomAudio(index, bean)
             playIndex = index
         } else {
             val audioBean = nowPlaying
             if (audioBean.id != bean.id) {
-                //已经添加过且没有播放
+                // 已经添加过且没有播放
                 playIndex = query
             }
         }
@@ -258,7 +255,6 @@ class AudioController private constructor() {
         mAudioPlayer.load(previousPlaying)
     }
 
-
     /**
      * 播放/暂停
      */
@@ -271,7 +267,6 @@ class AudioController private constructor() {
             play()
         }
     }
-
 
     private fun addCustomAudio(index: Int, bean: AudioBean) {
         mQueue!![index] = bean

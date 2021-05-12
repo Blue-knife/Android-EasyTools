@@ -20,7 +20,7 @@ class SkinAttrSupport {
             val skinAttrs = mutableListOf<SkinAttr>()
             val count = attr.attributeCount
             for (i in 0 until count) {
-                //获名称 ,值
+                // 获名称 ,值
                 val attrName = attr.getAttributeName(i)
                 val attrValue = attr.getAttributeValue(i)
                 val skinType = getSkinType(attrName)
@@ -29,8 +29,8 @@ class SkinAttrSupport {
                     if (TextUtils.isEmpty(resName)) {
                         continue
                     } else {
-                        //resName 资源名称，skinType 资源类型
-                        //目前只支持 background src textColor
+                        // resName 资源名称，skinType 资源类型
+                        // 目前只支持 background src textColor
                         val skinAttr = SkinAttr(resName!!, skinType)
                         skinAttrs.add(skinAttr)
                     }
@@ -65,5 +65,4 @@ class SkinAttrSupport {
             return null
         }
     }
-
 }

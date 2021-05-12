@@ -7,10 +7,10 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.business.toos.R
 import com.bullet.core.ToastUtils
 import com.bullet.core.base.BaseSkinActivity
 import com.bullet.ui.dialog.ToastDialog
+import com.business.toos.R
 import kotlinx.android.synthetic.main.activity_upload_photo.*
 import java.io.File
 
@@ -80,17 +80,16 @@ class UpLoadPhotoActivity : BaseSkinActivity() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 0 && data != null) {
                 val list: ArrayList<Uri>? =
-                        data.getParcelableArrayListExtra(SelectImageActivity.EXTRA_RESULT)
+                    data.getParcelableArrayListExtra(SelectImageActivity.EXTRA_RESULT)
                 Toast.makeText(this@UpLoadPhotoActivity, "${list?.size}", Toast.LENGTH_LONG)
-                        .show()
+                    .show()
                 images.clear()
                 images.addAll(list!!)
                 upLoadRvAdapter?.notifyDataSetChanged()
             } else {
                 Toast.makeText(this@UpLoadPhotoActivity, "空", Toast.LENGTH_LONG)
-                        .show()
+                    .show()
             }
         }
     }
-
 }

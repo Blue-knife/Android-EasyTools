@@ -40,7 +40,7 @@ class NoticeActivity : AppCompatActivity(R.layout.activity_notice), View.OnClick
             }
             R.id.btnIsChannels -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    //判断渠道是否打开，未打开执行相应逻辑，默认执行打开设置
+                    // 判断渠道是否打开，未打开执行相应逻辑，默认执行打开设置
                     isChannelAvailable(channelId) {
                         com.bullet.core.ToastUtils.showCenterText("渠道未打开，执行默认操作")
                         true
@@ -48,36 +48,38 @@ class NoticeActivity : AppCompatActivity(R.layout.activity_notice), View.OnClick
                 }
             }
             R.id.btnSendNotice -> {
-                //发送基本通知
+                // 发送基本通知
                 sendNoticeMessage(
-                        NoticeMessageBean("这是一条测试通知", "我是测试1", R.mipmap.icon, channelId))
+                    NoticeMessageBean("这是一条测试通知", "我是测试1", R.mipmap.icon, channelId)
+                )
             }
             R.id.btnSendCustomNotice -> {
                 val noticeMessageBean = NoticeMessageBean("这是一条测试通知", "我是测试1", R.mipmap.icon, channelId)
                 val remoteViews = RemoteViews(packageName, R.layout.notice_layout)
                 remoteViews.setTextViewText(R.id.tvContent, noticeMessageBean.content)
                 sendNoticeMessage(
-                        noticeMessageBean,
-                        { noticeO, id ->
-                            //这里可以借用[noticeO] 做一些额外的操作
-                            //【id】 为通知id,万一需要呢，比如自定义通知视图等等
-                            noticeO.setCustomContentView(remoteViews)
-                            val tag = NotificationTarget(this, R.id.ivIcon, remoteViews, noticeO.build(), id)
+                    noticeMessageBean,
+                    { noticeO, id ->
+                        // 这里可以借用[noticeO] 做一些额外的操作
+                        // 【id】 为通知id,万一需要呢，比如自定义通知视图等等
+                        noticeO.setCustomContentView(remoteViews)
+                        val tag = NotificationTarget(this, R.id.ivIcon, remoteViews, noticeO.build(), id)
+                        Glide.with(this).asBitmap()
+                            .load("https://tva1.sinaimg.cn/large/007S8ZIlly1ge8quxhrysj30dw0dwaaf.jpg")
+                            .into(tag)
+                        noticeO.build()
+                    },
+                    { notice, id ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            notice.setCustomContentView(remoteViews)
+                            val tag = NotificationTarget(this, R.id.ivIcon, remoteViews, notice.build(), id)
                             Glide.with(this).asBitmap()
-                                    .load("https://tva1.sinaimg.cn/large/007S8ZIlly1ge8quxhrysj30dw0dwaaf.jpg")
-                                    .into(tag)
-                            noticeO.build()
-                        },
-                        { notice, id ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                notice.setCustomContentView(remoteViews)
-                                val tag = NotificationTarget(this, R.id.ivIcon, remoteViews, notice.build(), id)
-                                Glide.with(this).asBitmap()
-                                        .load("https://tva1.sinaimg.cn/large/007S8ZIlly1ge8quxhrysj30dw0dwaaf.jpg")
-                                        .into(tag)
-                            }
-                            notice.build()
-                        })
+                                .load("https://tva1.sinaimg.cn/large/007S8ZIlly1ge8quxhrysj30dw0dwaaf.jpg")
+                                .into(tag)
+                        }
+                        notice.build()
+                    }
+                )
             }
         }
     }

@@ -24,12 +24,13 @@ import com.bullet.core.base.skin.support.SkinAppCompatViewInflater
 import com.bullet.core.base.skin.support.SkinAttrSupport
 import org.xmlpull.v1.XmlPullParser
 
-abstract class BaseSkinActivity : BaseActivity(),
-        LayoutInflater.Factory2, ISkinChangeListener {
+abstract class BaseSkinActivity :
+    BaseActivity(),
+    LayoutInflater.Factory2,
+    ISkinChangeListener {
 
     private var mAppCompatViewInflater: SkinAppCompatViewInflater? = null
     private val lollipop = Build.VERSION.SDK_INT < 21
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         SkinManager.init(this)
@@ -54,17 +55,17 @@ abstract class BaseSkinActivity : BaseActivity(),
      * 这个方法在一个页面中会被调用多次
      */
     override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
-        //创建 View
+        // 创建 View
         val view = createView(parent, name, context, attrs)
-        //分析属性 textColor src background
+        // 分析属性 textColor src background
         if (view != null) {
-            //获取当前 view 需要换肤的资源类型
+            // 获取当前 view 需要换肤的资源类型
             val skinAttrs: List<SkinAttr> = SkinAttrSupport.getSkinAttrs(context, attrs)
-            //对要换肤的 View 进行包装
+            // 对要换肤的 View 进行包装
             val skinView = SkinView(view, skinAttrs)
-            //交给 SkinManager 进行管理
+            // 交给 SkinManager 进行管理
             managerSkinView(skinView)
-            //判断是否需要换肤、
+            // 判断是否需要换肤、
             SkinManager.checkChangeSkin(skinView)
         }
         return view
@@ -74,15 +75,15 @@ abstract class BaseSkinActivity : BaseActivity(),
      * 统一管理 SkinView
      */
     private fun managerSkinView(skinView: SkinView) {
-        //获取当前 activity 的资源
+        // 获取当前 activity 的资源
         var skinViews = SkinManager.getSkinViews(this)
         if (skinViews == null) {
-            //创建新的
+            // 创建新的
             skinViews = mutableListOf()
-            //注册当前 activity
+            // 注册当前 activity
             SkinManager.register(this, skinViews)
         }
-        //将要换肤的 View 添加进与当前 activity 对应的集合中
+        // 将要换肤的 View 添加进与当前 activity 对应的集合中
         skinViews.add(skinView)
     }
 
@@ -91,11 +92,10 @@ abstract class BaseSkinActivity : BaseActivity(),
      * skinResources 是资源包的资源
      */
     override fun changeSkin(skinResource: SkinResource) {
-
     }
 
     override fun onDestroy() {
-        //反注册
+        // 反注册
         SkinManager.unregister(this)
         super.onDestroy()
     }
@@ -109,7 +109,10 @@ abstract class BaseSkinActivity : BaseActivity(),
      */
     @SuppressLint("Recycle", "PrivateResource", "RestrictedApi")
     private fun createView(
-            parent: View?, name: String, @NonNull context: Context, @NonNull attrs: AttributeSet
+        parent: View?,
+        name: String,
+        @NonNull context: Context,
+        @NonNull attrs: AttributeSet
     ): View? {
         if (mAppCompatViewInflater == null) {
             val a = context.obtainStyledAttributes(R.styleable.AppCompatTheme)
@@ -122,15 +125,16 @@ abstract class BaseSkinActivity : BaseActivity(),
                 mAppCompatViewInflater = try {
                     val viewInflaterClass = Class.forName(viewInflaterClassName)
                     viewInflaterClass.getDeclaredConstructor()
-                            .newInstance() as SkinAppCompatViewInflater
+                        .newInstance() as SkinAppCompatViewInflater
                 } catch (t: Throwable) {
                     Log.i(
-                            "BaseSkinActivity", "Failed to instantiate custom view inflater "
-                            + viewInflaterClassName + ". Falling back to default.", t
+                        "BaseSkinActivity",
+                        "Failed to instantiate custom view inflater " +
+                            viewInflaterClassName + ". Falling back to default.",
+                        t
                     )
                     SkinAppCompatViewInflater()
                 }
-
             }
         }
 
@@ -139,14 +143,14 @@ abstract class BaseSkinActivity : BaseActivity(),
             inheritContext = if (attrs is XmlPullParser)
                 (attrs as XmlPullParser).depth > 1
             else
-                shouldInheritContext(parent as ViewParent)// If we have a XmlPullParser, we can detect where we are in the layout
+                shouldInheritContext(parent as ViewParent) // If we have a XmlPullParser, we can detect where we are in the layout
             // Otherwise we have to use the old heuristic
         }
         return mAppCompatViewInflater!!.createView(
-                parent, name, context, attrs, inheritContext,
-                lollipop, /* Only read android:theme pre-L (L+ handles this anyway) */
-                true, /* Read read app:theme as a fallback at all times for legacy reasons */
-                VectorEnabledTintResources.shouldBeUsed() /* Only tint wrap the context if enabled */
+            parent, name, context, attrs, inheritContext,
+            lollipop, /* Only read android:theme pre-L (L+ handles this anyway) */
+            true, /* Read read app:theme as a fallback at all times for legacy reasons */
+            VectorEnabledTintResources.shouldBeUsed() /* Only tint wrap the context if enabled */
         )
     }
 
@@ -160,8 +164,8 @@ abstract class BaseSkinActivity : BaseActivity(),
                 // call, therefore we should inherit. This works as the inflated layout is only
                 // added to the hierarchy at the end of the inflate() call.
                 return true
-            } else if (parent === windowDecor || parent !is View
-                    || ViewCompat.isAttachedToWindow((parent as View?)!!)
+            } else if (parent === windowDecor || parent !is View ||
+                ViewCompat.isAttachedToWindow((parent as View?)!!)
             ) {
                 // We have either hit the window's decor view, a parent which isn't a View
                 // (i.e. ViewRootImpl), or an attached view, so we know that the original parent

@@ -24,12 +24,12 @@ object ImageUtils {
     @JvmStatic
     fun getPath(context: Context, uri: Uri): String? {
         val path =
-                if (VersionUtils.isAndroidQ()) {
-                    UriUtils.getPathForUri(context, uri)
-                } else {
-                    val file = UriUtils.getFileByUri(uri, context)
-                    file?.absolutePath
-                }
+            if (VersionUtils.isAndroidQ()) {
+                UriUtils.getPathForUri(context, uri)
+            } else {
+                val file = UriUtils.getFileByUri(uri, context)
+                file?.absolutePath
+            }
 
         if (path != null) {
             val bitmap = Utils.decodeSampledBitmapFromFile(context, path, 720, 1080)
@@ -78,7 +78,8 @@ object ImageUtils {
             val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
             val imageFileName = String.format("JPEG_%s.jpg", timeStamp)
             val storageDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES)
+                Environment.DIRECTORY_PICTURES
+            )
             if (!storageDir.exists()) {
                 storageDir.mkdir()
             }
@@ -91,6 +92,4 @@ object ImageUtils {
             return null
         }
     }
-
-
 }

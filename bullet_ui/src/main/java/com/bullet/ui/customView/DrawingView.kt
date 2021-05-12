@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import java.io.*
 
-
 /**
  * @name DrawingView
  * @package com.example.ui.customView
@@ -27,21 +26,21 @@ class DrawingView : View {
 
     private lateinit var mPaint: Paint
     private lateinit var mPath: Path
-    private var cacheBitmap //用户保存签名的Bitmap
-            : Bitmap? = null
-    private var cacheCanvas //用户保存签名的Canvas
-            : Canvas? = null
+    private var cacheBitmap: Bitmap? = // 用户保存签名的Bitmap
+        null
+    private var cacheCanvas: Canvas? = // 用户保存签名的Canvas
+        null
 
-    //位置
+    // 位置
     private var mLeft: Float = 0f
     private var mRight: Float = 0f
     private var mTop: Float = 0f
     private var mBottom: Float = 0f
 
-    //边距
+    // 边距
     private var mPadding = 20f
 
-    //线宽度
+    // 线宽度
     private var mPaintWidth = 10f
 
     constructor(context: Context?) : this(context, null)
@@ -50,8 +49,7 @@ class DrawingView : View {
         init()
     }
 
-
-    private fun init() { //初始化画笔
+    private fun init() { // 初始化画笔
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint.style = Paint.Style.STROKE
         mPaint.color = Color.BLACK
@@ -66,7 +64,7 @@ class DrawingView : View {
         super.onSizeChanged(w, h, oldw, oldh)
         cacheBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         cacheCanvas = Canvas(cacheBitmap!!)
-        //设置背景色为透明
+        // 设置背景色为透明
         cacheCanvas?.drawColor(Color.WHITE)
     }
 
@@ -74,7 +72,7 @@ class DrawingView : View {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                //路径起点
+                // 路径起点
                 mPath.moveTo(event.x, event.y)
                 if (mLeft == 0f) {
                     mLeft = event.x
@@ -87,15 +85,15 @@ class DrawingView : View {
             MotionEvent.ACTION_MOVE -> {
                 mPath.lineTo(event.x, event.y)
                 postInvalidate()
-                //限制滑动的位置
+                // 限制滑动的位置
                 if (event.x < width && event.x >= 0) {
                     if (event.y < height && event.y >= 0) {
-                        //如果是第二次按下，也需要记录位置
+                        // 如果是第二次按下，也需要记录位置
                         setVertexCoordinates(event.x, event.y)
                     }
                 }
             }
-            MotionEvent.ACTION_UP -> //将签名绘制到缓存画布上
+            MotionEvent.ACTION_UP -> // 将签名绘制到缓存画布上
                 cacheCanvas?.drawPath(mPath, mPaint)
         }
         return true
@@ -103,7 +101,7 @@ class DrawingView : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        //绘制签名路径
+        // 绘制签名路径
         canvas.drawPath(mPath, mPaint)
     }
 
@@ -116,7 +114,7 @@ class DrawingView : View {
         cacheCanvas = null
         cacheBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         cacheCanvas = Canvas(cacheBitmap!!)
-        //设置背景色为透明
+        // 设置背景色为透明
         cacheCanvas?.drawColor(Color.WHITE)
         mBottom = 0f
         mTop = mBottom
@@ -157,7 +155,7 @@ class DrawingView : View {
     fun getFile(): File? {
         val bitmap = getBitmap(15) ?: return null
         val uri = save(bitmap, "${System.currentTimeMillis()}.png")
-                ?: throw FileNotFoundException("文件未找到")
+            ?: throw FileNotFoundException("文件未找到")
         val query = context.contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)
         query?.moveToFirst()
         val index = query?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
@@ -228,10 +226,10 @@ class DrawingView : View {
         }
 
         val dip2px = dip2px(padding)
-        //裁切签名的部分
+        // 裁切签名的部分
         val cropBitmap = Bitmap.createBitmap(cacheBitmap!!, mLeft.toZero(), mTop.toZero(), right.toZero(), height.toZero())
 
-        //设置边距
+        // 设置边距
         val bitmap = Bitmap.createBitmap((cropBitmap.width + (dip2px * 2)), (cropBitmap.height + (dip2px * 2)), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         canvas.drawColor(Color.WHITE)

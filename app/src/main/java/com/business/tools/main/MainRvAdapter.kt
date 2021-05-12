@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
-import com.business.toos.R
 import com.bullet.ktx.service.TestJobService
+import com.business.toos.R
 
 class MainRvAdapter(data: List<Pair<String, Any?>>, context: Context) : RecyclerView.Adapter<MainRvAdapter.Holder>() {
 
@@ -35,7 +35,7 @@ class MainRvAdapter(data: List<Pair<String, Any?>>, context: Context) : Recycler
             if (pair.first == "开启 JobService") {
                 startJobService()
             } else if (second != null) {
-                //智能转换
+                // 智能转换
                 if (second is Class<*>) startIntent(second)
             }
         }

@@ -67,7 +67,7 @@ class LineCircle(context: Context?, attrs: AttributeSet?) : View(context, attrs)
      */
     private var isSelect = false
 
-    //偏移
+    // 偏移
     private var offsetY = 0
 
     /**
@@ -84,18 +84,18 @@ class LineCircle(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
         // 默认圆的高度
         val scaleHeight =
-                if (offsetY == 0) {
-                    (height * mScale).toInt()
-                } else {
-                    offsetY
-                }
+            if (offsetY == 0) {
+                (height * mScale).toInt()
+            } else {
+                offsetY
+            }
         val center = width / 2
         paint.color = mPathColor
         paint.strokeWidth = dp2px(1f)
         path.moveTo(center.toFloat(), 50f)
         path.lineTo(center.toFloat(), height.toFloat())
 
-        //画线
+        // 画线
         if (mHead) {
             canvas.drawLine(center.toFloat(), scaleHeight.toFloat(), center.toFloat(), height.toFloat(), paint)
         } else if (mEnd) {
@@ -107,7 +107,7 @@ class LineCircle(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         } else {
             canvas.drawLine(center.toFloat(), 0f, center.toFloat(), height.toFloat(), paint)
         }
-        //画圆
+        // 画圆
         if (isSelect) {
             paint.color = outerCircleColor
             canvas.drawCircle(center.toFloat(), scaleHeight.toFloat(), outRadius.toFloat(), paint)
@@ -223,9 +223,9 @@ class LineCircle(context: Context?, attrs: AttributeSet?) : View(context, attrs)
      */
     private fun dp2px(dp: Float): Float {
         return TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                Resources.getSystem().displayMetrics
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            Resources.getSystem().displayMetrics
         )
     }
 }

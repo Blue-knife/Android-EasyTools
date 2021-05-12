@@ -25,11 +25,11 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
 
     init {
         mFastDialog = FastDialog.Builder(activity)
-                .setWidth(LinearLayoutCompat.LayoutParams.MATCH_PARENT)
-                .setContentView(R.layout.dialog_camera_panel)
-                .stGravity(Gravity.BOTTOM)
-                .addDefaultAnimation()
-                .build()
+            .setWidth(LinearLayoutCompat.LayoutParams.MATCH_PARENT)
+            .setContentView(R.layout.dialog_camera_panel)
+            .stGravity(Gravity.BOTTOM)
+            .addDefaultAnimation()
+            .build()
     }
 
     fun beginCameraDialog() {
@@ -43,10 +43,10 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
      * 打开相机
      */
     private fun takePhoto() {
-        //拍照意图
+        // 拍照意图
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         var uri: Uri? = null
-        //兼容10.0
+        // 兼容10.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             uri = ImageUtils.saveImageWithAndroidQ(activity)
         } else {
@@ -54,8 +54,10 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
             val tempFile = ImageUtils.saveImageFile()
             if (tempFile != null) {
                 uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    FileProvider.getUriForFile(activity,
-                            "${activity.packageName}.fileProvider", tempFile)
+                    FileProvider.getUriForFile(
+                        activity,
+                        "${activity.packageName}.fileProvider", tempFile
+                    )
                 } else {
                     Uri.fromFile(tempFile)
                 }
@@ -73,7 +75,7 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
     private fun pickPhoto() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        //打开相册
+        // 打开相册
         activity.startActivityForResult(intent, RequestCode.PICK_PHOTO)
         mFastDialog?.cancel()
     }
@@ -89,6 +91,4 @@ class CameraHandler internal constructor(private val activity: Activity) : View.
             mFastDialog!!.cancel()
         }
     }
-
-
 }

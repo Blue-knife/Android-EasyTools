@@ -25,7 +25,7 @@ object CropPhoto {
     @JvmStatic
     fun cropPhoto(activity: Activity, uri: Uri?) {
         var imageUrl: Uri? = null
-        //打开系统自带的裁剪图片的intent
+        // 打开系统自带的裁剪图片的intent
         val intent = Intent("com.android.camera.action.CROP")
         // 注意一定要添加该项权限，否则会提示无法裁剪
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -48,15 +48,14 @@ object CropPhoto {
             val tempFile = ImageUtils.saveImageFile()
             if (tempFile != null) {
                 imageUrl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    FileProvider.getUriForFile(activity,
-                            "${activity.packageName}.fileProvider", tempFile)
+                    FileProvider.getUriForFile(activity, "${activity.packageName}.fileProvider", tempFile)
                 } else {
                     Uri.fromFile(tempFile)
                 }
             }
         }
 
-        //保存图片路径
+        // 保存图片路径
         CameraImageBean.instance.path = imageUrl
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl)
         activity.startActivityForResult(intent, RequestCode.CROP_PHOTO)

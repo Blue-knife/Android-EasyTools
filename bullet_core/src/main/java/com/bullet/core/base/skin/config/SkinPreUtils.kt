@@ -11,15 +11,14 @@ object SkinPreUtils {
         SkinPreUtils.context = context.applicationContext
     }
 
-
     /**
      * 报错当前皮肤路径
      */
     fun saveSkinPath(skinPath: String?) {
         context!!.getSharedPreferences(SkinConfig.SKIN_INFO_NAME, Context.MODE_PRIVATE)
-                .edit()
-                .putString(SkinConfig.SKIN_PATH_NAME, skinPath)
-                .apply()
+            .edit()
+            .putString(SkinConfig.SKIN_PATH_NAME, skinPath)
+            .apply()
     }
 
     /**
@@ -27,7 +26,7 @@ object SkinPreUtils {
      */
     fun getSkinPath(): String? {
         return context!!.getSharedPreferences(SkinConfig.SKIN_INFO_NAME, Context.MODE_PRIVATE)
-                .getString(SkinConfig.SKIN_PATH_NAME, null)
+            .getString(SkinConfig.SKIN_PATH_NAME, null)
     }
 
     /**
@@ -42,9 +41,9 @@ object SkinPreUtils {
      */
     fun setTag(boolean: Boolean) {
         context!!.getSharedPreferences(SkinConfig.TAG, Context.MODE_PRIVATE)
-                .edit()
-                .putBoolean(SkinConfig.TAG, boolean)
-                .apply()
+            .edit()
+            .putBoolean(SkinConfig.TAG, boolean)
+            .apply()
     }
 
     /**
@@ -52,6 +51,6 @@ object SkinPreUtils {
      */
     fun getTag(): Boolean {
         return context!!.getSharedPreferences(SkinConfig.TAG, Context.MODE_PRIVATE)
-                .getBoolean(SkinConfig.TAG, false)
+            .getBoolean(SkinConfig.TAG, false)
     }
 }

@@ -18,11 +18,10 @@ import kotlinx.android.synthetic.main.activity_views.*
  * @time 2021/01/23 23:33
  * @description
  */
-class PageBannerActivity :AppCompatActivity() {
+class PageBannerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banner)
-
 
         val adapter = ScrollerAdapter(R.layout.item)
 
@@ -33,10 +32,10 @@ class PageBannerActivity :AppCompatActivity() {
 class ScrollerAdapter(itemRes: Int) : PageAdapter(itemRes) {
 
     private val url = arrayOf(
-            "https://wanandroid.com/blogimgs/7a8c08d1-35cb-43cd-a302-ce9b0f89fc59.png",
-            "https://www.wanandroid.com/blogimgs/62c1bd68-b5f3-4a3c-a649-7ca8c7dfabe6.png",
-            "https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png",
-            "https://www.wanandroid.com/blogimgs/90c6cc12-742e-4c9f-b318-b912f163b8d0.png"
+        "https://wanandroid.com/blogimgs/7a8c08d1-35cb-43cd-a302-ce9b0f89fc59.png",
+        "https://www.wanandroid.com/blogimgs/62c1bd68-b5f3-4a3c-a649-7ca8c7dfabe6.png",
+        "https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png",
+        "https://www.wanandroid.com/blogimgs/90c6cc12-742e-4c9f-b318-b912f163b8d0.png"
     )
 
     override fun count(): Int {
@@ -48,7 +47,7 @@ class ScrollerAdapter(itemRes: Int) : PageAdapter(itemRes) {
             Toast.makeText(view.context, "$position", Toast.LENGTH_LONG).show()
         }
         Glide.with(view.context)
-                .load(url[position])
-                .into((view as AppCompatImageView))
+            .load(url[position])
+            .into((view as AppCompatImageView))
     }
 }

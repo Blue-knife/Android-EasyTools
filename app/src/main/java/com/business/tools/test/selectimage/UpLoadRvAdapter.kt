@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.business.toos.R
 import com.bullet.core.ContextTools
 import com.bullet.ui.customView.SquareImageView
+import com.bumptech.glide.Glide
+import com.business.toos.R
 
 /**
  * @name UpLoadRvAdapter
@@ -28,7 +28,7 @@ class UpLoadRvAdapter(private val images: ArrayList<Uri>, private val loadMore: 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.image_item, parent, false)
+            .inflate(R.layout.image_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,29 +39,30 @@ class UpLoadRvAdapter(private val images: ArrayList<Uri>, private val loadMore: 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == images.size) {
             Glide.with(holder.image.context)
-                    .load(imageTranslateUri(R.drawable.ic_more))
-                    .into(holder.image)
+                .load(imageTranslateUri(R.drawable.ic_more))
+                .into(holder.image)
             holder.image.setBackgroundColor(Color.parseColor("#e3e3e3"))
-            holder.image.setPadding(50,50,50,50)
+            holder.image.setPadding(50, 50, 50, 50)
             holder.image.setOnClickListener {
                 loadMore()
             }
             return
         }
         val path = images[position]
-        //显示图片
+        // 显示图片
         Glide.with(holder.image.context)
-                .load(path)
-                .into(holder.image)
+            .load(path)
+            .into(holder.image)
         holder.image.setOnClickListener { }
-
     }
 
     private fun imageTranslateUri(resId: Int): Uri {
         val r = ContextTools.context.resources
-        return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
-                + r.getResourcePackageName(resId) + "/"
-                + r.getResourceTypeName(resId) + "/"
-                + r.getResourceEntryName(resId))
+        return Uri.parse(
+            ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                r.getResourcePackageName(resId) + "/" +
+                r.getResourceTypeName(resId) + "/" +
+                r.getResourceEntryName(resId)
+        )
     }
 }
