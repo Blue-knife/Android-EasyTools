@@ -65,7 +65,7 @@ class UriExt {
 
         /** Uri转File */
         @RequiresApi(Build.VERSION_CODES.KITKAT)
-        private fun uri2FileReal(uri: Uri, context: Context = FileConfig.fileContext): File? {
+        fun uri2FileReal(uri: Uri, context: Context = FileConfig.fileContext): File? {
             Log.d("UriUtils", uri.toString())
             val authority: String? = uri.authority
             val scheme: String? = uri.scheme

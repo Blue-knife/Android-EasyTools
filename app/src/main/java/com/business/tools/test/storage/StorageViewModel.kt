@@ -5,7 +5,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.bullet.core.ToastUtils
-import com.bullet.ktx.file.FileKtx
+import com.bullet.ktx.file.FileKtxUtils
 import com.bullet.ktx.file.UriExt
 import com.cloudx.ktx.core.viewModelScopeIO
 import com.cloudx.ktx.core.withContextMain
@@ -32,7 +32,7 @@ class StorageViewModel : ViewModel() {
         viewModelScopeIO {
             val fileName =
                 if (saveName.isEmpty()) "${System.currentTimeMillis()}.jpeg" else "$saveName.jpeg"
-            file = FileKtx.saveBitmapToDir(bitMap!!, fileName)
+            file = FileKtxUtils.saveBitmapToDir(bitMap!!, fileName)
             withContextMain {
                 if (file != null) {
                     val fileName = file!!.name
@@ -66,8 +66,11 @@ class StorageViewModel : ViewModel() {
     fun saveFileToStorage() {
         try {
             if (file == null) return
-            val uri = FileKtx.saveFileToDownload(file!!, "${file!!.name}", mimeType = "image/jpeg")
+            val uri =
+                FileKtxUtils.saveFileToDownload(file!!, "${file!!.name}", mimeType = "image/jpeg")
             ToastUtils.showText(uri?.toString())
+            Log.e("petterp", "${uri?.toString()}")
+            Log.e("petterp", "${UriExt.uri2FileReal(uri!!)}")
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -75,6 +78,6 @@ class StorageViewModel : ViewModel() {
 
     fun deleteUri() {
         if (uri == null) return
-        FileKtx.delete(uri!!)
+        FileKtxUtils.delete(uri!!)
     }
 }

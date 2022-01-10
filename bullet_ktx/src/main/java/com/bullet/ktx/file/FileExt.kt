@@ -7,8 +7,6 @@ import android.os.Build
 import android.os.Environment
 import android.os.FileUtils
 import android.provider.MediaStore
-import android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI
-import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
 import java.io.File
@@ -28,7 +26,7 @@ val File.mimeType: String
             ?: FileExt.mimeMap[extension] ?: "*/*"
     }
 
-/** 获取文件mime */
+/** 获取文件后缀 */
 val File.extension: String
     get() {
         var suffix = ""
@@ -82,7 +80,7 @@ class FileExt {
                     "$directory/$folderPath"
             } else {
                 // relative path
-                "$directory/$folderPath"
+                folderPath
             }
         }
 
@@ -133,11 +131,31 @@ class FileExt {
             with(contentValues) {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
                 put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
-                put(MediaStore.Downloads.DATE_TAKEN, System.currentTimeMillis())
+//                put(MediaStore.Downloads.DATE_TAKEN, System.currentTimeMillis())
             }
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                contentValues.put(MediaStore.Downloads.RELATIVE_PATH, path)
-                val external = MediaStore.Downloads.EXTERNAL_CONTENT_URI
+                val split = mimeType.split("/").toTypedArray()
+                val relativePath: String
+                val external: Uri
+                when (split[0]) {
+                    "image" -> {
+                        relativePath = MediaStore.Images.Media.RELATIVE_PATH
+                        external = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    }
+                    "video" -> {
+                        relativePath = MediaStore.Video.Media.RELATIVE_PATH
+                        external = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                    }
+                    "audio" -> {
+                        relativePath = MediaStore.Audio.Media.RELATIVE_PATH
+                        external = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+                    }
+                    else -> {
+                        relativePath = MediaStore.Downloads.RELATIVE_PATH
+                        external = MediaStore.Downloads.EXTERNAL_CONTENT_URI
+                    }
+                }
+                contentValues.put(relativePath, path)
                 val resolver = context.contentResolver
                 try {
                     resolver.insert(external, contentValues)
