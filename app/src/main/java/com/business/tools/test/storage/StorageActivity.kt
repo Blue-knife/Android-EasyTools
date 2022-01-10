@@ -1,5 +1,6 @@
 package com.business.tools.test.storage
 
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -13,6 +14,7 @@ import com.bullet.ktx.ui.toBitMap
 import com.business.toos.databinding.ActivityStorageBinding
 import com.xcf.lazycook.common.ktx.viewBindings
 import kotlinx.android.synthetic.main.activity_storage.*
+import java.io.File
 
 /**
  * @Author petterp
@@ -24,6 +26,7 @@ class StorageActivity : AppCompatActivity(), View.OnClickListener {
     val bing by viewBindings<ActivityStorageBinding>()
 
     val viewModel by viewModels<StorageViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(bing.root)
@@ -34,6 +37,7 @@ class StorageActivity : AppCompatActivity(), View.OnClickListener {
         bing.btnUriFromFile.singleClicks(this)
         bing.btnSaveFileFromStorage.singleClicks(this)
         bing.deleteUri.singleClicks(this)
+        bing.btnTestRead.singleClicks(this)
         initFileConfig()
     }
 
@@ -81,6 +85,11 @@ class StorageActivity : AppCompatActivity(), View.OnClickListener {
             // 删除转过来的Uri
             bing.deleteUri -> {
                 viewModel.deleteUri()
+            }
+            bing.btnTestRead -> {
+                val file = File("/storage/emulated/0/Download/EasyTools/1626323928113.jpeg")
+                val bitmap = BitmapFactory.decodeFile(file.path)
+                bing.ivPlaceHolder.setImageBitmap(bitmap)
             }
         }
     }

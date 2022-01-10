@@ -79,23 +79,6 @@ object FileKtxUtils {
         return uri
     }
 
-    /** 自定义存储位置
-     *
-     * */
-    fun saveFileToStorageX(
-        file: File,
-        fileName: String,
-        folderPath: String = FileConfig.APP_FOLDER_PATH,
-        context: Context = FileConfig.fileContext,
-        mimeType: String = "*/*"
-    ): Uri? {
-        if (!FileExt.isExternalStorageWritable()) return null
-        val path = FileExt.getAppDirectoryPath(Environment.DIRECTORY_DOWNLOADS, folderPath)
-        val uri = FileExt.createStorageUri(context, fileName, path, mimeType)
-        saveFile(context.contentResolver, uri, file.inputStream())
-        return uri
-    }
-
     /** 保存文件到app内部存储-默认路径 */
     fun saveFileToDir(
         inputPath: String,
@@ -109,14 +92,6 @@ object FileKtxUtils {
         inputPath: String,
         fileName: String,
         folderPath: String = FileConfig.APP_FOLDER_PATH,
-    ): File? =
-        saveFile(inputPath, "${FileConfig.PRIVATE_CACHE_DIR}/$folderPath/", fileName)
-
-    /** 保存文件到app内部存储-缓存 */
-    fun saveFileTo(
-        inputPath: String,
-        fileName: String,
-        folderPath: String,
     ): File? =
         saveFile(inputPath, "${FileConfig.PRIVATE_CACHE_DIR}/$folderPath/", fileName)
 
@@ -149,10 +124,25 @@ object FileKtxUtils {
         fileName: String,
         path: String,
         context: Context = FileConfig.fileContext
-    ): File {
+    ): File? {
+        if (!FileExt.isExternalStorageWritable()) return null
         val outFile = FileExt.getFile(path, fileName)
         saveFile(context.contentResolver, uri, outFile.inputStream())
         return outFile
+    }
+
+    fun saveFileToStorageX(
+        file: File,
+        fileName: String,
+        folderPath: String = FileConfig.APP_FOLDER_PATH,
+        context: Context = FileConfig.fileContext,
+        mimeType: String = "*/*"
+    ): Uri? {
+        if (!FileExt.isExternalStorageWritable()) return null
+        val path = FileExt.getAppDirectoryPath(Environment.DIRECTORY_MOVIES, folderPath)
+        val uri = FileExt.createStorageUri(context, fileName, path, mimeType)
+        saveFile(context.contentResolver, uri, file.inputStream())
+        return uri
     }
 
     private fun saveBitMap(
@@ -188,7 +178,7 @@ object FileKtxUtils {
         }
 
     /** fileA读取到file B */
-    private fun fileAToB(input: FileInputStream, os: OutputStream) {
+    fun fileAToB(input: FileInputStream, os: OutputStream) {
         val buffer = ByteArray(1024)
         var bytes = input.read(buffer)
         while (bytes >= 0) {

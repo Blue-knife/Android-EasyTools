@@ -66,8 +66,11 @@ class StorageViewModel : ViewModel() {
     fun saveFileToStorage() {
         try {
             if (file == null) return
-            val uri = FileKtxUtils.saveFileToDownload(file!!, "${file!!.name}", mimeType = "image/jpeg")
+            val uri =
+                FileKtxUtils.saveFileToDownload(file!!, "${file!!.name}", mimeType = "image/jpeg")
             ToastUtils.showText(uri?.toString())
+            Log.e("petterp", "${uri?.toString()}")
+            Log.e("petterp", "${UriExt.uri2FileReal(uri!!)}")
         } catch (e: Exception) {
             e.printStackTrace()
         }

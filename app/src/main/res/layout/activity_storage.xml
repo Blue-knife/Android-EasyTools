@@ -94,5 +94,12 @@
         app:layout_constraintStart_toStartOf="@+id/btnUriFromFile"
         app:layout_constraintTop_toBottomOf="@+id/btnUriFromFile" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTestRead"
+        android:text="模拟读取"
+        app:layout_constraintStart_toStartOf="@+id/deleteUri"
+        app:layout_constraintTop_toBottomOf="@+id/deleteUri" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
